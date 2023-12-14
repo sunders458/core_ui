@@ -6,8 +6,8 @@
       <div class="flex pt-4">
         <a href="index.html">
           <img
-            class="h-11 w-11 transition-transform duration-500 ease-in-out hover:rotate-[360deg]"
-            src="{{asset('assets/images/app-logo.svg')}}"
+            class="h-8 w-16 transition-transform duration-500 ease-in-out hover:rotate-[360deg]"
+            src="{{asset('core_ui/images/logos/logo_immo-2.png')}}"
             alt="logo"
           />
         </a>

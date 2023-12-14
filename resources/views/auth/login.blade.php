@@ -25,11 +25,11 @@
         <form method="POST" action="{{ route('login') }}">
             @csrf
             <label class="block">
-            <span>Email :</span>
+            <span>Email ou numero téléphone :</span>
             <span class="relative mt-1.5 flex">
                 <input
                 class="form-input peer w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 pl-9 placeholder:text-slate-400/70 hover:z-10 hover:border-slate-400 focus:z-10 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent @error('phone') is-invalid @enderror"
-                placeholder="Enter Username"
+                placeholder="Entrer votre contact"
                 type="text"
                 value="{{ old('phone') }}" required autocomplete="email" autofocus
                 name="phone"
@@ -54,7 +54,7 @@
                 </span>
             </span>
             <br>
-            @error('email')
+            @error('phone')
                 <span class="alert flex space-x-2 rounded-lg border border-error px-4 py-4 text-error" role="alert">
                     <strong>{{ $message }}</strong>
                 </span>
