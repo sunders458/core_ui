@@ -5,8 +5,8 @@
     <div class="w-full max-w-[26rem] p-4 sm:px-5">
     <div class="text-center">
         <img
-        class="mx-auto h-16 w-16"
-        src="{{asset('assets/images/app-logo.svg')}}"
+        class="mx-auto h-20 w-26"
+        src="{{asset('core_ui/images/logos/logo_immo-2.png')}}"
         alt="logo"
         />
         <div class="mt-4">
