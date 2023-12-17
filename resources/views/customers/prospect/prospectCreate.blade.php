@@ -11,10 +11,8 @@
         Formulaire d'ajout
       </h2> 
     </div>
-    <div class="grid grid-cols-12 gap-4 sm:gap-5 lg:gap-6">
-
-
-      <div class="col-span-12">
+    <div class="grid grid-cols-8 gap-4 sm:gap-5 lg:gap-6">
+      <div class="col-span-8">
         {!! Form::open(array('route' => 'prospects.store','method'=>'POST')) !!}
 
         <div class="card p-4 sm:p-5">
@@ -120,58 +118,10 @@
                     autocomplete="off"
                     name="pays_id"
                   >
-                    <option value="">Select a state...</option>
-                    <option value="AL">Alabama</option>
-                    <option value="AK">Alaska</option>
-                    <option value="AZ">Arizona</option>
-                    <option value="AR">Arkansas</option>
-                    <option value="CA" selected>California</option>
-                    <option value="CO">Colorado</option>
-                    <option value="CT">Connecticut</option>
-                    <option value="DE">Delaware</option>
-                    <option value="DC">District of Columbia</option>
-                    <option value="FL">Florida</option>
-                    <option value="GA">Georgia</option>
-                    <option value="HI">Hawaii</option>
-                    <option value="ID">Idaho</option>
-                    <option value="IL">Illinois</option>
-                    <option value="IN">Indiana</option>
-                    <option value="IA">Iowa</option>
-                    <option value="KS">Kansas</option>
-                    <option value="KY">Kentucky</option>
-                    <option value="LA">Louisiana</option>
-                    <option value="ME">Maine</option>
-                    <option value="MD">Maryland</option>
-                    <option value="MA">Massachusetts</option>
-                    <option value="MI">Michigan</option>
-                    <option value="MN">Minnesota</option>
-                    <option value="MS">Mississippi</option>
-                    <option value="MO">Missouri</option>
-                    <option value="MT">Montana</option>
-                    <option value="NE">Nebraska</option>
-                    <option value="NV">Nevada</option>
-                    <option value="NH">New Hampshire</option>
-                    <option value="NJ">New Jersey</option>
-                    <option value="NM">New Mexico</option>
-                    <option value="NY">New York</option>
-                    <option value="NC">North Carolina</option>
-                    <option value="ND">North Dakota</option>
-                    <option value="OH">Ohio</option>
-                    <option value="OK">Oklahoma</option>
-                    <option value="OR">Oregon</option>
-                    <option value="PA">Pennsylvania</option>
-                    <option value="RI">Rhode Island</option>
-                    <option value="SC">South Carolina</option>
-                    <option value="SD">South Dakota</option>
-                    <option value="TN">Tennessee</option>
-                    <option value="TX">Texas</option>
-                    <option value="UT">Utah</option>
-                    <option value="VT">Vermont</option>
-                    <option value="VA">Virginia</option>
-                    <option value="WA">Washington</option>
-                    <option value="WV">West Virginia</option>
-                    <option value="WI">Wisconsin</option>
-                    <option value="WY" selected>Wyoming</option>
+                    <option value="" selected>Selectinez votre pays...</option>
+                    @foreach ($countries as $country)
+                       <option value="{{$country->id}}">{{$country->libelle}}</option>
+                    @endforeach
                   </select>
 
                 </span>
@@ -247,19 +197,21 @@
               </label>
              
               <label class="block sm:col-span-2">
-                <span>Situation matrimoniale</span>
+
+                <span>Situation Matri..</span>
                 <span class="relative mt-1.5 flex">
                   <select
-                  
-                    class="form-select mt-1.5 w-full rounded-lg border border-slate-300 bg-white px-3 py-2 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:bg-navy-700 dark:hover:border-navy-400 dark:focus:border-accent"
+                  x-init="$el._tom = new Tom($el)"
+                    class="w-full"
                     name="matrimoniale"
                   >
                     <option value="">Choisir...</option>
                     <option value="0">Célibataire</option>
                     <option value="1">Marié</option>
                   </select>
-
                 </span>
+
+
               </label>
               <label class="block sm:col-span-6">
                 <span>Conjoint </span>
@@ -280,12 +232,13 @@
             </div>
             <div class="grid grid-cols-1 gap-4 sm:grid-cols-12">
               <label class="block sm:col-span-8">
-                <span>Email Address</span>
+                <span>Adresse Email</span>
                 <div class="relative mt-1.5 flex">
                   <input
                     class="form-input peer w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 pl-9 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
-                    placeholder="Email address"
+                    placeholder="addresse Email "
                     type="text"
+                    name="email"
                   />
                   <span
                     class="pointer-events-none absolute flex h-full w-10 items-center justify-center text-slate-400 peer-focus:text-primary dark:text-navy-300 dark:peer-focus:text-accent"
@@ -295,37 +248,40 @@
                 </div>
               </label>
               <label class="block sm:col-span-4">
-                <span>Pincode</span>
-                <div class="relative mt-1.5 flex">
-                  <input
-                    class="form-input peer w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 pl-9 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
-                    placeholder="Pincode"
-                    type="text"
-                  />
-                  <span
-                    class="pointer-events-none absolute flex h-full w-10 items-center justify-center text-slate-400 peer-focus:text-primary dark:text-navy-300 dark:peer-focus:text-accent"
-                  >
-                    <i class="fa-solid fa-map-pin text-base"></i>
-                  </span>
-                </div>
+                <span>Numero de téléphone</span>
+                    <span class="relative mt-1.5 flex">
+                      <input
+                        class="form-input peer w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 pl-9 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
+                        placeholder="(999) 99-9999-9999"
+                        type="text"
+                        x-input-mask="{numericOnly: true, blocks: [0, 3, 2, 4, 4], delimiters: ['(', ') ', '-']}"
+                        name="phone"
+                      />
+                      <span
+                        class="pointer-events-none absolute flex h-full w-10 items-center justify-center text-slate-400 peer-focus:text-primary dark:text-navy-300 dark:peer-focus:text-accent"
+                      >
+                        <i class="fa fa-phone"></i>
+                      </span>
+                    </span>
               </label>
             </div>
-            <label class="block">
+            {{-- <label class="block">
               <span>Address</span>
               <textarea
                 rows="4"
                 placeholder="Your Address (Area and Street)"
                 class="form-textarea mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent p-2.5 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
               ></textarea>
-            </label>
+            </label> --}}
             <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
               <label class="block">
-                <span>City</span>
+                <span>Communes</span>
                 <span class="relative mt-1.5 flex">
                   <input
                     class="form-input peer w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 pl-9 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
-                    placeholder="Your City/Town"
+                    placeholder="Ville/Commune"
                     type="text"
+                    name="city"
                   />
                   <span
                     class="pointer-events-none absolute flex h-full w-10 items-center justify-center text-slate-400 peer-focus:text-primary dark:text-navy-300 dark:peer-focus:text-accent"
@@ -335,12 +291,13 @@
                 </span>
               </label>
               <label class="block">
-                <span>State</span>
+                <span>Quartier</span>
                 <span class="relative mt-1.5 flex">
                   <input
                     class="form-input peer w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 pl-9 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
-                    placeholder="Your State"
+                    placeholder="residence"
                     type="text"
+                    name="residence"
                   />
                   <span
                     class="pointer-events-none absolute flex h-full w-10 items-center justify-center text-slate-400 peer-focus:text-primary dark:text-navy-300 dark:peer-focus:text-accent"
@@ -350,7 +307,7 @@
                 </span>
               </label>
             </div>
-            <div x-data="{sameBillingAddress:true}">
+            {{-- <div x-data="{sameBillingAddress:true}">
               <div
                 class="flex-wrap items-start space-y-2 pt-2 sm:flex sm:space-y-0 sm:space-x-5"
               >
@@ -381,7 +338,7 @@
                   ></textarea>
                 </label>
               </div>
-            </div>
+            </div> --}}
             <div class="flex justify-end space-x-2">
               <button
                 class="btn space-x-2 bg-slate-150 font-medium text-slate-800 hover:bg-slate-200 focus:bg-slate-200 active:bg-slate-200/80 dark:bg-navy-500 dark:text-navy-50 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90"

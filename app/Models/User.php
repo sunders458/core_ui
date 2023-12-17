@@ -23,6 +23,7 @@ class User extends Authenticatable implements JWTSubject
         'firstname',
         'user_id', 
         'person_type', 
+        'numero_cni',
         'sigle', 
         'photo', 
         'birthday', 
@@ -34,10 +35,12 @@ class User extends Authenticatable implements JWTSubject
         'juridique_forme', 
         'legale_representent', 
         'cc_number',
-         'social_siege', 
+        'social_siege', 
         'matrimoniale',
         'conjoint', 
-        'city', 'nationality', 'eglise_id', 'pays_id', 
+        'city',
+        'residence',
+        'nationality', 'eglise_id', 'pays_id', 
         'phone', 'phone_representant', 'status', 'email', 'entry_at', 'out_at', 
         'password', 'address', 'parent_id'
     ];

@@ -1,12 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
-use Spatie\Permission\Models\Role;
+
 use App\Models\Pays;
-use App\Models\User;
 use Illuminate\Http\Request;
 
-class ProspectController extends Controller
+class PaysController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -26,9 +25,6 @@ class ProspectController extends Controller
     public function create()
     {
         //
-        $roles = Role::pluck('name','name')->all();
-        $countries = Pays::all();
-        return view('customers.prospect.prospectCreate',compact('roles','countries'));
     }
 
     /**
@@ -40,32 +36,15 @@ class ProspectController extends Controller
     public function store(Request $request)
     {
         //
-        
-        $this->validate($request, [
-            'name' => 'required',
-            'email' => 'email|unique:users,email',
-            //'password' => 'required|same:confirm-password',
-        ]);
-
-        $input = $request->all();
-        $input['password'] = bcrypt('password');
-    
-        $prospect = User::create($input);
-        dd($prospect);
-        $prospect->assignRole($request->input('roles'));
-    
-        return redirect()->route('users.index')
-                        ->with('success','User created successfully');
-    
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Pays  $pays
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Pays $pays)
     {
         //
     }
@@ -73,10 +52,10 @@ class ProspectController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Pays  $pays
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Pays $pays)
     {
         //
     }
@@ -85,10 +64,10 @@ class ProspectController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Models\Pays  $pays
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Pays $pays)
     {
         //
     }
@@ -96,10 +75,10 @@ class ProspectController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\Pays  $pays
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Pays $pays)
     {
         //
     }
