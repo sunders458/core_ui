@@ -12,13 +12,18 @@
       </h2> 
     </div>
     <div class="grid grid-cols-12 gap-4 sm:gap-5 lg:gap-6">
+
+
       <div class="col-span-12">
+        {!! Form::open(array('route' => 'prospects.store','method'=>'POST')) !!}
+
         <div class="card p-4 sm:p-5">
           <p
             class="text-base font-medium text-slate-700 dark:text-navy-100"
           >
             Nouveau
           </p>
+
           <div class="mt-4 space-y-4">
             <!--
             <label class="block">
@@ -37,6 +42,7 @@
               </span>
             </label>
             Name input -->
+            
             <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
                 <label class="block">
                   <span>Nom</span>
@@ -45,6 +51,7 @@
                       class="form-input peer w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 pl-9 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
                       placeholder="Entrez le nom"
                       type="text"
+                      name="name"
                     />
                     <span
                       class="pointer-events-none absolute flex h-full w-10 items-center justify-center text-slate-400 peer-focus:text-primary dark:text-navy-300 dark:peer-focus:text-accent"
@@ -60,7 +67,7 @@
                       class="form-input peer w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 pl-9 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
                       placeholder="Entrez les prenoms"
                       type="text"
-                      
+                      name="firstname"
                     />
                     <span
                       class="pointer-events-none absolute flex h-full w-10 items-center justify-center text-slate-400 peer-focus:text-primary dark:text-navy-300 dark:peer-focus:text-accent"
@@ -69,6 +76,106 @@
                     </span>
                   </span>
                 </label>
+            </div>
+            <div class="grid grid-cols-1 gap-4 sm:grid-cols-3">
+              <label class="block">
+                <span>Nationalité</span>
+                <span class="relative mt-1.5 flex">
+                  <input
+                    class="form-input peer w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 pl-9 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
+                    placeholder="Entrez la nationalité"
+                    type="text"
+                    name="nationality"
+                  />
+                  <span
+                    class="pointer-events-none absolute flex h-full w-10 items-center justify-center text-slate-400 peer-focus:text-primary dark:text-navy-300 dark:peer-focus:text-accent"
+                  >
+                    <i class="far fa-user text-base"></i>
+                  </span>
+                </span>
+              </label>
+              <label class="block">
+                <span>N° CNI </span>
+                <span class="relative mt-1.5 flex">
+                  <input
+                    class="form-input peer w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 pl-9 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
+                    placeholder="Enttrez le numero de la pièce"
+                    type="text"
+                    name="matricule"
+                  />
+                  <span
+                    class="pointer-events-none absolute flex h-full w-10 items-center justify-center text-slate-400 peer-focus:text-primary dark:text-navy-300 dark:peer-focus:text-accent"
+                  >
+                  <i class="far fa-user text-base"></i>
+                  </span>
+                </span>
+              </label>
+              <label class="block">
+                <span>Pays de résidence</span>
+                <span class="relative mt-1.5 flex">
+                  <select
+                    x-init="$el._tom = new Tom($el)"
+                    class="w-full"
+                    placeholder="Pays de résidence..."
+                    autocomplete="off"
+                    name="pays_id"
+                  >
+                    <option value="">Select a state...</option>
+                    <option value="AL">Alabama</option>
+                    <option value="AK">Alaska</option>
+                    <option value="AZ">Arizona</option>
+                    <option value="AR">Arkansas</option>
+                    <option value="CA" selected>California</option>
+                    <option value="CO">Colorado</option>
+                    <option value="CT">Connecticut</option>
+                    <option value="DE">Delaware</option>
+                    <option value="DC">District of Columbia</option>
+                    <option value="FL">Florida</option>
+                    <option value="GA">Georgia</option>
+                    <option value="HI">Hawaii</option>
+                    <option value="ID">Idaho</option>
+                    <option value="IL">Illinois</option>
+                    <option value="IN">Indiana</option>
+                    <option value="IA">Iowa</option>
+                    <option value="KS">Kansas</option>
+                    <option value="KY">Kentucky</option>
+                    <option value="LA">Louisiana</option>
+                    <option value="ME">Maine</option>
+                    <option value="MD">Maryland</option>
+                    <option value="MA">Massachusetts</option>
+                    <option value="MI">Michigan</option>
+                    <option value="MN">Minnesota</option>
+                    <option value="MS">Mississippi</option>
+                    <option value="MO">Missouri</option>
+                    <option value="MT">Montana</option>
+                    <option value="NE">Nebraska</option>
+                    <option value="NV">Nevada</option>
+                    <option value="NH">New Hampshire</option>
+                    <option value="NJ">New Jersey</option>
+                    <option value="NM">New Mexico</option>
+                    <option value="NY">New York</option>
+                    <option value="NC">North Carolina</option>
+                    <option value="ND">North Dakota</option>
+                    <option value="OH">Ohio</option>
+                    <option value="OK">Oklahoma</option>
+                    <option value="OR">Oregon</option>
+                    <option value="PA">Pennsylvania</option>
+                    <option value="RI">Rhode Island</option>
+                    <option value="SC">South Carolina</option>
+                    <option value="SD">South Dakota</option>
+                    <option value="TN">Tennessee</option>
+                    <option value="TX">Texas</option>
+                    <option value="UT">Utah</option>
+                    <option value="VT">Vermont</option>
+                    <option value="VA">Virginia</option>
+                    <option value="WA">Washington</option>
+                    <option value="WV">West Virginia</option>
+                    <option value="WI">Wisconsin</option>
+                    <option value="WY" selected>Wyoming</option>
+                  </select>
+
+                </span>
+              </label>
             </div>
 
             <div class="grid grid-cols-1 gap-4 sm:grid-cols-12">
@@ -80,6 +187,7 @@
                     class="form-input peer w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 pl-9 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
                     placeholder="Choose date..."
                     type="text"
+                    name="birthday"
                     />
                     <span
                     class="pointer-events-none absolute flex h-full w-10 items-center justify-center text-slate-400 peer-focus:text-primary dark:text-navy-300 dark:peer-focus:text-accent"
@@ -110,12 +218,62 @@
                     class="form-input peer w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 pl-9 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
                     placeholder="Entrer le lieu de naissance"
                     type="text"
-                    
+                    name="birthlocation"
                   />
                   <span
                     class="pointer-events-none absolute flex h-full w-10 items-center justify-center text-slate-400 peer-focus:text-primary dark:text-navy-300 dark:peer-focus:text-accent"
                   >
                     <i class="fa fa-location-arrow"></i>
+                  </span>
+                </span>
+              </label>
+            </div>
+            <div class="grid grid-cols-1 gap-4 sm:grid-cols-12">
+              <label class="block sm:col-span-4">
+                <span>Fonction</span>
+                <span class="relative mt-1.5 flex">
+                  <input
+                    class="form-input peer w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 pl-9 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
+                    placeholder="Entrez la fonction"
+                    type="text"
+                    name="grade"
+                  />
+                  <span
+                    class="pointer-events-none absolute flex h-full w-10 items-center justify-center text-slate-400 peer-focus:text-primary dark:text-navy-300 dark:peer-focus:text-accent"
+                  >
+                    <i class="far fa-user text-base"></i>
+                  </span>
+                </span>
+              </label>
+             
+              <label class="block sm:col-span-2">
+                <span>Situation matrimoniale</span>
+                <span class="relative mt-1.5 flex">
+                  <select
+                  
+                    class="form-select mt-1.5 w-full rounded-lg border border-slate-300 bg-white px-3 py-2 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:bg-navy-700 dark:hover:border-navy-400 dark:focus:border-accent"
+                    name="matrimoniale"
+                  >
+                    <option value="">Choisir...</option>
+                    <option value="0">Célibataire</option>
+                    <option value="1">Marié</option>
+                  </select>
+
+                </span>
+              </label>
+              <label class="block sm:col-span-6">
+                <span>Conjoint </span>
+                <span class="relative mt-1.5 flex">
+                  <input
+                    class="form-input peer w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 pl-9 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
+                    placeholder="Enttrez le nom et le prenoms de conjoint"
+                    type="text"
+                    name="conjoint"
+                  />
+                  <span
+                    class="pointer-events-none absolute flex h-full w-10 items-center justify-center text-slate-400 peer-focus:text-primary dark:text-navy-300 dark:peer-focus:text-accent"
+                  >
+                  <i class="far fa-user text-base"></i>
                   </span>
                 </span>
               </label>
@@ -240,12 +398,13 @@
                     clip-rule="evenodd"
                   />
                 </svg>
-                <span>Prev</span>
+                <span>Annuler</span>
               </button>
               <button
                 class="btn space-x-2 bg-primary font-medium text-white hover:bg-primary-focus focus:bg-primary-focus active:bg-primary-focus/90 dark:bg-accent dark:hover:bg-accent-focus dark:focus:bg-accent-focus dark:active:bg-accent/90"
+                type="submit"
               >
-                <span>Next</span>
+                <span>Enregistrer</span>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   class="h-5 w-5"
@@ -262,6 +421,8 @@
             </div>
           </div>
         </div>
+        {!! Form::close() !!}
+
       </div>
     </div>
   </main>

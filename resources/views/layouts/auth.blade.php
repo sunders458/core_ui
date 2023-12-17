@@ -8,8 +8,9 @@
       name="viewport"
       content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
     />
-
-    <title>Lineone - Sign In v1</title>
+<!-- CSRF Token -->
+<meta name="csrf-token" content="{{ csrf_token() }}">
+    <title>Authentification</title>
     <link rel="icon" type="image/png" href="{{asset('core_ui/images/favicon.png')}}" />
 
     <!-- CSS Assets -->

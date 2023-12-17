@@ -22,6 +22,7 @@ class CreateUsersTable extends Migration
             $table->string( 'sigle' )->nullable()->comment( 'Sigle entreprise' );
             $table->string('photo',2048)->nullable();
             $table->date('birthday')->nullable();
+            $table->date('birthlocation')->nullable()->comment( 'Lieu de naissance' );
             $table->string( 'matricule', 30 )->unique()->nullable()->comment( 'Matricule' );
             $table->string( 'grade', 30 )->nullable()->comment( 'Grade fonction' );
             $table->enum('bapteme',['oui','non'])->nullable();
@@ -31,6 +32,7 @@ class CreateUsersTable extends Migration
             $table->string( 'cc_number' )->nullable()->comment( 'Compte contribuable' );
             $table->string( 'social_siege' )->nullable()->comment( 'Situation géographique du siège social' );
             $table->boolean( 'matrimoniale' )->default( 1 )->comment( 'Situation matrimoniale' );
+            $table->string('conjoint')->nullable();
             $table->string( 'city', 45 )->nullable()->comment( 'Lieu de résidence' );
             $table->string( 'nationality', 45 )->nullable()->comment( 'Nationalité' );
             $table->integer('eglise_id')->nullable();
