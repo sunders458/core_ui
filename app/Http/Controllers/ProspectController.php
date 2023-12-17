@@ -13,9 +13,12 @@ class ProspectController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         //
+        $data = User::orderBy('name','ASC')->where('status','0')->paginate(20);
+        return view('customers.prospect.prospectIndex',compact('data'))
+            ->with('i', ($request->input('page', 1) - 1) * 20);
     }
 
     /**
@@ -51,10 +54,9 @@ class ProspectController extends Controller
         $input['password'] = bcrypt('password');
     
         $prospect = User::create($input);
-        dd($prospect);
         $prospect->assignRole($request->input('roles'));
     
-        return redirect()->route('users.index')
+        return redirect()->route('prospects.index')
                         ->with('success','User created successfully');
     
     }

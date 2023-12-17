@@ -67,7 +67,7 @@
               <li>
                 <a
                   x-data="navLink"
-                  href="dashboards-crypto-1.html"
+                  href="{{route('prospects.index')}}"
                   :class="isActive ? 'font-medium text-primary dark:text-accent-light' : 'text-slate-500 hover:text-slate-800 dark:text-navy-200 dark:hover:text-navy-50'"
                   class="flex items-center justify-between p-2 text-xs+ tracking-wide outline-none transition-[color,padding-left] duration-300 ease-in-out hover:pl-4"
                 >
