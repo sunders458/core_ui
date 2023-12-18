@@ -3,6 +3,11 @@
     @include('layouts.mainSidebar')
 
     <!-- Sidebar Panel -->
+
+
+
+
+
     @if(request()->is('clients')|| request()->is('prospects/create'))
         @include('layouts.menus.menuClient')
     @elseif (request()->is('settings')|| request()->is('users')|| request()->is('users/create'))
@@ -10,4 +15,6 @@
     @else
         @include('layouts.sidebarPanel')
     @endif
+
+
   </div>

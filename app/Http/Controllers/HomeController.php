@@ -30,8 +30,7 @@ class HomeController extends Controller
     public function index(Request $request)
 
     {
-        $data = Projet::orderBy('libelle','ASC')->paginate(5);
-        return view('home',compact('data'))->with('i', ($request->input('page', 1) - 1) * 5);
+        return view('dashboard');
     }
     public function projectShow()
     {

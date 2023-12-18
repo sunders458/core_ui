@@ -1,3663 +1,2576 @@
 @extends('layouts.app')
-@section('contenu')
-<!--begin::Content-->
-<div class="content d-flex flex-column flex-column-fluid" id="kt_content">
-    <!--begin::Toolbar-->
-    <div class="toolbar bg-transparent pt-6 mb-5" id="kt_toolbar">
-        <!--begin::Container-->
-        <div id="kt_toolbar_container" class="container-xxl d-flex flex-stack">
-            <!--begin::Page title-->
-            <div data-kt-swapper="true" data-kt-swapper-mode="prepend" data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}" class="page-title d-flex flex-column align-items-start me-3 mb-5 mb-lg-0">
-                <!--begin::Title-->
-                <h1 class="d-flex text-dark fw-bolder fs-3 flex-column mb-0">Tableau de bord
-                <!--begin::Description-->
-                <span class="text-muted fs-7 fw-bold mt-2">You have 7
-                <span class="text-primary fw-bolder">Active Projects</span></span>
-                <!--end::Description--></h1>
-                <!--end::Title-->
+@section('content')
+<main class="main-content w-full pb-8">
+    <div
+    class="mt-4 grid grid-cols-12 gap-4 px-[var(--margin-x)] transition-all duration-[.25s] sm:mt-5 sm:gap-5 lg:mt-6 lg:gap-6"
+    >
+    <div class="col-span-12 lg:col-span-8">
+        <div class="flex items-center justify-between space-x-2">
+        <h2
+            class="text-base font-medium tracking-wide text-slate-800 line-clamp-1 dark:text-navy-100"
+        >
+        Aperçu des ventes
+        </h2>
+        <div
+            x-data="{activeTab:'tabRecent'}"
+            class="is-scrollbar-hidden overflow-x-auto rounded-lg bg-slate-200 text-slate-600 dark:bg-navy-800 dark:text-navy-200"
+        >
+            <div class="tabs-list flex p-1">
+            <button
+                @click="activeTab = 'tabRecent'"
+                :class="activeTab === 'tabRecent' ? 'bg-white shadow dark:bg-navy-500 dark:text-navy-100' : 'hover:text-slate-800 focus:text-slate-800 dark:hover:text-navy-100 dark:focus:text-navy-100'"
+                class="btn shrink-0 px-3 py-1 text-xs+ font-medium"
+            >
+                Année en cours
+            </button>
+            <button
+                @click="activeTab = 'tabAll'"
+                :class="activeTab === 'tabAll' ? 'bg-white shadow dark:bg-navy-500 dark:text-navy-100' : 'hover:text-slate-800 focus:text-slate-800 dark:hover:text-navy-100 dark:focus:text-navy-100'"
+                class="btn shrink-0 px-3 py-1 text-xs+ font-medium"
+            >
+            L'année dernière
+            </button>
             </div>
-            <!--end::Page title-->
-            <!--begin::Actions-->
-            <div class="d-flex align-items-center gap-2 gap-lg-3">
-                <!--begin::Secondary button-->
-                <a href="../../demo1/dist/.html" class="btn btn-sm btn-white btn-active-white btn-active-color-primary" data-bs-toggle="modal" data-bs-target="#kt_modal_invite_friends">Invite Friend</a>
-                <!--end::Secondary button-->
-                <!--begin::Primary button-->
-                <a href="../../demo1/dist/.html" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#kt_modal_new_target">New Project</a>
-                <!--end::Primary button-->
-            </div>
-            <!--end::Actions-->
         </div>
-        <!--end::Container-->
-    </div>
-    <!--end::Toolbar-->
-    <!--begin::Post-->
-    <div class="post d-flex flex-column-fluid" id="kt_post">
-        <!--begin::Container-->
-        <div id="kt_content_container" class="container-xxl">
-            <!--begin::Row-->
-            <div class="row g-5 g-xl-10 mb-xl-10">
-                <!--begin::Col-->
-                <div class="col-md-6 col-lg-6 col-xl-6 col-xxl-3 mb-md-5 mb-xl-10">
-                    <!--begin::Card widget 16-->
-                    <div class="card card-flush bgi-no-repeat bgi-size-contain bgi-position-x-center h-md-50 mb-5 mb-xl-10" style="background-color: #080655;background-image:url('assets/media/svg/shapes/wave-bg-dark.svg')">
-                        <!--begin::Header-->
-                        <div class="card-header pt-5">
-                            <!--begin::Title-->
-                            <div class="card-title d-flex flex-column">
-                                <!--begin::Amount-->
-                                <span class="fs-2hx fw-bolder text-white me-2 lh-1 ls-n2">69</span>
-                                <!--end::Amount-->
-                                <!--begin::Subtitle-->
-                                <span class="text-white opacity-50 pt-1 fw-bold fs-6">Active Projects</span>
-                                <!--end::Subtitle-->
-                            </div>
-                            <!--end::Title-->
-                        </div>
-                        <!--end::Header-->
-                        <!--begin::Card body-->
-                        <div class="card-body d-flex align-items-end pt-0">
-                            <!--begin::Progress-->
-                            <div class="d-flex align-items-center flex-column mt-3 w-100">
-                                <div class="d-flex justify-content-between fw-bolder fs-6 text-white opacity-50 w-100 mt-auto mb-2">
-                                    <span>43 Pending</span>
-                                    <span>72%</span>
-                                </div>
-                                <div class="h-8px mx-3 w-100 bg-light-danger rounded">
-                                    <div class="bg-danger rounded h-8px" role="progressbar" style="width: 72%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                            </div>
-                            <!--end::Progress-->
-                        </div>
-                        <!--end::Card body-->
-                    </div>
-                    <!--end::Card widget 16-->
-                    <!--begin::Card widget 7-->
-                    <div class="card card-flush h-md-50 mb-5 mb-xl-10">
-                        <!--begin::Header-->
-                        <div class="card-header pt-5">
-                            <!--begin::Title-->
-                            <div class="card-title d-flex flex-column">
-                                <!--begin::Amount-->
-                                <span class="fs-2hx fw-bolder text-dark me-2 lh-1 ls-n2">357</span>
-                                <!--end::Amount-->
-                                <!--begin::Subtitle-->
-                                <span class="text-gray-400 pt-1 fw-bold fs-6">Professionals</span>
-                                <!--end::Subtitle-->
-                            </div>
-                            <!--end::Title-->
-                        </div>
-                        <!--end::Header-->
-                        <!--begin::Card body-->
-                        <div class="card-body d-flex flex-column justify-content-end pe-0">
-                            <!--begin::Title-->
-                            <span class="fs-6 fw-boldest text-gray-800 d-block mb-2">Today’s Heroes</span>
-                            <!--end::Title-->
-                            <!--begin::Users group-->
-                            <div class="symbol-group symbol-hover flex-nowrap">
-                                <div class="symbol symbol-35px symbol-circle" data-bs-toggle="tooltip" title="Alan Warden">
-                                    <span class="symbol-label bg-warning text-inverse-warning fw-bolder">A</span>
-                                </div>
-                                <div class="symbol symbol-35px symbol-circle" data-bs-toggle="tooltip" title="Michael Eberon">
-                                    <img alt="Pic" src="assets/media/avatars/300-11.jpg" />
-                                </div>
-                                <div class="symbol symbol-35px symbol-circle" data-bs-toggle="tooltip" title="Susan Redwood">
-                                    <span class="symbol-label bg-primary text-inverse-primary fw-bolder">S</span>
-                                </div>
-                                <div class="symbol symbol-35px symbol-circle" data-bs-toggle="tooltip" title="Melody Macy">
-                                    <img alt="Pic" src="assets/media/avatars/300-2.jpg" />
-                                </div>
-                                <div class="symbol symbol-35px symbol-circle" data-bs-toggle="tooltip" title="Perry Matthew">
-                                    <span class="symbol-label bg-danger text-inverse-danger fw-bolder">P</span>
-                                </div>
-                                <div class="symbol symbol-35px symbol-circle" data-bs-toggle="tooltip" title="Barry Walter">
-                                    <img alt="Pic" src="assets/media/avatars/300-12.jpg" />
-                                </div>
-                                <a href="#" class="symbol symbol-35px symbol-circle" data-bs-toggle="modal" data-bs-target="#kt_modal_view_users">
-                                    <span class="symbol-label bg-dark text-gray-300 fs-8 fw-bolder">+42</span>
-                                </a>
-                            </div>
-                            <!--end::Users group-->
-                        </div>
-                        <!--end::Card body-->
-                    </div>
-                    <!--end::Card widget 7-->
-                </div>
-                <!--end::Col-->
-                <!--begin::Col-->
-                <div class="col-md-6 col-lg-6 col-xl-6 col-xxl-3 mb-md-5 mb-xl-10">
-                    <!--begin::Card widget 4-->
-                    <div class="card card-flush h-md-50 mb-5 mb-xl-10">
-                        <!--begin::Header-->
-                        <div class="card-header pt-5">
-                            <!--begin::Title-->
-                            <div class="card-title d-flex flex-column">
-                                <!--begin::Info-->
-                                <div class="d-flex align-items-center">
-                                    <!--begin::Currency-->
-                                    <span class="fs-4 fw-bold text-gray-400 me-1 align-self-start">$</span>
-                                    <!--end::Currency-->
-                                    <!--begin::Amount-->
-                                    <span class="fs-2hx fw-bolder text-dark me-2 lh-1 ls-n2">69,700</span>
-                                    <!--end::Amount-->
-                                    <!--begin::Badge-->
-                                    <span class="badge badge-success fs-base">
-                                    <!--begin::Svg Icon | path: icons/duotune/arrows/arr066.svg-->
-                                    <span class="svg-icon svg-icon-5 svg-icon-white ms-n1">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                            <rect opacity="0.5" x="13" y="6" width="13" height="2" rx="1" transform="rotate(90 13 6)" fill="currentColor" />
-                                            <path d="M12.5657 8.56569L16.75 12.75C17.1642 13.1642 17.8358 13.1642 18.25 12.75C18.6642 12.3358 18.6642 11.6642 18.25 11.25L12.7071 5.70711C12.3166 5.31658 11.6834 5.31658 11.2929 5.70711L5.75 11.25C5.33579 11.6642 5.33579 12.3358 5.75 12.75C6.16421 13.1642 6.83579 13.1642 7.25 12.75L11.4343 8.56569C11.7467 8.25327 12.2533 8.25327 12.5657 8.56569Z" fill="currentColor" />
-                                        </svg>
-                                    </span>
-                                    <!--end::Svg Icon-->2.2%</span>
-                                    <!--end::Badge-->
-                                </div>
-                                <!--end::Info-->
-                                <!--begin::Subtitle-->
-                                <span class="text-gray-400 pt-1 fw-bold fs-6">Projects Earnings in April</span>
-                                <!--end::Subtitle-->
-                            </div>
-                            <!--end::Title-->
-                        </div>
-                        <!--end::Header-->
-                        <!--begin::Card body-->
-                        <div class="card-body pt-2 pb-4 d-flex align-items-center">
-                            <!--begin::Chart-->
-                            <div class="d-flex flex-center me-5 pt-2">
-                                <div id="kt_card_widget_17_chart" style="min-width: 70px; min-height: 70px" data-kt-size="70" data-kt-line="11"></div>
-                            </div>
-                            <!--end::Chart-->
-                            <!--begin::Labels-->
-                            <div class="d-flex flex-column content-justify-center w-100">
-                                <!--begin::Label-->
-                                <div class="d-flex fw-bold align-items-center">
-                                    <!--begin::Bullet-->
-                                    <div class="bullet w-8px h-3px rounded-2 bg-success me-3"></div>
-                                    <!--end::Bullet-->
-                                    <!--begin::Label-->
-                                    <div class="text-gray-500 flex-grow-1 me-4">Leaf CRM</div>
-                                    <!--end::Label-->
-                                    <!--begin::Stats-->
-                                    <div class="fw-boldest text-gray-700 text-xxl-end">$7,660</div>
-                                    <!--end::Stats-->
-                                </div>
-                                <!--end::Label-->
-                                <!--begin::Label-->
-                                <div class="d-flex fw-bold align-items-center my-3">
-                                    <!--begin::Bullet-->
-                                    <div class="bullet w-8px h-3px rounded-2 bg-primary me-3"></div>
-                                    <!--end::Bullet-->
-                                    <!--begin::Label-->
-                                    <div class="text-gray-500 flex-grow-1 me-4">Mivy App</div>
-                                    <!--end::Label-->
-                                    <!--begin::Stats-->
-                                    <div class="fw-boldest text-gray-700 text-xxl-end">$2,820</div>
-                                    <!--end::Stats-->
-                                </div>
-                                <!--end::Label-->
-                                <!--begin::Label-->
-                                <div class="d-flex fw-bold align-items-center">
-                                    <!--begin::Bullet-->
-                                    <div class="bullet w-8px h-3px rounded-2 me-3" style="background-color: #E4E6EF"></div>
-                                    <!--end::Bullet-->
-                                    <!--begin::Label-->
-                                    <div class="text-gray-500 flex-grow-1 me-4">Others</div>
-                                    <!--end::Label-->
-                                    <!--begin::Stats-->
-                                    <div class="fw-boldest text-gray-700 text-xxl-end">$45,257</div>
-                                    <!--end::Stats-->
-                                </div>
-                                <!--end::Label-->
-                            </div>
-                            <!--end::Labels-->
-                        </div>
-                        <!--end::Card body-->
-                    </div>
-                    <!--end::Card widget 4-->
-                    <!--begin::List widget 25-->
-                    <div class="card card-flush h-lg-50">
-                        <!--begin::Header-->
-                        <div class="card-header pt-5">
-                            <!--begin::Title-->
-                            <h3 class="card-title text-gray-800">Highlights</h3>
-                            <!--end::Title-->
-                            <!--begin::Toolbar-->
-                            <div class="card-toolbar d-none">
-                                <!--begin::Daterangepicker(defined in src/js/layout/app.js)-->
-                                <div data-kt-daterangepicker="true" data-kt-daterangepicker-opens="left" class="btn btn-sm btn-light d-flex align-items-center px-4">
-                                    <!--begin::Display range-->
-                                    <div class="text-gray-600 fw-bolder">Loading date range...</div>
-                                    <!--end::Display range-->
-                                    <!--begin::Svg Icon | path: icons/duotune/general/gen014.svg-->
-                                    <span class="svg-icon svg-icon-1 ms-2 me-0">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                            <path opacity="0.3" d="M21 22H3C2.4 22 2 21.6 2 21V5C2 4.4 2.4 4 3 4H21C21.6 4 22 4.4 22 5V21C22 21.6 21.6 22 21 22Z" fill="currentColor" />
-                                            <path d="M6 6C5.4 6 5 5.6 5 5V3C5 2.4 5.4 2 6 2C6.6 2 7 2.4 7 3V5C7 5.6 6.6 6 6 6ZM11 5V3C11 2.4 10.6 2 10 2C9.4 2 9 2.4 9 3V5C9 5.6 9.4 6 10 6C10.6 6 11 5.6 11 5ZM15 5V3C15 2.4 14.6 2 14 2C13.4 2 13 2.4 13 3V5C13 5.6 13.4 6 14 6C14.6 6 15 5.6 15 5ZM19 5V3C19 2.4 18.6 2 18 2C17.4 2 17 2.4 17 3V5C17 5.6 17.4 6 18 6C18.6 6 19 5.6 19 5Z" fill="currentColor" />
-                                            <path d="M8.8 13.1C9.2 13.1 9.5 13 9.7 12.8C9.9 12.6 10.1 12.3 10.1 11.9C10.1 11.6 10 11.3 9.8 11.1C9.6 10.9 9.3 10.8 9 10.8C8.8 10.8 8.59999 10.8 8.39999 10.9C8.19999 11 8.1 11.1 8 11.2C7.9 11.3 7.8 11.4 7.7 11.6C7.6 11.8 7.5 11.9 7.5 12.1C7.5 12.2 7.4 12.2 7.3 12.3C7.2 12.4 7.09999 12.4 6.89999 12.4C6.69999 12.4 6.6 12.3 6.5 12.2C6.4 12.1 6.3 11.9 6.3 11.7C6.3 11.5 6.4 11.3 6.5 11.1C6.6 10.9 6.8 10.7 7 10.5C7.2 10.3 7.49999 10.1 7.89999 10C8.29999 9.90003 8.60001 9.80003 9.10001 9.80003C9.50001 9.80003 9.80001 9.90003 10.1 10C10.4 10.1 10.7 10.3 10.9 10.4C11.1 10.5 11.3 10.8 11.4 11.1C11.5 11.4 11.6 11.6 11.6 11.9C11.6 12.3 11.5 12.6 11.3 12.9C11.1 13.2 10.9 13.5 10.6 13.7C10.9 13.9 11.2 14.1 11.4 14.3C11.6 14.5 11.8 14.7 11.9 15C12 15.3 12.1 15.5 12.1 15.8C12.1 16.2 12 16.5 11.9 16.8C11.8 17.1 11.5 17.4 11.3 17.7C11.1 18 10.7 18.2 10.3 18.3C9.9 18.4 9.5 18.5 9 18.5C8.5 18.5 8.1 18.4 7.7 18.2C7.3 18 7 17.8 6.8 17.6C6.6 17.4 6.4 17.1 6.3 16.8C6.2 16.5 6.10001 16.3 6.10001 16.1C6.10001 15.9 6.2 15.7 6.3 15.6C6.4 15.5 6.6 15.4 6.8 15.4C6.9 15.4 7.00001 15.4 7.10001 15.5C7.20001 15.6 7.3 15.6 7.3 15.7C7.5 16.2 7.7 16.6 8 16.9C8.3 17.2 8.6 17.3 9 17.3C9.2 17.3 9.5 17.2 9.7 17.1C9.9 17 10.1 16.8 10.3 16.6C10.5 16.4 10.5 16.1 10.5 15.8C10.5 15.3 10.4 15 10.1 14.7C9.80001 14.4 9.50001 14.3 9.10001 14.3C9.00001 14.3 8.9 14.3 8.7 14.3C8.5 14.3 8.39999 14.3 8.39999 14.3C8.19999 14.3 7.99999 14.2 7.89999 14.1C7.79999 14 7.7 13.8 7.7 13.7C7.7 13.5 7.79999 13.4 7.89999 13.2C7.99999 13 8.2 13 8.5 13H8.8V13.1ZM15.3 17.5V12.2C14.3 13 13.6 13.3 13.3 13.3C13.1 13.3 13 13.2 12.9 13.1C12.8 13 12.7 12.8 12.7 12.6C12.7 12.4 12.8 12.3 12.9 12.2C13 12.1 13.2 12 13.6 11.8C14.1 11.6 14.5 11.3 14.7 11.1C14.9 10.9 15.2 10.6 15.5 10.3C15.8 10 15.9 9.80003 15.9 9.70003C15.9 9.60003 16.1 9.60004 16.3 9.60004C16.5 9.60004 16.7 9.70003 16.8 9.80003C16.9 9.90003 17 10.2 17 10.5V17.2C17 18 16.7 18.4 16.2 18.4C16 18.4 15.8 18.3 15.6 18.2C15.4 18.1 15.3 17.8 15.3 17.5Z" fill="currentColor" />
-                                        </svg>
-                                    </span>
-                                    <!--end::Svg Icon-->
-                                </div>
-                                <!--end::Daterangepicker-->
-                            </div>
-                            <!--end::Toolbar-->
-                        </div>
-                        <!--end::Header-->
-                        <!--begin::Body-->
-                        <div class="card-body pt-5">
-                            <!--begin::Item-->
-                            <div class="d-flex flex-stack">
-                                <!--begin::Section-->
-                                <div class="text-gray-700 fw-bold fs-6 me-2">Avg. Client Rating</div>
-                                <!--end::Section-->
-                                <!--begin::Statistics-->
-                                <div class="d-flex align-items-senter">
-                                    <!--begin::Svg Icon | path: icons/duotune/arrows/arr094.svg-->
-                                    <span class="svg-icon svg-icon-2 svg-icon-success me-2">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                            <rect opacity="0.5" x="16.9497" y="8.46448" width="13" height="2" rx="1" transform="rotate(135 16.9497 8.46448)" fill="currentColor" />
-                                            <path d="M14.8284 9.97157L14.8284 15.8891C14.8284 16.4749 15.3033 16.9497 15.8891 16.9497C16.4749 16.9497 16.9497 16.4749 16.9497 15.8891L16.9497 8.05025C16.9497 7.49797 16.502 7.05025 15.9497 7.05025L8.11091 7.05025C7.52512 7.05025 7.05025 7.52513 7.05025 8.11091C7.05025 8.6967 7.52512 9.17157 8.11091 9.17157L14.0284 9.17157C14.4703 9.17157 14.8284 9.52975 14.8284 9.97157Z" fill="currentColor" />
-                                        </svg>
-                                    </span>
-                                    <!--end::Svg Icon-->
-                                    <!--begin::Number-->
-                                    <span class="text-gray-900 fw-boldest fs-6">7.8</span>
-                                    <!--end::Number-->
-                                    <span class="text-gray-400 fw-bolder fs-6">/10</span>
-                                </div>
-                                <!--end::Statistics-->
-                            </div>
-                            <!--end::Item-->
-                            <!--begin::Separator-->
-                            <div class="separator separator-dashed my-3"></div>
-                            <!--end::Separator-->
-                            <!--begin::Item-->
-                            <div class="d-flex flex-stack">
-                                <!--begin::Section-->
-                                <div class="text-gray-700 fw-bold fs-6 me-2">Avg. Quotes</div>
-                                <!--end::Section-->
-                                <!--begin::Statistics-->
-                                <div class="d-flex align-items-senter">
-                                    <!--begin::Svg Icon | path: icons/duotune/arrows/arr093.svg-->
-                                    <span class="svg-icon svg-icon-2 svg-icon-danger me-2">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                            <rect opacity="0.5" x="7.05026" y="15.5355" width="13" height="2" rx="1" transform="rotate(-45 7.05026 15.5355)" fill="currentColor" />
-                                            <path d="M9.17158 14.0284L9.17158 8.11091C9.17158 7.52513 8.6967 7.05025 8.11092 7.05025C7.52513 7.05025 7.05026 7.52512 7.05026 8.11091L7.05026 15.9497C7.05026 16.502 7.49797 16.9497 8.05026 16.9497L15.8891 16.9497C16.4749 16.9497 16.9498 16.4749 16.9498 15.8891C16.9498 15.3033 16.4749 14.8284 15.8891 14.8284L9.97158 14.8284C9.52975 14.8284 9.17158 14.4703 9.17158 14.0284Z" fill="currentColor" />
-                                        </svg>
-                                    </span>
-                                    <!--end::Svg Icon-->
-                                    <!--begin::Number-->
-                                    <span class="text-gray-900 fw-boldest fs-6">730</span>
-                                    <!--end::Number-->
-                                </div>
-                                <!--end::Statistics-->
-                            </div>
-                            <!--end::Item-->
-                            <!--begin::Separator-->
-                            <div class="separator separator-dashed my-3"></div>
-                            <!--end::Separator-->
-                            <!--begin::Item-->
-                            <div class="d-flex flex-stack">
-                                <!--begin::Section-->
-                                <div class="text-gray-700 fw-bold fs-6 me-2">Avg. Agent Earnings</div>
-                                <!--end::Section-->
-                                <!--begin::Statistics-->
-                                <div class="d-flex align-items-senter">
-                                    <!--begin::Svg Icon | path: icons/duotune/arrows/arr094.svg-->
-                                    <span class="svg-icon svg-icon-2 svg-icon-success me-2">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                            <rect opacity="0.5" x="16.9497" y="8.46448" width="13" height="2" rx="1" transform="rotate(135 16.9497 8.46448)" fill="currentColor" />
-                                            <path d="M14.8284 9.97157L14.8284 15.8891C14.8284 16.4749 15.3033 16.9497 15.8891 16.9497C16.4749 16.9497 16.9497 16.4749 16.9497 15.8891L16.9497 8.05025C16.9497 7.49797 16.502 7.05025 15.9497 7.05025L8.11091 7.05025C7.52512 7.05025 7.05025 7.52513 7.05025 8.11091C7.05025 8.6967 7.52512 9.17157 8.11091 9.17157L14.0284 9.17157C14.4703 9.17157 14.8284 9.52975 14.8284 9.97157Z" fill="currentColor" />
-                                        </svg>
-                                    </span>
-                                    <!--end::Svg Icon-->
-                                    <!--begin::Number-->
-                                    <span class="text-gray-900 fw-boldest fs-6">$2,309</span>
-                                    <!--end::Number-->
-                                </div>
-                                <!--end::Statistics-->
-                            </div>
-                            <!--end::Item-->
-                        </div>
-                        <!--end::Body-->
-                    </div>
-                    <!--end::LIst widget 25-->
-                </div>
-                <!--end::Col-->
-                <!--begin::Col-->
-                <div class="col-lg-12 col-xl-12 col-xxl-6 mb-5 mb-xl-0">
-                    <!--begin::Timeline widget 3-->
-                    <div class="card h-md-100">
-                        <!--begin::Header-->
-                        <div class="card-header border-0 pt-5">
-                            <h3 class="card-title align-items-start flex-column">
-                                <span class="card-label fw-bolder text-dark">What’s up Today</span>
-                                <span class="text-muted mt-1 fw-bold fs-7">Total 424,567 deliveries</span>
-                            </h3>
-                            <!--begin::Toolbar-->
-                            <div class="card-toolbar">
-                                <a href="#" class="btn btn-sm btn-light">Report Cecnter</a>
-                            </div>
-                            <!--end::Toolbar-->
-                        </div>
-                        <!--end::Header-->
-                        <!--begin::Body-->
-                        <div class="card-body pt-7 px-0">
-                            <!--begin::Nav-->
-                            <ul class="nav nav-stretch nav-pills nav-pills-custom nav-pills-active-custom d-flex justify-content-between mb-8 px-5">
-                                <!--begin::Nav item-->
-                                <li class="nav-item p-0 ms-0">
-                                    <!--begin::Date-->
-                                    <a class="nav-link btn d-flex flex-column flex-center rounded-pill min-w-45px py-4 px-3 btn-active-danger" data-bs-toggle="tab" href="#kt_timeline_widget_3_tab_content_1">
-                                        <span class="fs-7 fw-bold">Fr</span>
-                                        <span class="fs-6 fw-bolder">20</span>
-                                    </a>
-                                    <!--end::Date-->
-                                </li>
-                                <!--end::Nav item-->
-                                <!--begin::Nav item-->
-                                <li class="nav-item p-0 ms-0">
-                                    <!--begin::Date-->
-                                    <a class="nav-link btn d-flex flex-column flex-center rounded-pill min-w-45px py-4 px-3 btn-active-danger" data-bs-toggle="tab" href="#kt_timeline_widget_3_tab_content_2">
-                                        <span class="fs-7 fw-bold">Sa</span>
-                                        <span class="fs-6 fw-bolder">21</span>
-                                    </a>
-                                    <!--end::Date-->
-                                </li>
-                                <!--end::Nav item-->
-                                <!--begin::Nav item-->
-                                <li class="nav-item p-0 ms-0">
-                                    <!--begin::Date-->
-                                    <a class="nav-link btn d-flex flex-column flex-center rounded-pill min-w-45px py-4 px-3 btn-active-danger" data-bs-toggle="tab" href="#kt_timeline_widget_3_tab_content_3">
-                                        <span class="fs-7 fw-bold">Su</span>
-                                        <span class="fs-6 fw-bolder">22</span>
-                                    </a>
-                                    <!--end::Date-->
-                                </li>
-                                <!--end::Nav item-->
-                                <!--begin::Nav item-->
-                                <li class="nav-item p-0 ms-0">
-                                    <!--begin::Date-->
-                                    <a class="nav-link btn d-flex flex-column flex-center rounded-pill min-w-45px py-4 px-3 btn-active-danger active" data-bs-toggle="tab" href="#kt_timeline_widget_3_tab_content_4">
-                                        <span class="fs-7 fw-bold">Tu</span>
-                                        <span class="fs-6 fw-bolder">23</span>
-                                    </a>
-                                    <!--end::Date-->
-                                </li>
-                                <!--end::Nav item-->
-                                <!--begin::Nav item-->
-                                <li class="nav-item p-0 ms-0">
-                                    <!--begin::Date-->
-                                    <a class="nav-link btn d-flex flex-column flex-center rounded-pill min-w-45px py-4 px-3 btn-active-danger" data-bs-toggle="tab" href="#kt_timeline_widget_3_tab_content_5">
-                                        <span class="fs-7 fw-bold">Tu</span>
-                                        <span class="fs-6 fw-bolder">24</span>
-                                    </a>
-                                    <!--end::Date-->
-                                </li>
-                                <!--end::Nav item-->
-                                <!--begin::Nav item-->
-                                <li class="nav-item p-0 ms-0">
-                                    <!--begin::Date-->
-                                    <a class="nav-link btn d-flex flex-column flex-center rounded-pill min-w-45px py-4 px-3 btn-active-danger" data-bs-toggle="tab" href="#kt_timeline_widget_3_tab_content_6">
-                                        <span class="fs-7 fw-bold">We</span>
-                                        <span class="fs-6 fw-bolder">25</span>
-                                    </a>
-                                    <!--end::Date-->
-                                </li>
-                                <!--end::Nav item-->
-                                <!--begin::Nav item-->
-                                <li class="nav-item p-0 ms-0">
-                                    <!--begin::Date-->
-                                    <a class="nav-link btn d-flex flex-column flex-center rounded-pill min-w-45px py-4 px-3 btn-active-danger" data-bs-toggle="tab" href="#kt_timeline_widget_3_tab_content_7">
-                                        <span class="fs-7 fw-bold">Th</span>
-                                        <span class="fs-6 fw-bolder">26</span>
-                                    </a>
-                                    <!--end::Date-->
-                                </li>
-                                <!--end::Nav item-->
-                                <!--begin::Nav item-->
-                                <li class="nav-item p-0 ms-0">
-                                    <!--begin::Date-->
-                                    <a class="nav-link btn d-flex flex-column flex-center rounded-pill min-w-45px py-4 px-3 btn-active-danger" data-bs-toggle="tab" href="#kt_timeline_widget_3_tab_content_8">
-                                        <span class="fs-7 fw-bold">Fri</span>
-                                        <span class="fs-6 fw-bolder">27</span>
-                                    </a>
-                                    <!--end::Date-->
-                                </li>
-                                <!--end::Nav item-->
-                                <!--begin::Nav item-->
-                                <li class="nav-item p-0 ms-0">
-                                    <!--begin::Date-->
-                                    <a class="nav-link btn d-flex flex-column flex-center rounded-pill min-w-45px py-4 px-3 btn-active-danger" data-bs-toggle="tab" href="#kt_timeline_widget_3_tab_content_9">
-                                        <span class="fs-7 fw-bold">Sa</span>
-                                        <span class="fs-6 fw-bolder">28</span>
-                                    </a>
-                                    <!--end::Date-->
-                                </li>
-                                <!--end::Nav item-->
-                                <!--begin::Nav item-->
-                                <li class="nav-item p-0 ms-0">
-                                    <!--begin::Date-->
-                                    <a class="nav-link btn d-flex flex-column flex-center rounded-pill min-w-45px py-4 px-3 btn-active-danger" data-bs-toggle="tab" href="#kt_timeline_widget_3_tab_content_10">
-                                        <span class="fs-7 fw-bold">Su</span>
-                                        <span class="fs-6 fw-bolder">29</span>
-                                    </a>
-                                    <!--end::Date-->
-                                </li>
-                                <!--end::Nav item-->
-                                <!--begin::Nav item-->
-                                <li class="nav-item p-0 ms-0">
-                                    <!--begin::Date-->
-                                    <a class="nav-link btn d-flex flex-column flex-center rounded-pill min-w-45px py-4 px-3 btn-active-danger" data-bs-toggle="tab" href="#kt_timeline_widget_3_tab_content_11">
-                                        <span class="fs-7 fw-bold">Mo</span>
-                                        <span class="fs-6 fw-bolder">30</span>
-                                    </a>
-                                    <!--end::Date-->
-                                </li>
-                                <!--end::Nav item-->
-                            </ul>
-                            <!--end::Nav-->
-                            <!--begin::Tab Content (ishlamayabdi)-->
-                            <div class="tab-content mb-2 px-9">
-                                <!--begin::Tap pane-->
-                                <div class="tab-pane fade" id="kt_timeline_widget_3_tab_content_1">
-                                    <!--begin::Wrapper-->
-                                    <div class="d-flex align-items-center mb-6">
-                                        <!--begin::Bullet-->
-                                        <span data-kt-element="bullet" class="bullet bullet-vertical d-flex align-items-center min-h-70px mh-100 me-4 bg-success"></span>
-                                        <!--end::Bullet-->
-                                        <!--begin::Info-->
-                                        <div class="flex-grow-1 me-5">
-                                            <!--begin::Time-->
-                                            <div class="text-gray-800 fw-bold fs-2">10:20 - 11:00
-                                            <span class="text-gray-400 fw-bold fs-7">AM</span></div>
-                                            <!--end::Time-->
-                                            <!--begin::Description-->
-                                            <div class="text-gray-700 fw-bold fs-6">9 Degree Project Estimation Meeting</div>
-                                            <!--end::Description-->
-                                            <!--begin::Link-->
-                                            <div class="text-gray-400 fw-bold fs-7">Lead by
-                                            <!--begin::Name-->
-                                            <a href="#" class="text-primary opacity-75-hover fw-bold">Peter Marcus</a>
-                                            <!--end::Name--></div>
-                                            <!--end::Link-->
-                                        </div>
-                                        <!--end::Info-->
-                                        <!--begin::Action-->
-                                        <a href="#" class="btn btn-sm btn-light" data-bs-toggle="modal" data-bs-target="#kt_modal_create_project">View</a>
-                                        <!--end::Action-->
-                                    </div>
-                                    <!--end::Wrapper-->
-                                    <!--begin::Wrapper-->
-                                    <div class="d-flex align-items-center mb-6">
-                                        <!--begin::Bullet-->
-                                        <span data-kt-element="bullet" class="bullet bullet-vertical d-flex align-items-center min-h-70px mh-100 me-4 bg-warning"></span>
-                                        <!--end::Bullet-->
-                                        <!--begin::Info-->
-                                        <div class="flex-grow-1 me-5">
-                                            <!--begin::Time-->
-                                            <div class="text-gray-800 fw-bold fs-2">12:00 - 13:40
-                                            <span class="text-gray-400 fw-bold fs-7">AM</span></div>
-                                            <!--end::Time-->
-                                            <!--begin::Description-->
-                                            <div class="text-gray-700 fw-bold fs-6">Dashboard UI/UX Design Review</div>
-                                            <!--end::Description-->
-                                            <!--begin::Link-->
-                                            <div class="text-gray-400 fw-bold fs-7">Lead by
-                                            <!--begin::Name-->
-                                            <a href="#" class="text-primary opacity-75-hover fw-bold">Lead by Bob</a>
-                                            <!--end::Name--></div>
-                                            <!--end::Link-->
-                                        </div>
-                                        <!--end::Info-->
-                                        <!--begin::Action-->
-                                        <a href="#" class="btn btn-sm btn-light" data-bs-toggle="modal" data-bs-target="#kt_modal_create_project">View</a>
-                                        <!--end::Action-->
-                                    </div>
-                                    <!--end::Wrapper-->
-                                    <!--begin::Wrapper-->
-                                    <div class="d-flex align-items-center mb-6">
-                                        <!--begin::Bullet-->
-                                        <span data-kt-element="bullet" class="bullet bullet-vertical d-flex align-items-center min-h-70px mh-100 me-4 bg-info"></span>
-                                        <!--end::Bullet-->
-                                        <!--begin::Info-->
-                                        <div class="flex-grow-1 me-5">
-                                            <!--begin::Time-->
-                                            <div class="text-gray-800 fw-bold fs-2">16:30 - 17:00
-                                            <span class="text-gray-400 fw-bold fs-7">PM</span></div>
-                                            <!--end::Time-->
-                                            <!--begin::Description-->
-                                            <div class="text-gray-700 fw-bold fs-6">Marketing Campaign Discussion</div>
-                                            <!--end::Description-->
-                                            <!--begin::Link-->
-                                            <div class="text-gray-400 fw-bold fs-7">Lead by
-                                            <!--begin::Name-->
-                                            <a href="#" class="text-primary opacity-75-hover fw-bold">Lead by Mark Morris</a>
-                                            <!--end::Name--></div>
-                                            <!--end::Link-->
-                                        </div>
-                                        <!--end::Info-->
-                                        <!--begin::Action-->
-                                        <a href="#" class="btn btn-sm btn-light" data-bs-toggle="modal" data-bs-target="#kt_modal_create_project">View</a>
-                                        <!--end::Action-->
-                                    </div>
-                                    <!--end::Wrapper-->
-                                </div>
-                                <!--end::Tap pane-->
-                                <!--begin::Tap pane-->
-                                <div class="tab-pane fade" id="kt_timeline_widget_3_tab_content_2">
-                                    <!--begin::Wrapper-->
-                                    <div class="d-flex align-items-center mb-6">
-                                        <!--begin::Bullet-->
-                                        <span data-kt-element="bullet" class="bullet bullet-vertical d-flex align-items-center min-h-70px mh-100 me-4 bg-warning"></span>
-                                        <!--end::Bullet-->
-                                        <!--begin::Info-->
-                                        <div class="flex-grow-1 me-5">
-                                            <!--begin::Time-->
-                                            <div class="text-gray-800 fw-bold fs-2">16:30 - 17:00
-                                            <span class="text-gray-400 fw-bold fs-7">PM</span></div>
-                                            <!--end::Time-->
-                                            <!--begin::Description-->
-                                            <div class="text-gray-700 fw-bold fs-6">Marketing Campaign Discussion</div>
-                                            <!--end::Description-->
-                                            <!--begin::Link-->
-                                            <div class="text-gray-400 fw-bold fs-7">Lead by
-                                            <!--begin::Name-->
-                                            <a href="#" class="text-primary opacity-75-hover fw-bold">Lead by Mark Morris</a>
-                                            <!--end::Name--></div>
-                                            <!--end::Link-->
-                                        </div>
-                                        <!--end::Info-->
-                                        <!--begin::Action-->
-                                        <a href="#" class="btn btn-sm btn-light" data-bs-toggle="modal" data-bs-target="#kt_modal_create_project">View</a>
-                                        <!--end::Action-->
-                                    </div>
-                                    <!--end::Wrapper-->
-                                    <!--begin::Wrapper-->
-                                    <div class="d-flex align-items-center mb-6">
-                                        <!--begin::Bullet-->
-                                        <span data-kt-element="bullet" class="bullet bullet-vertical d-flex align-items-center min-h-70px mh-100 me-4 bg-info"></span>
-                                        <!--end::Bullet-->
-                                        <!--begin::Info-->
-                                        <div class="flex-grow-1 me-5">
-                                            <!--begin::Time-->
-                                            <div class="text-gray-800 fw-bold fs-2">12:00 - 13:40
-                                            <span class="text-gray-400 fw-bold fs-7">AM</span></div>
-                                            <!--end::Time-->
-                                            <!--begin::Description-->
-                                            <div class="text-gray-700 fw-bold fs-6">9 Degree Project Estimation Meeting</div>
-                                            <!--end::Description-->
-                                            <!--begin::Link-->
-                                            <div class="text-gray-400 fw-bold fs-7">Lead by
-                                            <!--begin::Name-->
-                                            <a href="#" class="text-primary opacity-75-hover fw-bold">Peter Marcus</a>
-                                            <!--end::Name--></div>
-                                            <!--end::Link-->
-                                        </div>
-                                        <!--end::Info-->
-                                        <!--begin::Action-->
-                                        <a href="#" class="btn btn-sm btn-light" data-bs-toggle="modal" data-bs-target="#kt_modal_create_project">View</a>
-                                        <!--end::Action-->
-                                    </div>
-                                    <!--end::Wrapper-->
-                                    <!--begin::Wrapper-->
-                                    <div class="d-flex align-items-center mb-6">
-                                        <!--begin::Bullet-->
-                                        <span data-kt-element="bullet" class="bullet bullet-vertical d-flex align-items-center min-h-70px mh-100 me-4 bg-success"></span>
-                                        <!--end::Bullet-->
-                                        <!--begin::Info-->
-                                        <div class="flex-grow-1 me-5">
-                                            <!--begin::Time-->
-                                            <div class="text-gray-800 fw-bold fs-2">10:20 - 11:00
-                                            <span class="text-gray-400 fw-bold fs-7">AM</span></div>
-                                            <!--end::Time-->
-                                            <!--begin::Description-->
-                                            <div class="text-gray-700 fw-bold fs-6">9 Degree Project Estimation Meeting</div>
-                                            <!--end::Description-->
-                                            <!--begin::Link-->
-                                            <div class="text-gray-400 fw-bold fs-7">Lead by
-                                            <!--begin::Name-->
-                                            <a href="#" class="text-primary opacity-75-hover fw-bold">Peter Marcus</a>
-                                            <!--end::Name--></div>
-                                            <!--end::Link-->
-                                        </div>
-                                        <!--end::Info-->
-                                        <!--begin::Action-->
-                                        <a href="#" class="btn btn-sm btn-light" data-bs-toggle="modal" data-bs-target="#kt_modal_create_project">View</a>
-                                        <!--end::Action-->
-                                    </div>
-                                    <!--end::Wrapper-->
-                                </div>
-                                <!--end::Tap pane-->
-                                <!--begin::Tap pane-->
-                                <div class="tab-pane fade" id="kt_timeline_widget_3_tab_content_3">
-                                    <!--begin::Wrapper-->
-                                    <div class="d-flex align-items-center mb-6">
-                                        <!--begin::Bullet-->
-                                        <span data-kt-element="bullet" class="bullet bullet-vertical d-flex align-items-center min-h-70px mh-100 me-4 bg-primary"></span>
-                                        <!--end::Bullet-->
-                                        <!--begin::Info-->
-                                        <div class="flex-grow-1 me-5">
-                                            <!--begin::Time-->
-                                            <div class="text-gray-800 fw-bold fs-2">10:20 - 11:00
-                                            <span class="text-gray-400 fw-bold fs-7">AM</span></div>
-                                            <!--end::Time-->
-                                            <!--begin::Description-->
-                                            <div class="text-gray-700 fw-bold fs-6">9 Degree Project Estimation Meeting</div>
-                                            <!--end::Description-->
-                                            <!--begin::Link-->
-                                            <div class="text-gray-400 fw-bold fs-7">Lead by
-                                            <!--begin::Name-->
-                                            <a href="#" class="text-primary opacity-75-hover fw-bold">Peter Marcus</a>
-                                            <!--end::Name--></div>
-                                            <!--end::Link-->
-                                        </div>
-                                        <!--end::Info-->
-                                        <!--begin::Action-->
-                                        <a href="#" class="btn btn-sm btn-light" data-bs-toggle="modal" data-bs-target="#kt_modal_create_project">View</a>
-                                        <!--end::Action-->
-                                    </div>
-                                    <!--end::Wrapper-->
-                                    <!--begin::Wrapper-->
-                                    <div class="d-flex align-items-center mb-6">
-                                        <!--begin::Bullet-->
-                                        <span data-kt-element="bullet" class="bullet bullet-vertical d-flex align-items-center min-h-70px mh-100 me-4 bg-warning"></span>
-                                        <!--end::Bullet-->
-                                        <!--begin::Info-->
-                                        <div class="flex-grow-1 me-5">
-                                            <!--begin::Time-->
-                                            <div class="text-gray-800 fw-bold fs-2">12:00 - 13:40
-                                            <span class="text-gray-400 fw-bold fs-7">AM</span></div>
-                                            <!--end::Time-->
-                                            <!--begin::Description-->
-                                            <div class="text-gray-700 fw-bold fs-6">Marketing Campaign Discussion</div>
-                                            <!--end::Description-->
-                                            <!--begin::Link-->
-                                            <div class="text-gray-400 fw-bold fs-7">Lead by
-                                            <!--begin::Name-->
-                                            <a href="#" class="text-primary opacity-75-hover fw-bold">Lead by Bob</a>
-                                            <!--end::Name--></div>
-                                            <!--end::Link-->
-                                        </div>
-                                        <!--end::Info-->
-                                        <!--begin::Action-->
-                                        <a href="#" class="btn btn-sm btn-light" data-bs-toggle="modal" data-bs-target="#kt_modal_create_project">View</a>
-                                        <!--end::Action-->
-                                    </div>
-                                    <!--end::Wrapper-->
-                                    <!--begin::Wrapper-->
-                                    <div class="d-flex align-items-center mb-6">
-                                        <!--begin::Bullet-->
-                                        <span data-kt-element="bullet" class="bullet bullet-vertical d-flex align-items-center min-h-70px mh-100 me-4 bg-info"></span>
-                                        <!--end::Bullet-->
-                                        <!--begin::Info-->
-                                        <div class="flex-grow-1 me-5">
-                                            <!--begin::Time-->
-                                            <div class="text-gray-800 fw-bold fs-2">16:30 - 17:00
-                                            <span class="text-gray-400 fw-bold fs-7">PM</span></div>
-                                            <!--end::Time-->
-                                            <!--begin::Description-->
-                                            <div class="text-gray-700 fw-bold fs-6">Marketing Campaign Discussion</div>
-                                            <!--end::Description-->
-                                            <!--begin::Link-->
-                                            <div class="text-gray-400 fw-bold fs-7">Lead by
-                                            <!--begin::Name-->
-                                            <a href="#" class="text-primary opacity-75-hover fw-bold">Lead by Mark Morris</a>
-                                            <!--end::Name--></div>
-                                            <!--end::Link-->
-                                        </div>
-                                        <!--end::Info-->
-                                        <!--begin::Action-->
-                                        <a href="#" class="btn btn-sm btn-light" data-bs-toggle="modal" data-bs-target="#kt_modal_create_project">View</a>
-                                        <!--end::Action-->
-                                    </div>
-                                    <!--end::Wrapper-->
-                                </div>
-                                <!--end::Tap pane-->
-                                <!--begin::Tap pane-->
-                                <div class="tab-pane fade show active" id="kt_timeline_widget_3_tab_content_4">
-                                    <!--begin::Wrapper-->
-                                    <div class="d-flex align-items-center mb-6">
-                                        <!--begin::Bullet-->
-                                        <span data-kt-element="bullet" class="bullet bullet-vertical d-flex align-items-center min-h-70px mh-100 me-4 bg-info"></span>
-                                        <!--end::Bullet-->
-                                        <!--begin::Info-->
-                                        <div class="flex-grow-1 me-5">
-                                            <!--begin::Time-->
-                                            <div class="text-gray-800 fw-bold fs-2">10:20 - 11:00
-                                            <span class="text-gray-400 fw-bold fs-7">AM</span></div>
-                                            <!--end::Time-->
-                                            <!--begin::Description-->
-                                            <div class="text-gray-700 fw-bold fs-6">9 Degree Project Estimation Meeting</div>
-                                            <!--end::Description-->
-                                            <!--begin::Link-->
-                                            <div class="text-gray-400 fw-bold fs-7">Lead by
-                                            <!--begin::Name-->
-                                            <a href="#" class="text-primary opacity-75-hover fw-bold">Peter Marcus</a>
-                                            <!--end::Name--></div>
-                                            <!--end::Link-->
-                                        </div>
-                                        <!--end::Info-->
-                                        <!--begin::Action-->
-                                        <a href="#" class="btn btn-sm btn-light" data-bs-toggle="modal" data-bs-target="#kt_modal_create_project">View</a>
-                                        <!--end::Action-->
-                                    </div>
-                                    <!--end::Wrapper-->
-                                    <!--begin::Wrapper-->
-                                    <div class="d-flex align-items-center mb-6">
-                                        <!--begin::Bullet-->
-                                        <span data-kt-element="bullet" class="bullet bullet-vertical d-flex align-items-center min-h-70px mh-100 me-4 bg-warning"></span>
-                                        <!--end::Bullet-->
-                                        <!--begin::Info-->
-                                        <div class="flex-grow-1 me-5">
-                                            <!--begin::Time-->
-                                            <div class="text-gray-800 fw-bold fs-2">16:30 - 17:00
-                                            <span class="text-gray-400 fw-bold fs-7">PM</span></div>
-                                            <!--end::Time-->
-                                            <!--begin::Description-->
-                                            <div class="text-gray-700 fw-bold fs-6">Dashboard UI/UX Design Review</div>
-                                            <!--end::Description-->
-                                            <!--begin::Link-->
-                                            <div class="text-gray-400 fw-bold fs-7">Lead by
-                                            <!--begin::Name-->
-                                            <a href="#" class="text-primary opacity-75-hover fw-bold">Lead by Bob</a>
-                                            <!--end::Name--></div>
-                                            <!--end::Link-->
-                                        </div>
-                                        <!--end::Info-->
-                                        <!--begin::Action-->
-                                        <a href="#" class="btn btn-sm btn-light" data-bs-toggle="modal" data-bs-target="#kt_modal_create_project">View</a>
-                                        <!--end::Action-->
-                                    </div>
-                                    <!--end::Wrapper-->
-                                    <!--begin::Wrapper-->
-                                    <div class="d-flex align-items-center mb-6">
-                                        <!--begin::Bullet-->
-                                        <span data-kt-element="bullet" class="bullet bullet-vertical d-flex align-items-center min-h-70px mh-100 me-4 bg-success"></span>
-                                        <!--end::Bullet-->
-                                        <!--begin::Info-->
-                                        <div class="flex-grow-1 me-5">
-                                            <!--begin::Time-->
-                                            <div class="text-gray-800 fw-bold fs-2">12:00 - 13:40
-                                            <span class="text-gray-400 fw-bold fs-7">AM</span></div>
-                                            <!--end::Time-->
-                                            <!--begin::Description-->
-                                            <div class="text-gray-700 fw-bold fs-6">Marketing Campaign Discussion</div>
-                                            <!--end::Description-->
-                                            <!--begin::Link-->
-                                            <div class="text-gray-400 fw-bold fs-7">Lead by
-                                            <!--begin::Name-->
-                                            <a href="#" class="text-primary opacity-75-hover fw-bold">Lead by Mark Morris</a>
-                                            <!--end::Name--></div>
-                                            <!--end::Link-->
-                                        </div>
-                                        <!--end::Info-->
-                                        <!--begin::Action-->
-                                        <a href="#" class="btn btn-sm btn-light" data-bs-toggle="modal" data-bs-target="#kt_modal_create_project">View</a>
-                                        <!--end::Action-->
-                                    </div>
-                                    <!--end::Wrapper-->
-                                </div>
-                                <!--end::Tap pane-->
-                                <!--begin::Tap pane-->
-                                <div class="tab-pane fade" id="kt_timeline_widget_3_tab_content_5">
-                                    <!--begin::Wrapper-->
-                                    <div class="d-flex align-items-center mb-6">
-                                        <!--begin::Bullet-->
-                                        <span data-kt-element="bullet" class="bullet bullet-vertical d-flex align-items-center min-h-70px mh-100 me-4 bg-danger"></span>
-                                        <!--end::Bullet-->
-                                        <!--begin::Info-->
-                                        <div class="flex-grow-1 me-5">
-                                            <!--begin::Time-->
-                                            <div class="text-gray-800 fw-bold fs-2">12:00 - 13:40
-                                            <span class="text-gray-400 fw-bold fs-7">AM</span></div>
-                                            <!--end::Time-->
-                                            <!--begin::Description-->
-                                            <div class="text-gray-700 fw-bold fs-6">9 Dashboard UI/UX Design Review</div>
-                                            <!--end::Description-->
-                                            <!--begin::Link-->
-                                            <div class="text-gray-400 fw-bold fs-7">Lead by
-                                            <!--begin::Name-->
-                                            <a href="#" class="text-primary opacity-75-hover fw-bold">Lead by Bob</a>
-                                            <!--end::Name--></div>
-                                            <!--end::Link-->
-                                        </div>
-                                        <!--end::Info-->
-                                        <!--begin::Action-->
-                                        <a href="#" class="btn btn-sm btn-light" data-bs-toggle="modal" data-bs-target="#kt_modal_create_project">View</a>
-                                        <!--end::Action-->
-                                    </div>
-                                    <!--end::Wrapper-->
-                                    <!--begin::Wrapper-->
-                                    <div class="d-flex align-items-center mb-6">
-                                        <!--begin::Bullet-->
-                                        <span data-kt-element="bullet" class="bullet bullet-vertical d-flex align-items-center min-h-70px mh-100 me-4 bg-warning"></span>
-                                        <!--end::Bullet-->
-                                        <!--begin::Info-->
-                                        <div class="flex-grow-1 me-5">
-                                            <!--begin::Time-->
-                                            <div class="text-gray-800 fw-bold fs-2">10:20 - 11:00
-                                            <span class="text-gray-400 fw-bold fs-7">AM</span></div>
-                                            <!--end::Time-->
-                                            <!--begin::Description-->
-                                            <div class="text-gray-700 fw-bold fs-6">9 Degree Project Estimation Meeting</div>
-                                            <!--end::Description-->
-                                            <!--begin::Link-->
-                                            <div class="text-gray-400 fw-bold fs-7">Lead by
-                                            <!--begin::Name-->
-                                            <a href="#" class="text-primary opacity-75-hover fw-bold">Lead by Mark Morris</a>
-                                            <!--end::Name--></div>
-                                            <!--end::Link-->
-                                        </div>
-                                        <!--end::Info-->
-                                        <!--begin::Action-->
-                                        <a href="#" class="btn btn-sm btn-light" data-bs-toggle="modal" data-bs-target="#kt_modal_create_project">View</a>
-                                        <!--end::Action-->
-                                    </div>
-                                    <!--end::Wrapper-->
-                                    <!--begin::Wrapper-->
-                                    <div class="d-flex align-items-center mb-6">
-                                        <!--begin::Bullet-->
-                                        <span data-kt-element="bullet" class="bullet bullet-vertical d-flex align-items-center min-h-70px mh-100 me-4 bg-info"></span>
-                                        <!--end::Bullet-->
-                                        <!--begin::Info-->
-                                        <div class="flex-grow-1 me-5">
-                                            <!--begin::Time-->
-                                            <div class="text-gray-800 fw-bold fs-2">16:30 - 17:00
-                                            <span class="text-gray-400 fw-bold fs-7">PM</span></div>
-                                            <!--end::Time-->
-                                            <!--begin::Description-->
-                                            <div class="text-gray-700 fw-bold fs-6">Marketing Campaign Discussion</div>
-                                            <!--end::Description-->
-                                            <!--begin::Link-->
-                                            <div class="text-gray-400 fw-bold fs-7">Lead by
-                                            <!--begin::Name-->
-                                            <a href="#" class="text-primary opacity-75-hover fw-bold">Peter Marcus</a>
-                                            <!--end::Name--></div>
-                                            <!--end::Link-->
-                                        </div>
-                                        <!--end::Info-->
-                                        <!--begin::Action-->
-                                        <a href="#" class="btn btn-sm btn-light" data-bs-toggle="modal" data-bs-target="#kt_modal_create_project">View</a>
-                                        <!--end::Action-->
-                                    </div>
-                                    <!--end::Wrapper-->
-                                </div>
-                                <!--end::Tap pane-->
-                                <!--begin::Tap pane-->
-                                <div class="tab-pane fade" id="kt_timeline_widget_3_tab_content_6">
-                                    <!--begin::Wrapper-->
-                                    <div class="d-flex align-items-center mb-6">
-                                        <!--begin::Bullet-->
-                                        <span data-kt-element="bullet" class="bullet bullet-vertical d-flex align-items-center min-h-70px mh-100 me-4 bg-info"></span>
-                                        <!--end::Bullet-->
-                                        <!--begin::Info-->
-                                        <div class="flex-grow-1 me-5">
-                                            <!--begin::Time-->
-                                            <div class="text-gray-800 fw-bold fs-2">10:20 - 11:00
-                                            <span class="text-gray-400 fw-bold fs-7">AM</span></div>
-                                            <!--end::Time-->
-                                            <!--begin::Description-->
-                                            <div class="text-gray-700 fw-bold fs-6">Marketing Campaign Discussion</div>
-                                            <!--end::Description-->
-                                            <!--begin::Link-->
-                                            <div class="text-gray-400 fw-bold fs-7">Lead by
-                                            <!--begin::Name-->
-                                            <a href="#" class="text-primary opacity-75-hover fw-bold">Lead by Mark Morris</a>
-                                            <!--end::Name--></div>
-                                            <!--end::Link-->
-                                        </div>
-                                        <!--end::Info-->
-                                        <!--begin::Action-->
-                                        <a href="#" class="btn btn-sm btn-light" data-bs-toggle="modal" data-bs-target="#kt_modal_create_project">View</a>
-                                        <!--end::Action-->
-                                    </div>
-                                    <!--end::Wrapper-->
-                                    <!--begin::Wrapper-->
-                                    <div class="d-flex align-items-center mb-6">
-                                        <!--begin::Bullet-->
-                                        <span data-kt-element="bullet" class="bullet bullet-vertical d-flex align-items-center min-h-70px mh-100 me-4 bg-primary"></span>
-                                        <!--end::Bullet-->
-                                        <!--begin::Info-->
-                                        <div class="flex-grow-1 me-5">
-                                            <!--begin::Time-->
-                                            <div class="text-gray-800 fw-bold fs-2">16:30 - 17:00
-                                            <span class="text-gray-400 fw-bold fs-7">PM</span></div>
-                                            <!--end::Time-->
-                                            <!--begin::Description-->
-                                            <div class="text-gray-700 fw-bold fs-6">9 Degree Project Estimation Meeting</div>
-                                            <!--end::Description-->
-                                            <!--begin::Link-->
-                                            <div class="text-gray-400 fw-bold fs-7">Lead by
-                                            <!--begin::Name-->
-                                            <a href="#" class="text-primary opacity-75-hover fw-bold">Peter Marcus</a>
-                                            <!--end::Name--></div>
-                                            <!--end::Link-->
-                                        </div>
-                                        <!--end::Info-->
-                                        <!--begin::Action-->
-                                        <a href="#" class="btn btn-sm btn-light" data-bs-toggle="modal" data-bs-target="#kt_modal_create_project">View</a>
-                                        <!--end::Action-->
-                                    </div>
-                                    <!--end::Wrapper-->
-                                    <!--begin::Wrapper-->
-                                    <div class="d-flex align-items-center mb-6">
-                                        <!--begin::Bullet-->
-                                        <span data-kt-element="bullet" class="bullet bullet-vertical d-flex align-items-center min-h-70px mh-100 me-4 bg-warning"></span>
-                                        <!--end::Bullet-->
-                                        <!--begin::Info-->
-                                        <div class="flex-grow-1 me-5">
-                                            <!--begin::Time-->
-                                            <div class="text-gray-800 fw-bold fs-2">12:00 - 13:40
-                                            <span class="text-gray-400 fw-bold fs-7">AM</span></div>
-                                            <!--end::Time-->
-                                            <!--begin::Description-->
-                                            <div class="text-gray-700 fw-bold fs-6">9 Dashboard UI/UX Design Review</div>
-                                            <!--end::Description-->
-                                            <!--begin::Link-->
-                                            <div class="text-gray-400 fw-bold fs-7">Lead by
-                                            <!--begin::Name-->
-                                            <a href="#" class="text-primary opacity-75-hover fw-bold">Lead by Bob</a>
-                                            <!--end::Name--></div>
-                                            <!--end::Link-->
-                                        </div>
-                                        <!--end::Info-->
-                                        <!--begin::Action-->
-                                        <a href="#" class="btn btn-sm btn-light" data-bs-toggle="modal" data-bs-target="#kt_modal_create_project">View</a>
-                                        <!--end::Action-->
-                                    </div>
-                                    <!--end::Wrapper-->
-                                </div>
-                                <!--end::Tap pane-->
-                                <!--begin::Tap pane-->
-                                <div class="tab-pane fade" id="kt_timeline_widget_3_tab_content_7">
-                                    <!--begin::Wrapper-->
-                                    <div class="d-flex align-items-center mb-6">
-                                        <!--begin::Bullet-->
-                                        <span data-kt-element="bullet" class="bullet bullet-vertical d-flex align-items-center min-h-70px mh-100 me-4 bg-warning"></span>
-                                        <!--end::Bullet-->
-                                        <!--begin::Info-->
-                                        <div class="flex-grow-1 me-5">
-                                            <!--begin::Time-->
-                                            <div class="text-gray-800 fw-bold fs-2">12:00 - 13:40
-                                            <span class="text-gray-400 fw-bold fs-7">AM</span></div>
-                                            <!--end::Time-->
-                                            <!--begin::Description-->
-                                            <div class="text-gray-700 fw-bold fs-6">9 Degree Project Estimation Meeting</div>
-                                            <!--end::Description-->
-                                            <!--begin::Link-->
-                                            <div class="text-gray-400 fw-bold fs-7">Lead by
-                                            <!--begin::Name-->
-                                            <a href="#" class="text-primary opacity-75-hover fw-bold">Lead by Bob</a>
-                                            <!--end::Name--></div>
-                                            <!--end::Link-->
-                                        </div>
-                                        <!--end::Info-->
-                                        <!--begin::Action-->
-                                        <a href="#" class="btn btn-sm btn-light" data-bs-toggle="modal" data-bs-target="#kt_modal_create_project">View</a>
-                                        <!--end::Action-->
-                                    </div>
-                                    <!--end::Wrapper-->
-                                    <!--begin::Wrapper-->
-                                    <div class="d-flex align-items-center mb-6">
-                                        <!--begin::Bullet-->
-                                        <span data-kt-element="bullet" class="bullet bullet-vertical d-flex align-items-center min-h-70px mh-100 me-4 bg-danger"></span>
-                                        <!--end::Bullet-->
-                                        <!--begin::Info-->
-                                        <div class="flex-grow-1 me-5">
-                                            <!--begin::Time-->
-                                            <div class="text-gray-800 fw-bold fs-2">10:20 - 11:00
-                                            <span class="text-gray-400 fw-bold fs-7">AM</span></div>
-                                            <!--end::Time-->
-                                            <!--begin::Description-->
-                                            <div class="text-gray-700 fw-bold fs-6">9 Dashboard UI/UX Design Review</div>
-                                            <!--end::Description-->
-                                            <!--begin::Link-->
-                                            <div class="text-gray-400 fw-bold fs-7">Lead by
-                                            <!--begin::Name-->
-                                            <a href="#" class="text-primary opacity-75-hover fw-bold">Peter Marcus</a>
-                                            <!--end::Name--></div>
-                                            <!--end::Link-->
-                                        </div>
-                                        <!--end::Info-->
-                                        <!--begin::Action-->
-                                        <a href="#" class="btn btn-sm btn-light" data-bs-toggle="modal" data-bs-target="#kt_modal_create_project">View</a>
-                                        <!--end::Action-->
-                                    </div>
-                                    <!--end::Wrapper-->
-                                    <!--begin::Wrapper-->
-                                    <div class="d-flex align-items-center mb-6">
-                                        <!--begin::Bullet-->
-                                        <span data-kt-element="bullet" class="bullet bullet-vertical d-flex align-items-center min-h-70px mh-100 me-4 bg-success"></span>
-                                        <!--end::Bullet-->
-                                        <!--begin::Info-->
-                                        <div class="flex-grow-1 me-5">
-                                            <!--begin::Time-->
-                                            <div class="text-gray-800 fw-bold fs-2">16:30 - 17:00
-                                            <span class="text-gray-400 fw-bold fs-7">PM</span></div>
-                                            <!--end::Time-->
-                                            <!--begin::Description-->
-                                            <div class="text-gray-700 fw-bold fs-6">Marketing Campaign Discussion</div>
-                                            <!--end::Description-->
-                                            <!--begin::Link-->
-                                            <div class="text-gray-400 fw-bold fs-7">Lead by
-                                            <!--begin::Name-->
-                                            <a href="#" class="text-primary opacity-75-hover fw-bold">Lead by Mark Morris</a>
-                                            <!--end::Name--></div>
-                                            <!--end::Link-->
-                                        </div>
-                                        <!--end::Info-->
-                                        <!--begin::Action-->
-                                        <a href="#" class="btn btn-sm btn-light" data-bs-toggle="modal" data-bs-target="#kt_modal_create_project">View</a>
-                                        <!--end::Action-->
-                                    </div>
-                                    <!--end::Wrapper-->
-                                </div>
-                                <!--end::Tap pane-->
-                                <!--begin::Tap pane-->
-                                <div class="tab-pane fade" id="kt_timeline_widget_3_tab_content_8">
-                                    <!--begin::Wrapper-->
-                                    <div class="d-flex align-items-center mb-6">
-                                        <!--begin::Bullet-->
-                                        <span data-kt-element="bullet" class="bullet bullet-vertical d-flex align-items-center min-h-70px mh-100 me-4 bg-success"></span>
-                                        <!--end::Bullet-->
-                                        <!--begin::Info-->
-                                        <div class="flex-grow-1 me-5">
-                                            <!--begin::Time-->
-                                            <div class="text-gray-800 fw-bold fs-2">16:30 - 17:00
-                                            <span class="text-gray-400 fw-bold fs-7">PM</span></div>
-                                            <!--end::Time-->
-                                            <!--begin::Description-->
-                                            <div class="text-gray-700 fw-bold fs-6">Marketing Campaign Discussion</div>
-                                            <!--end::Description-->
-                                            <!--begin::Link-->
-                                            <div class="text-gray-400 fw-bold fs-7">Lead by
-                                            <!--begin::Name-->
-                                            <a href="#" class="text-primary opacity-75-hover fw-bold">Peter Marcus</a>
-                                            <!--end::Name--></div>
-                                            <!--end::Link-->
-                                        </div>
-                                        <!--end::Info-->
-                                        <!--begin::Action-->
-                                        <a href="#" class="btn btn-sm btn-light" data-bs-toggle="modal" data-bs-target="#kt_modal_create_project">View</a>
-                                        <!--end::Action-->
-                                    </div>
-                                    <!--end::Wrapper-->
-                                    <!--begin::Wrapper-->
-                                    <div class="d-flex align-items-center mb-6">
-                                        <!--begin::Bullet-->
-                                        <span data-kt-element="bullet" class="bullet bullet-vertical d-flex align-items-center min-h-70px mh-100 me-4 bg-info"></span>
-                                        <!--end::Bullet-->
-                                        <!--begin::Info-->
-                                        <div class="flex-grow-1 me-5">
-                                            <!--begin::Time-->
-                                            <div class="text-gray-800 fw-bold fs-2">10:20 - 11:00
-                                            <span class="text-gray-400 fw-bold fs-7">AM</span></div>
-                                            <!--end::Time-->
-                                            <!--begin::Description-->
-                                            <div class="text-gray-700 fw-bold fs-6">9 Degree Project Estimation Meeting</div>
-                                            <!--end::Description-->
-                                            <!--begin::Link-->
-                                            <div class="text-gray-400 fw-bold fs-7">Lead by
-                                            <!--begin::Name-->
-                                            <a href="#" class="text-primary opacity-75-hover fw-bold">Lead by Mark Morris</a>
-                                            <!--end::Name--></div>
-                                            <!--end::Link-->
-                                        </div>
-                                        <!--end::Info-->
-                                        <!--begin::Action-->
-                                        <a href="#" class="btn btn-sm btn-light" data-bs-toggle="modal" data-bs-target="#kt_modal_create_project">View</a>
-                                        <!--end::Action-->
-                                    </div>
-                                    <!--end::Wrapper-->
-                                    <!--begin::Wrapper-->
-                                    <div class="d-flex align-items-center mb-6">
-                                        <!--begin::Bullet-->
-                                        <span data-kt-element="bullet" class="bullet bullet-vertical d-flex align-items-center min-h-70px mh-100 me-4 bg-danger"></span>
-                                        <!--end::Bullet-->
-                                        <!--begin::Info-->
-                                        <div class="flex-grow-1 me-5">
-                                            <!--begin::Time-->
-                                            <div class="text-gray-800 fw-bold fs-2">12:00 - 13:40
-                                            <span class="text-gray-400 fw-bold fs-7">AM</span></div>
-                                            <!--end::Time-->
-                                            <!--begin::Description-->
-                                            <div class="text-gray-700 fw-bold fs-6">9 Dashboard UI/UX Design Review</div>
-                                            <!--end::Description-->
-                                            <!--begin::Link-->
-                                            <div class="text-gray-400 fw-bold fs-7">Lead by
-                                            <!--begin::Name-->
-                                            <a href="#" class="text-primary opacity-75-hover fw-bold">Lead by Bob</a>
-                                            <!--end::Name--></div>
-                                            <!--end::Link-->
-                                        </div>
-                                        <!--end::Info-->
-                                        <!--begin::Action-->
-                                        <a href="#" class="btn btn-sm btn-light" data-bs-toggle="modal" data-bs-target="#kt_modal_create_project">View</a>
-                                        <!--end::Action-->
-                                    </div>
-                                    <!--end::Wrapper-->
-                                </div>
-                                <!--end::Tap pane-->
-                                <!--begin::Tap pane-->
-                                <div class="tab-pane fade" id="kt_timeline_widget_3_tab_content_9">
-                                    <!--begin::Wrapper-->
-                                    <div class="d-flex align-items-center mb-6">
-                                        <!--begin::Bullet-->
-                                        <span data-kt-element="bullet" class="bullet bullet-vertical d-flex align-items-center min-h-70px mh-100 me-4 bg-info"></span>
-                                        <!--end::Bullet-->
-                                        <!--begin::Info-->
-                                        <div class="flex-grow-1 me-5">
-                                            <!--begin::Time-->
-                                            <div class="text-gray-800 fw-bold fs-2">12:00 - 13:40
-                                            <span class="text-gray-400 fw-bold fs-7">AM</span></div>
-                                            <!--end::Time-->
-                                            <!--begin::Description-->
-                                            <div class="text-gray-700 fw-bold fs-6">9 Degree Project Estimation Meeting</div>
-                                            <!--end::Description-->
-                                            <!--begin::Link-->
-                                            <div class="text-gray-400 fw-bold fs-7">Lead by
-                                            <!--begin::Name-->
-                                            <a href="#" class="text-primary opacity-75-hover fw-bold">Lead by Bob</a>
-                                            <!--end::Name--></div>
-                                            <!--end::Link-->
-                                        </div>
-                                        <!--end::Info-->
-                                        <!--begin::Action-->
-                                        <a href="#" class="btn btn-sm btn-light" data-bs-toggle="modal" data-bs-target="#kt_modal_create_project">View</a>
-                                        <!--end::Action-->
-                                    </div>
-                                    <!--end::Wrapper-->
-                                    <!--begin::Wrapper-->
-                                    <div class="d-flex align-items-center mb-6">
-                                        <!--begin::Bullet-->
-                                        <span data-kt-element="bullet" class="bullet bullet-vertical d-flex align-items-center min-h-70px mh-100 me-4 bg-primary"></span>
-                                        <!--end::Bullet-->
-                                        <!--begin::Info-->
-                                        <div class="flex-grow-1 me-5">
-                                            <!--begin::Time-->
-                                            <div class="text-gray-800 fw-bold fs-2">16:30 - 17:00
-                                            <span class="text-gray-400 fw-bold fs-7">PM</span></div>
-                                            <!--end::Time-->
-                                            <!--begin::Description-->
-                                            <div class="text-gray-700 fw-bold fs-6">Marketing Campaign Discussion</div>
-                                            <!--end::Description-->
-                                            <!--begin::Link-->
-                                            <div class="text-gray-400 fw-bold fs-7">Lead by
-                                            <!--begin::Name-->
-                                            <a href="#" class="text-primary opacity-75-hover fw-bold">Lead by Mark Morris</a>
-                                            <!--end::Name--></div>
-                                            <!--end::Link-->
-                                        </div>
-                                        <!--end::Info-->
-                                        <!--begin::Action-->
-                                        <a href="#" class="btn btn-sm btn-light" data-bs-toggle="modal" data-bs-target="#kt_modal_create_project">View</a>
-                                        <!--end::Action-->
-                                    </div>
-                                    <!--end::Wrapper-->
-                                    <!--begin::Wrapper-->
-                                    <div class="d-flex align-items-center mb-6">
-                                        <!--begin::Bullet-->
-                                        <span data-kt-element="bullet" class="bullet bullet-vertical d-flex align-items-center min-h-70px mh-100 me-4 bg-success"></span>
-                                        <!--end::Bullet-->
-                                        <!--begin::Info-->
-                                        <div class="flex-grow-1 me-5">
-                                            <!--begin::Time-->
-                                            <div class="text-gray-800 fw-bold fs-2">10:20 - 11:00
-                                            <span class="text-gray-400 fw-bold fs-7">AM</span></div>
-                                            <!--end::Time-->
-                                            <!--begin::Description-->
-                                            <div class="text-gray-700 fw-bold fs-6">9 Dashboard UI/UX Design Review</div>
-                                            <!--end::Description-->
-                                            <!--begin::Link-->
-                                            <div class="text-gray-400 fw-bold fs-7">Lead by
-                                            <!--begin::Name-->
-                                            <a href="#" class="text-primary opacity-75-hover fw-bold">Peter Marcus</a>
-                                            <!--end::Name--></div>
-                                            <!--end::Link-->
-                                        </div>
-                                        <!--end::Info-->
-                                        <!--begin::Action-->
-                                        <a href="#" class="btn btn-sm btn-light" data-bs-toggle="modal" data-bs-target="#kt_modal_create_project">View</a>
-                                        <!--end::Action-->
-                                    </div>
-                                    <!--end::Wrapper-->
-                                </div>
-                                <!--end::Tap pane-->
-                                <!--begin::Tap pane-->
-                                <div class="tab-pane fade" id="kt_timeline_widget_3_tab_content_10">
-                                    <!--begin::Wrapper-->
-                                    <div class="d-flex align-items-center mb-6">
-                                        <!--begin::Bullet-->
-                                        <span data-kt-element="bullet" class="bullet bullet-vertical d-flex align-items-center min-h-70px mh-100 me-4 bg-danger"></span>
-                                        <!--end::Bullet-->
-                                        <!--begin::Info-->
-                                        <div class="flex-grow-1 me-5">
-                                            <!--begin::Time-->
-                                            <div class="text-gray-800 fw-bold fs-2">12:00 - 13:40
-                                            <span class="text-gray-400 fw-bold fs-7">AM</span></div>
-                                            <!--end::Time-->
-                                            <!--begin::Description-->
-                                            <div class="text-gray-700 fw-bold fs-6">Marketing Campaign Discussion</div>
-                                            <!--end::Description-->
-                                            <!--begin::Link-->
-                                            <div class="text-gray-400 fw-bold fs-7">Lead by
-                                            <!--begin::Name-->
-                                            <a href="#" class="text-primary opacity-75-hover fw-bold">Peter Marcus</a>
-                                            <!--end::Name--></div>
-                                            <!--end::Link-->
-                                        </div>
-                                        <!--end::Info-->
-                                        <!--begin::Action-->
-                                        <a href="#" class="btn btn-sm btn-light" data-bs-toggle="modal" data-bs-target="#kt_modal_create_project">View</a>
-                                        <!--end::Action-->
-                                    </div>
-                                    <!--end::Wrapper-->
-                                    <!--begin::Wrapper-->
-                                    <div class="d-flex align-items-center mb-6">
-                                        <!--begin::Bullet-->
-                                        <span data-kt-element="bullet" class="bullet bullet-vertical d-flex align-items-center min-h-70px mh-100 me-4 bg-warning"></span>
-                                        <!--end::Bullet-->
-                                        <!--begin::Info-->
-                                        <div class="flex-grow-1 me-5">
-                                            <!--begin::Time-->
-                                            <div class="text-gray-800 fw-bold fs-2">10:20 - 11:00
-                                            <span class="text-gray-400 fw-bold fs-7">AM</span></div>
-                                            <!--end::Time-->
-                                            <!--begin::Description-->
-                                            <div class="text-gray-700 fw-bold fs-6">9 Dashboard UI/UX Design Review</div>
-                                            <!--end::Description-->
-                                            <!--begin::Link-->
-                                            <div class="text-gray-400 fw-bold fs-7">Lead by
-                                            <!--begin::Name-->
-                                            <a href="#" class="text-primary opacity-75-hover fw-bold">Lead by Bob</a>
-                                            <!--end::Name--></div>
-                                            <!--end::Link-->
-                                        </div>
-                                        <!--end::Info-->
-                                        <!--begin::Action-->
-                                        <a href="#" class="btn btn-sm btn-light" data-bs-toggle="modal" data-bs-target="#kt_modal_create_project">View</a>
-                                        <!--end::Action-->
-                                    </div>
-                                    <!--end::Wrapper-->
-                                    <!--begin::Wrapper-->
-                                    <div class="d-flex align-items-center mb-6">
-                                        <!--begin::Bullet-->
-                                        <span data-kt-element="bullet" class="bullet bullet-vertical d-flex align-items-center min-h-70px mh-100 me-4 bg-info"></span>
-                                        <!--end::Bullet-->
-                                        <!--begin::Info-->
-                                        <div class="flex-grow-1 me-5">
-                                            <!--begin::Time-->
-                                            <div class="text-gray-800 fw-bold fs-2">16:30 - 17:00
-                                            <span class="text-gray-400 fw-bold fs-7">PM</span></div>
-                                            <!--end::Time-->
-                                            <!--begin::Description-->
-                                            <div class="text-gray-700 fw-bold fs-6">9 Degree Project Estimation Meeting</div>
-                                            <!--end::Description-->
-                                            <!--begin::Link-->
-                                            <div class="text-gray-400 fw-bold fs-7">Lead by
-                                            <!--begin::Name-->
-                                            <a href="#" class="text-primary opacity-75-hover fw-bold">Lead by Mark Morris</a>
-                                            <!--end::Name--></div>
-                                            <!--end::Link-->
-                                        </div>
-                                        <!--end::Info-->
-                                        <!--begin::Action-->
-                                        <a href="#" class="btn btn-sm btn-light" data-bs-toggle="modal" data-bs-target="#kt_modal_create_project">View</a>
-                                        <!--end::Action-->
-                                    </div>
-                                    <!--end::Wrapper-->
-                                </div>
-                                <!--end::Tap pane-->
-                                <!--begin::Tap pane-->
-                                <div class="tab-pane fade" id="kt_timeline_widget_3_tab_content_11">
-                                    <!--begin::Wrapper-->
-                                    <div class="d-flex align-items-center mb-6">
-                                        <!--begin::Bullet-->
-                                        <span data-kt-element="bullet" class="bullet bullet-vertical d-flex align-items-center min-h-70px mh-100 me-4 bg-info"></span>
-                                        <!--end::Bullet-->
-                                        <!--begin::Info-->
-                                        <div class="flex-grow-1 me-5">
-                                            <!--begin::Time-->
-                                            <div class="text-gray-800 fw-bold fs-2">16:30 - 17:00
-                                            <span class="text-gray-400 fw-bold fs-7">PM</span></div>
-                                            <!--end::Time-->
-                                            <!--begin::Description-->
-                                            <div class="text-gray-700 fw-bold fs-6">9 Dashboard UI/UX Design Review</div>
-                                            <!--end::Description-->
-                                            <!--begin::Link-->
-                                            <div class="text-gray-400 fw-bold fs-7">Lead by
-                                            <!--begin::Name-->
-                                            <a href="#" class="text-primary opacity-75-hover fw-bold">Lead by Mark Morris</a>
-                                            <!--end::Name--></div>
-                                            <!--end::Link-->
-                                        </div>
-                                        <!--end::Info-->
-                                        <!--begin::Action-->
-                                        <a href="#" class="btn btn-sm btn-light" data-bs-toggle="modal" data-bs-target="#kt_modal_create_project">View</a>
-                                        <!--end::Action-->
-                                    </div>
-                                    <!--end::Wrapper-->
-                                    <!--begin::Wrapper-->
-                                    <div class="d-flex align-items-center mb-6">
-                                        <!--begin::Bullet-->
-                                        <span data-kt-element="bullet" class="bullet bullet-vertical d-flex align-items-center min-h-70px mh-100 me-4 bg-danger"></span>
-                                        <!--end::Bullet-->
-                                        <!--begin::Info-->
-                                        <div class="flex-grow-1 me-5">
-                                            <!--begin::Time-->
-                                            <div class="text-gray-800 fw-bold fs-2">10:20 - 11:00
-                                            <span class="text-gray-400 fw-bold fs-7">AM</span></div>
-                                            <!--end::Time-->
-                                            <!--begin::Description-->
-                                            <div class="text-gray-700 fw-bold fs-6">Marketing Campaign Discussion</div>
-                                            <!--end::Description-->
-                                            <!--begin::Link-->
-                                            <div class="text-gray-400 fw-bold fs-7">Lead by
-                                            <!--begin::Name-->
-                                            <a href="#" class="text-primary opacity-75-hover fw-bold">Peter Marcus</a>
-                                            <!--end::Name--></div>
-                                            <!--end::Link-->
-                                        </div>
-                                        <!--end::Info-->
-                                        <!--begin::Action-->
-                                        <a href="#" class="btn btn-sm btn-light" data-bs-toggle="modal" data-bs-target="#kt_modal_create_project">View</a>
-                                        <!--end::Action-->
-                                    </div>
-                                    <!--end::Wrapper-->
-                                    <!--begin::Wrapper-->
-                                    <div class="d-flex align-items-center mb-6">
-                                        <!--begin::Bullet-->
-                                        <span data-kt-element="bullet" class="bullet bullet-vertical d-flex align-items-center min-h-70px mh-100 me-4 bg-primary"></span>
-                                        <!--end::Bullet-->
-                                        <!--begin::Info-->
-                                        <div class="flex-grow-1 me-5">
-                                            <!--begin::Time-->
-                                            <div class="text-gray-800 fw-bold fs-2">12:00 - 13:40
-                                            <span class="text-gray-400 fw-bold fs-7">AM</span></div>
-                                            <!--end::Time-->
-                                            <!--begin::Description-->
-                                            <div class="text-gray-700 fw-bold fs-6">9 Degree Project Estimation Meeting</div>
-                                            <!--end::Description-->
-                                            <!--begin::Link-->
-                                            <div class="text-gray-400 fw-bold fs-7">Lead by
-                                            <!--begin::Name-->
-                                            <a href="#" class="text-primary opacity-75-hover fw-bold">Lead by Bob</a>
-                                            <!--end::Name--></div>
-                                            <!--end::Link-->
-                                        </div>
-                                        <!--end::Info-->
-                                        <!--begin::Action-->
-                                        <a href="#" class="btn btn-sm btn-light" data-bs-toggle="modal" data-bs-target="#kt_modal_create_project">View</a>
-                                        <!--end::Action-->
-                                    </div>
-                                    <!--end::Wrapper-->
-                                </div>
-                                <!--end::Tap pane-->
-                            </div>
-                            <!--end::Tab Content-->
-                            <!--begin::Action-->
-                            <div class="float-end d-none">
-                                <a href="#" class="btn btn-sm btn-light me-2" data-bs-toggle="modal" data-bs-target="#kt_modal_create_project">Add Lesson</a>
-                                <a href="#" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#kt_modal_create_app">Call Sick for Today</a>
-                            </div>
-                            <!--end::Action-->
-                        </div>
-                        <!--end: Card Body-->
-                    </div>
-                    <!--end::Timeline widget 3-->
-                    <!--begin::Timeline widget 3-->
-                    <div class="card card-flush d-none h-md-100">
-                        <!--begin::Card header-->
-                        <div class="card-header mt-6">
-                            <!--begin::Card title-->
-                            <div class="card-title flex-column">
-                                <h3 class="fw-bolder mb-1">What's on the road?</h3>
-                                <div class="fs-6 text-gray-400">Total 482 participants</div>
-                            </div>
-                            <!--end::Card title-->
-                            <!--begin::Card toolbar-->
-                            <div class="card-toolbar">
-                                <!--begin::Select-->
-                                <select name="status" data-control="select2" data-hide-search="true" class="form-select form-select-solid form-select-sm fw-bolder w-100px">
-                                    <option value="1" selected="selected">Options</option>
-                                    <option value="2">Option 1</option>
-                                    <option value="3">Option 2</option>
-                                    <option value="4">Option 3</option>
-                                </select>
-                                <!--end::Select-->
-                            </div>
-                            <!--end::Card toolbar-->
-                        </div>
-                        <!--end::Card header-->
-                        <!--begin::Card body-->
-                        <div class="card-body p-0">
-                            <!--begin::Dates-->
-                            <ul class="nav nav-pills d-flex flex-nowrap hover-scroll-x py-2 ms-4">
-                                <!--begin::Date-->
-                                <li class="nav-item me-1">
-                                    <a class="nav-link btn d-flex flex-column flex-center rounded-pill min-w-45px me-2 py-4 px-3 btn-color-active-white btn-active-danger" data-bs-toggle="tab" href="#kt_schedule_day_0">
-                                        <span class="text-gray-400 fs-7 fw-bold">Fr</span>
-                                        <span class="fs-6 text-gray-800 fw-bolder">20</span>
-                                    </a>
-                                </li>
-                                <!--end::Date-->
-                                <!--begin::Date-->
-                                <li class="nav-item me-1">
-                                    <a class="nav-link btn d-flex flex-column flex-center rounded-pill min-w-45px me-2 py-4 px-3 btn-color-active-white btn-active-danger" data-bs-toggle="tab" href="#kt_schedule_day_1">
-                                        <span class="text-gray-400 fs-7 fw-bold">Sa</span>
-                                        <span class="fs-6 text-gray-800 fw-bolder">21</span>
-                                    </a>
-                                </li>
-                                <!--end::Date-->
-                                <!--begin::Date-->
-                                <li class="nav-item me-1">
-                                    <a class="nav-link btn d-flex flex-column flex-center rounded-pill min-w-45px me-2 py-4 px-3 btn-color-active-white btn-active-danger" data-bs-toggle="tab" href="#kt_schedule_day_2">
-                                        <span class="text-gray-400 fs-7 fw-bold">Su</span>
-                                        <span class="fs-6 text-gray-800 fw-bolder">22</span>
-                                    </a>
-                                </li>
-                                <!--end::Date-->
-                                <!--begin::Date-->
-                                <li class="nav-item me-1">
-                                    <a class="nav-link btn d-flex flex-column flex-center rounded-pill min-w-45px me-2 py-4 px-3 btn-color-active-white btn-active-danger active" data-bs-toggle="tab" href="#kt_schedule_day_3">
-                                        <span class="text-gray-400 fs-7 fw-bold">Mo</span>
-                                        <span class="fs-6 text-gray-800 fw-bolder">23</span>
-                                    </a>
-                                </li>
-                                <!--end::Date-->
-                                <!--begin::Date-->
-                                <li class="nav-item me-1">
-                                    <a class="nav-link btn d-flex flex-column flex-center rounded-pill min-w-45px me-2 py-4 px-3 btn-color-active-white btn-active-danger" data-bs-toggle="tab" href="#kt_schedule_day_4">
-                                        <span class="text-gray-400 fs-7 fw-bold">Tu</span>
-                                        <span class="fs-6 text-gray-800 fw-bolder">24</span>
-                                    </a>
-                                </li>
-                                <!--end::Date-->
-                                <!--begin::Date-->
-                                <li class="nav-item me-1">
-                                    <a class="nav-link btn d-flex flex-column flex-center rounded-pill min-w-45px me-2 py-4 px-3 btn-color-active-white btn-active-danger" data-bs-toggle="tab" href="#kt_schedule_day_5">
-                                        <span class="text-gray-400 fs-7 fw-bold">We</span>
-                                        <span class="fs-6 text-gray-800 fw-bolder">25</span>
-                                    </a>
-                                </li>
-                                <!--end::Date-->
-                                <!--begin::Date-->
-                                <li class="nav-item me-1">
-                                    <a class="nav-link btn d-flex flex-column flex-center rounded-pill min-w-45px me-2 py-4 px-3 btn-color-active-white btn-active-danger" data-bs-toggle="tab" href="#kt_schedule_day_6">
-                                        <span class="text-gray-400 fs-7 fw-bold">Th</span>
-                                        <span class="fs-6 text-gray-800 fw-bolder">26</span>
-                                    </a>
-                                </li>
-                                <!--end::Date-->
-                                <!--begin::Date-->
-                                <li class="nav-item me-1">
-                                    <a class="nav-link btn d-flex flex-column flex-center rounded-pill min-w-45px me-2 py-4 px-3 btn-color-active-white btn-active-danger" data-bs-toggle="tab" href="#kt_schedule_day_7">
-                                        <span class="text-gray-400 fs-7 fw-bold">Fr</span>
-                                        <span class="fs-6 text-gray-800 fw-bolder">27</span>
-                                    </a>
-                                </li>
-                                <!--end::Date-->
-                                <!--begin::Date-->
-                                <li class="nav-item me-1">
-                                    <a class="nav-link btn d-flex flex-column flex-center rounded-pill min-w-45px me-2 py-4 px-3 btn-color-active-white btn-active-danger" data-bs-toggle="tab" href="#kt_schedule_day_8">
-                                        <span class="text-gray-400 fs-7 fw-bold">Sa</span>
-                                        <span class="fs-6 text-gray-800 fw-bolder">28</span>
-                                    </a>
-                                </li>
-                                <!--end::Date-->
-                                <!--begin::Date-->
-                                <li class="nav-item me-1">
-                                    <a class="nav-link btn d-flex flex-column flex-center rounded-pill min-w-45px me-2 py-4 px-3 btn-color-active-white btn-active-danger" data-bs-toggle="tab" href="#kt_schedule_day_9">
-                                        <span class="text-gray-400 fs-7 fw-bold">Su</span>
-                                        <span class="fs-6 text-gray-800 fw-bolder">29</span>
-                                    </a>
-                                </li>
-                                <!--end::Date-->
-                                <!--begin::Date-->
-                                <li class="nav-item me-1">
-                                    <a class="nav-link btn d-flex flex-column flex-center rounded-pill min-w-45px me-2 py-4 px-3 btn-color-active-white btn-active-danger" data-bs-toggle="tab" href="#kt_schedule_day_10">
-                                        <span class="text-gray-400 fs-7 fw-bold">Mo</span>
-                                        <span class="fs-6 text-gray-800 fw-bolder">30</span>
-                                    </a>
-                                </li>
-                                <!--end::Date-->
-                                <!--begin::Date-->
-                                <li class="nav-item me-1">
-                                    <a class="nav-link btn d-flex flex-column flex-center rounded-pill min-w-45px me-2 py-4 px-3 btn-color-active-white btn-active-danger" data-bs-toggle="tab" href="#kt_schedule_day_11">
-                                        <span class="text-gray-400 fs-7 fw-bold">Tu</span>
-                                        <span class="fs-6 text-gray-800 fw-bolder">31</span>
-                                    </a>
-                                </li>
-                                <!--end::Date-->
-                            </ul>
-                            <!--end::Dates-->
-                            <!--begin::Tab Content-->
-                            <div class="tab-content px-9">
-                                <!--begin::Day-->
-                                <div id="kt_schedule_day_0" class="tab-pane fade show">
-                                    <!--begin::Time-->
-                                    <div class="d-flex flex-stack position-relative mt-8">
-                                        <!--begin::Bar-->
-                                        <div class="position-absolute h-100 w-4px bg-secondary rounded top-0 start-0"></div>
-                                        <!--end::Bar-->
-                                        <!--begin::Info-->
-                                        <div class="fw-bold ms-5 text-gray-600">
-                                            <!--begin::Time-->
-                                            <div class="fs-5">12:00 - 13:00
-                                            <span class="fs-7 text-gray-400 text-uppercase">pm</span></div>
-                                            <!--end::Time-->
-                                            <!--begin::Title-->
-                                            <a href="#" class="fs-5 fw-bolder text-gray-800 text-hover-primary mb-2">Creative Content Initiative</a>
-                                            <!--end::Title-->
-                                            <!--begin::User-->
-                                            <div class="text-gray-400">Lead by
-                                            <a href="#">Terry Robins</a></div>
-                                            <!--end::User-->
-                                        </div>
-                                        <!--end::Info-->
-                                        <!--begin::Action-->
-                                        <a href="#" class="btn btn-bg-light btn-active-color-primary btn-sm">View</a>
-                                        <!--end::Action-->
-                                    </div>
-                                    <!--end::Time-->
-                                    <!--begin::Time-->
-                                    <div class="d-flex flex-stack position-relative mt-8">
-                                        <!--begin::Bar-->
-                                        <div class="position-absolute h-100 w-4px bg-secondary rounded top-0 start-0"></div>
-                                        <!--end::Bar-->
-                                        <!--begin::Info-->
-                                        <div class="fw-bold ms-5 text-gray-600">
-                                            <!--begin::Time-->
-                                            <div class="fs-5">11:00 - 11:45
-                                            <span class="fs-7 text-gray-400 text-uppercase">am</span></div>
-                                            <!--end::Time-->
-                                            <!--begin::Title-->
-                                            <a href="#" class="fs-5 fw-bolder text-gray-800 text-hover-primary mb-2">Dashboard UI/UX Design Review</a>
-                                            <!--end::Title-->
-                                            <!--begin::User-->
-                                            <div class="text-gray-400">Lead by
-                                            <a href="#">Naomi Hayabusa</a></div>
-                                            <!--end::User-->
-                                        </div>
-                                        <!--end::Info-->
-                                        <!--begin::Action-->
-                                        <a href="#" class="btn btn-bg-light btn-active-color-primary btn-sm">View</a>
-                                        <!--end::Action-->
-                                    </div>
-                                    <!--end::Time-->
-                                    <!--begin::Time-->
-                                    <div class="d-flex flex-stack position-relative mt-8">
-                                        <!--begin::Bar-->
-                                        <div class="position-absolute h-100 w-4px bg-secondary rounded top-0 start-0"></div>
-                                        <!--end::Bar-->
-                                        <!--begin::Info-->
-                                        <div class="fw-bold ms-5 text-gray-600">
-                                            <!--begin::Time-->
-                                            <div class="fs-5">11:00 - 11:45
-                                            <span class="fs-7 text-gray-400 text-uppercase">am</span></div>
-                                            <!--end::Time-->
-                                            <!--begin::Title-->
-                                            <a href="#" class="fs-5 fw-bolder text-gray-800 text-hover-primary mb-2">Project Review &amp; Testing</a>
-                                            <!--end::Title-->
-                                            <!--begin::User-->
-                                            <div class="text-gray-400">Lead by
-                                            <a href="#">Terry Robins</a></div>
-                                            <!--end::User-->
-                                        </div>
-                                        <!--end::Info-->
-                                        <!--begin::Action-->
-                                        <a href="#" class="btn btn-bg-light btn-active-color-primary btn-sm">View</a>
-                                        <!--end::Action-->
-                                    </div>
-                                    <!--end::Time-->
-                                </div>
-                                <!--end::Day-->
-                                <!--begin::Day-->
-                                <div id="kt_schedule_day_1" class="tab-pane fade show active">
-                                    <!--begin::Time-->
-                                    <div class="d-flex flex-stack position-relative mt-8">
-                                        <!--begin::Bar-->
-                                        <div class="position-absolute h-100 w-4px bg-secondary rounded top-0 start-0"></div>
-                                        <!--end::Bar-->
-                                        <!--begin::Info-->
-                                        <div class="fw-bold ms-5 text-gray-600">
-                                            <!--begin::Time-->
-                                            <div class="fs-5">16:30 - 17:30
-                                            <span class="fs-7 text-gray-400 text-uppercase">pm</span></div>
-                                            <!--end::Time-->
-                                            <!--begin::Title-->
-                                            <a href="#" class="fs-5 fw-bolder text-gray-800 text-hover-primary mb-2">Development Team Capacity Review</a>
-                                            <!--end::Title-->
-                                            <!--begin::User-->
-                                            <div class="text-gray-400">Lead by
-                                            <a href="#">Karina Clarke</a></div>
-                                            <!--end::User-->
-                                        </div>
-                                        <!--end::Info-->
-                                        <!--begin::Action-->
-                                        <a href="#" class="btn btn-bg-light btn-active-color-primary btn-sm">View</a>
-                                        <!--end::Action-->
-                                    </div>
-                                    <!--end::Time-->
-                                    <!--begin::Time-->
-                                    <div class="d-flex flex-stack position-relative mt-8">
-                                        <!--begin::Bar-->
-                                        <div class="position-absolute h-100 w-4px bg-secondary rounded top-0 start-0"></div>
-                                        <!--end::Bar-->
-                                        <!--begin::Info-->
-                                        <div class="fw-bold ms-5 text-gray-600">
-                                            <!--begin::Time-->
-                                            <div class="fs-5">9:00 - 10:00
-                                            <span class="fs-7 text-gray-400 text-uppercase">am</span></div>
-                                            <!--end::Time-->
-                                            <!--begin::Title-->
-                                            <a href="#" class="fs-5 fw-bolder text-gray-800 text-hover-primary mb-2">Project Review &amp; Testing</a>
-                                            <!--end::Title-->
-                                            <!--begin::User-->
-                                            <div class="text-gray-400">Lead by
-                                            <a href="#">Sean Bean</a></div>
-                                            <!--end::User-->
-                                        </div>
-                                        <!--end::Info-->
-                                        <!--begin::Action-->
-                                        <a href="#" class="btn btn-bg-light btn-active-color-primary btn-sm">View</a>
-                                        <!--end::Action-->
-                                    </div>
-                                    <!--end::Time-->
-                                    <!--begin::Time-->
-                                    <div class="d-flex flex-stack position-relative mt-8">
-                                        <!--begin::Bar-->
-                                        <div class="position-absolute h-100 w-4px bg-secondary rounded top-0 start-0"></div>
-                                        <!--end::Bar-->
-                                        <!--begin::Info-->
-                                        <div class="fw-bold ms-5 text-gray-600">
-                                            <!--begin::Time-->
-                                            <div class="fs-5">9:00 - 10:00
-                                            <span class="fs-7 text-gray-400 text-uppercase">am</span></div>
-                                            <!--end::Time-->
-                                            <!--begin::Title-->
-                                            <a href="#" class="fs-5 fw-bolder text-gray-800 text-hover-primary mb-2">Development Team Capacity Review</a>
-                                            <!--end::Title-->
-                                            <!--begin::User-->
-                                            <div class="text-gray-400">Lead by
-                                            <a href="#">David Stevenson</a></div>
-                                            <!--end::User-->
-                                        </div>
-                                        <!--end::Info-->
-                                        <!--begin::Action-->
-                                        <a href="#" class="btn btn-bg-light btn-active-color-primary btn-sm">View</a>
-                                        <!--end::Action-->
-                                    </div>
-                                    <!--end::Time-->
-                                </div>
-                                <!--end::Day-->
-                                <!--begin::Day-->
-                                <div id="kt_schedule_day_2" class="tab-pane fade show">
-                                    <!--begin::Time-->
-                                    <div class="d-flex flex-stack position-relative mt-8">
-                                        <!--begin::Bar-->
-                                        <div class="position-absolute h-100 w-4px bg-secondary rounded top-0 start-0"></div>
-                                        <!--end::Bar-->
-                                        <!--begin::Info-->
-                                        <div class="fw-bold ms-5 text-gray-600">
-                                            <!--begin::Time-->
-                                            <div class="fs-5">16:30 - 17:30
-                                            <span class="fs-7 text-gray-400 text-uppercase">pm</span></div>
-                                            <!--end::Time-->
-                                            <!--begin::Title-->
-                                            <a href="#" class="fs-5 fw-bolder text-gray-800 text-hover-primary mb-2">Committee Review Approvals</a>
-                                            <!--end::Title-->
-                                            <!--begin::User-->
-                                            <div class="text-gray-400">Lead by
-                                            <a href="#">Michael Walters</a></div>
-                                            <!--end::User-->
-                                        </div>
-                                        <!--end::Info-->
-                                        <!--begin::Action-->
-                                        <a href="#" class="btn btn-bg-light btn-active-color-primary btn-sm">View</a>
-                                        <!--end::Action-->
-                                    </div>
-                                    <!--end::Time-->
-                                    <!--begin::Time-->
-                                    <div class="d-flex flex-stack position-relative mt-8">
-                                        <!--begin::Bar-->
-                                        <div class="position-absolute h-100 w-4px bg-secondary rounded top-0 start-0"></div>
-                                        <!--end::Bar-->
-                                        <!--begin::Info-->
-                                        <div class="fw-bold ms-5 text-gray-600">
-                                            <!--begin::Time-->
-                                            <div class="fs-5">11:00 - 11:45
-                                            <span class="fs-7 text-gray-400 text-uppercase">am</span></div>
-                                            <!--end::Time-->
-                                            <!--begin::Title-->
-                                            <a href="#" class="fs-5 fw-bolder text-gray-800 text-hover-primary mb-2">Creative Content Initiative</a>
-                                            <!--end::Title-->
-                                            <!--begin::User-->
-                                            <div class="text-gray-400">Lead by
-                                            <a href="#">Kendell Trevor</a></div>
-                                            <!--end::User-->
-                                        </div>
-                                        <!--end::Info-->
-                                        <!--begin::Action-->
-                                        <a href="#" class="btn btn-bg-light btn-active-color-primary btn-sm">View</a>
-                                        <!--end::Action-->
-                                    </div>
-                                    <!--end::Time-->
-                                    <!--begin::Time-->
-                                    <div class="d-flex flex-stack position-relative mt-8">
-                                        <!--begin::Bar-->
-                                        <div class="position-absolute h-100 w-4px bg-secondary rounded top-0 start-0"></div>
-                                        <!--end::Bar-->
-                                        <!--begin::Info-->
-                                        <div class="fw-bold ms-5 text-gray-600">
-                                            <!--begin::Time-->
-                                            <div class="fs-5">9:00 - 10:00
-                                            <span class="fs-7 text-gray-400 text-uppercase">am</span></div>
-                                            <!--end::Time-->
-                                            <!--begin::Title-->
-                                            <a href="#" class="fs-5 fw-bolder text-gray-800 text-hover-primary mb-2">Creative Content Initiative</a>
-                                            <!--end::Title-->
-                                            <!--begin::User-->
-                                            <div class="text-gray-400">Lead by
-                                            <a href="#">Naomi Hayabusa</a></div>
-                                            <!--end::User-->
-                                        </div>
-                                        <!--end::Info-->
-                                        <!--begin::Action-->
-                                        <a href="#" class="btn btn-bg-light btn-active-color-primary btn-sm">View</a>
-                                        <!--end::Action-->
-                                    </div>
-                                    <!--end::Time-->
-                                </div>
-                                <!--end::Day-->
-                                <!--begin::Day-->
-                                <div id="kt_schedule_day_3" class="tab-pane fade show">
-                                    <!--begin::Time-->
-                                    <div class="d-flex flex-stack position-relative mt-8">
-                                        <!--begin::Bar-->
-                                        <div class="position-absolute h-100 w-4px bg-secondary rounded top-0 start-0"></div>
-                                        <!--end::Bar-->
-                                        <!--begin::Info-->
-                                        <div class="fw-bold ms-5 text-gray-600">
-                                            <!--begin::Time-->
-                                            <div class="fs-5">12:00 - 13:00
-                                            <span class="fs-7 text-gray-400 text-uppercase">pm</span></div>
-                                            <!--end::Time-->
-                                            <!--begin::Title-->
-                                            <a href="#" class="fs-5 fw-bolder text-gray-800 text-hover-primary mb-2">Sales Pitch Proposal</a>
-                                            <!--end::Title-->
-                                            <!--begin::User-->
-                                            <div class="text-gray-400">Lead by
-                                            <a href="#">Kendell Trevor</a></div>
-                                            <!--end::User-->
-                                        </div>
-                                        <!--end::Info-->
-                                        <!--begin::Action-->
-                                        <a href="#" class="btn btn-bg-light btn-active-color-primary btn-sm">View</a>
-                                        <!--end::Action-->
-                                    </div>
-                                    <!--end::Time-->
-                                    <!--begin::Time-->
-                                    <div class="d-flex flex-stack position-relative mt-8">
-                                        <!--begin::Bar-->
-                                        <div class="position-absolute h-100 w-4px bg-secondary rounded top-0 start-0"></div>
-                                        <!--end::Bar-->
-                                        <!--begin::Info-->
-                                        <div class="fw-bold ms-5 text-gray-600">
-                                            <!--begin::Time-->
-                                            <div class="fs-5">16:30 - 17:30
-                                            <span class="fs-7 text-gray-400 text-uppercase">pm</span></div>
-                                            <!--end::Time-->
-                                            <!--begin::Title-->
-                                            <a href="#" class="fs-5 fw-bolder text-gray-800 text-hover-primary mb-2">9 Degree Project Estimation Meeting</a>
-                                            <!--end::Title-->
-                                            <!--begin::User-->
-                                            <div class="text-gray-400">Lead by
-                                            <a href="#">Kendell Trevor</a></div>
-                                            <!--end::User-->
-                                        </div>
-                                        <!--end::Info-->
-                                        <!--begin::Action-->
-                                        <a href="#" class="btn btn-bg-light btn-active-color-primary btn-sm">View</a>
-                                        <!--end::Action-->
-                                    </div>
-                                    <!--end::Time-->
-                                    <!--begin::Time-->
-                                    <div class="d-flex flex-stack position-relative mt-8">
-                                        <!--begin::Bar-->
-                                        <div class="position-absolute h-100 w-4px bg-secondary rounded top-0 start-0"></div>
-                                        <!--end::Bar-->
-                                        <!--begin::Info-->
-                                        <div class="fw-bold ms-5 text-gray-600">
-                                            <!--begin::Time-->
-                                            <div class="fs-5">13:00 - 14:00
-                                            <span class="fs-7 text-gray-400 text-uppercase">pm</span></div>
-                                            <!--end::Time-->
-                                            <!--begin::Title-->
-                                            <a href="#" class="fs-5 fw-bolder text-gray-800 text-hover-primary mb-2">Committee Review Approvals</a>
-                                            <!--end::Title-->
-                                            <!--begin::User-->
-                                            <div class="text-gray-400">Lead by
-                                            <a href="#">Sean Bean</a></div>
-                                            <!--end::User-->
-                                        </div>
-                                        <!--end::Info-->
-                                        <!--begin::Action-->
-                                        <a href="#" class="btn btn-bg-light btn-active-color-primary btn-sm">View</a>
-                                        <!--end::Action-->
-                                    </div>
-                                    <!--end::Time-->
-                                </div>
-                                <!--end::Day-->
-                                <!--begin::Day-->
-                                <div id="kt_schedule_day_4" class="tab-pane fade show">
-                                    <!--begin::Time-->
-                                    <div class="d-flex flex-stack position-relative mt-8">
-                                        <!--begin::Bar-->
-                                        <div class="position-absolute h-100 w-4px bg-secondary rounded top-0 start-0"></div>
-                                        <!--end::Bar-->
-                                        <!--begin::Info-->
-                                        <div class="fw-bold ms-5 text-gray-600">
-                                            <!--begin::Time-->
-                                            <div class="fs-5">11:00 - 11:45
-                                            <span class="fs-7 text-gray-400 text-uppercase">am</span></div>
-                                            <!--end::Time-->
-                                            <!--begin::Title-->
-                                            <a href="#" class="fs-5 fw-bolder text-gray-800 text-hover-primary mb-2">Dashboard UI/UX Design Review</a>
-                                            <!--end::Title-->
-                                            <!--begin::User-->
-                                            <div class="text-gray-400">Lead by
-                                            <a href="#">David Stevenson</a></div>
-                                            <!--end::User-->
-                                        </div>
-                                        <!--end::Info-->
-                                        <!--begin::Action-->
-                                        <a href="#" class="btn btn-bg-light btn-active-color-primary btn-sm">View</a>
-                                        <!--end::Action-->
-                                    </div>
-                                    <!--end::Time-->
-                                    <!--begin::Time-->
-                                    <div class="d-flex flex-stack position-relative mt-8">
-                                        <!--begin::Bar-->
-                                        <div class="position-absolute h-100 w-4px bg-secondary rounded top-0 start-0"></div>
-                                        <!--end::Bar-->
-                                        <!--begin::Info-->
-                                        <div class="fw-bold ms-5 text-gray-600">
-                                            <!--begin::Time-->
-                                            <div class="fs-5">16:30 - 17:30
-                                            <span class="fs-7 text-gray-400 text-uppercase">pm</span></div>
-                                            <!--end::Time-->
-                                            <!--begin::Title-->
-                                            <a href="#" class="fs-5 fw-bolder text-gray-800 text-hover-primary mb-2">Lunch &amp; Learn Catch Up</a>
-                                            <!--end::Title-->
-                                            <!--begin::User-->
-                                            <div class="text-gray-400">Lead by
-                                            <a href="#">Caleb Donaldson</a></div>
-                                            <!--end::User-->
-                                        </div>
-                                        <!--end::Info-->
-                                        <!--begin::Action-->
-                                        <a href="#" class="btn btn-bg-light btn-active-color-primary btn-sm">View</a>
-                                        <!--end::Action-->
-                                    </div>
-                                    <!--end::Time-->
-                                    <!--begin::Time-->
-                                    <div class="d-flex flex-stack position-relative mt-8">
-                                        <!--begin::Bar-->
-                                        <div class="position-absolute h-100 w-4px bg-secondary rounded top-0 start-0"></div>
-                                        <!--end::Bar-->
-                                        <!--begin::Info-->
-                                        <div class="fw-bold ms-5 text-gray-600">
-                                            <!--begin::Time-->
-                                            <div class="fs-5">13:00 - 14:00
-                                            <span class="fs-7 text-gray-400 text-uppercase">pm</span></div>
-                                            <!--end::Time-->
-                                            <!--begin::Title-->
-                                            <a href="#" class="fs-5 fw-bolder text-gray-800 text-hover-primary mb-2">Dashboard UI/UX Design Review</a>
-                                            <!--end::Title-->
-                                            <!--begin::User-->
-                                            <div class="text-gray-400">Lead by
-                                            <a href="#">Karina Clarke</a></div>
-                                            <!--end::User-->
-                                        </div>
-                                        <!--end::Info-->
-                                        <!--begin::Action-->
-                                        <a href="#" class="btn btn-bg-light btn-active-color-primary btn-sm">View</a>
-                                        <!--end::Action-->
-                                    </div>
-                                    <!--end::Time-->
-                                </div>
-                                <!--end::Day-->
-                                <!--begin::Day-->
-                                <div id="kt_schedule_day_5" class="tab-pane fade show">
-                                    <!--begin::Time-->
-                                    <div class="d-flex flex-stack position-relative mt-8">
-                                        <!--begin::Bar-->
-                                        <div class="position-absolute h-100 w-4px bg-secondary rounded top-0 start-0"></div>
-                                        <!--end::Bar-->
-                                        <!--begin::Info-->
-                                        <div class="fw-bold ms-5 text-gray-600">
-                                            <!--begin::Time-->
-                                            <div class="fs-5">11:00 - 11:45
-                                            <span class="fs-7 text-gray-400 text-uppercase">am</span></div>
-                                            <!--end::Time-->
-                                            <!--begin::Title-->
-                                            <a href="#" class="fs-5 fw-bolder text-gray-800 text-hover-primary mb-2">Development Team Capacity Review</a>
-                                            <!--end::Title-->
-                                            <!--begin::User-->
-                                            <div class="text-gray-400">Lead by
-                                            <a href="#">Yannis Gloverson</a></div>
-                                            <!--end::User-->
-                                        </div>
-                                        <!--end::Info-->
-                                        <!--begin::Action-->
-                                        <a href="#" class="btn btn-bg-light btn-active-color-primary btn-sm">View</a>
-                                        <!--end::Action-->
-                                    </div>
-                                    <!--end::Time-->
-                                    <!--begin::Time-->
-                                    <div class="d-flex flex-stack position-relative mt-8">
-                                        <!--begin::Bar-->
-                                        <div class="position-absolute h-100 w-4px bg-secondary rounded top-0 start-0"></div>
-                                        <!--end::Bar-->
-                                        <!--begin::Info-->
-                                        <div class="fw-bold ms-5 text-gray-600">
-                                            <!--begin::Time-->
-                                            <div class="fs-5">12:00 - 13:00
-                                            <span class="fs-7 text-gray-400 text-uppercase">pm</span></div>
-                                            <!--end::Time-->
-                                            <!--begin::Title-->
-                                            <a href="#" class="fs-5 fw-bolder text-gray-800 text-hover-primary mb-2">Dashboard UI/UX Design Review</a>
-                                            <!--end::Title-->
-                                            <!--begin::User-->
-                                            <div class="text-gray-400">Lead by
-                                            <a href="#">Walter White</a></div>
-                                            <!--end::User-->
-                                        </div>
-                                        <!--end::Info-->
-                                        <!--begin::Action-->
-                                        <a href="#" class="btn btn-bg-light btn-active-color-primary btn-sm">View</a>
-                                        <!--end::Action-->
-                                    </div>
-                                    <!--end::Time-->
-                                    <!--begin::Time-->
-                                    <div class="d-flex flex-stack position-relative mt-8">
-                                        <!--begin::Bar-->
-                                        <div class="position-absolute h-100 w-4px bg-secondary rounded top-0 start-0"></div>
-                                        <!--end::Bar-->
-                                        <!--begin::Info-->
-                                        <div class="fw-bold ms-5 text-gray-600">
-                                            <!--begin::Time-->
-                                            <div class="fs-5">16:30 - 17:30
-                                            <span class="fs-7 text-gray-400 text-uppercase">pm</span></div>
-                                            <!--end::Time-->
-                                            <!--begin::Title-->
-                                            <a href="#" class="fs-5 fw-bolder text-gray-800 text-hover-primary mb-2">Creative Content Initiative</a>
-                                            <!--end::Title-->
-                                            <!--begin::User-->
-                                            <div class="text-gray-400">Lead by
-                                            <a href="#">Naomi Hayabusa</a></div>
-                                            <!--end::User-->
-                                        </div>
-                                        <!--end::Info-->
-                                        <!--begin::Action-->
-                                        <a href="#" class="btn btn-bg-light btn-active-color-primary btn-sm">View</a>
-                                        <!--end::Action-->
-                                    </div>
-                                    <!--end::Time-->
-                                </div>
-                                <!--end::Day-->
-                                <!--begin::Day-->
-                                <div id="kt_schedule_day_6" class="tab-pane fade show">
-                                    <!--begin::Time-->
-                                    <div class="d-flex flex-stack position-relative mt-8">
-                                        <!--begin::Bar-->
-                                        <div class="position-absolute h-100 w-4px bg-secondary rounded top-0 start-0"></div>
-                                        <!--end::Bar-->
-                                        <!--begin::Info-->
-                                        <div class="fw-bold ms-5 text-gray-600">
-                                            <!--begin::Time-->
-                                            <div class="fs-5">13:00 - 14:00
-                                            <span class="fs-7 text-gray-400 text-uppercase">pm</span></div>
-                                            <!--end::Time-->
-                                            <!--begin::Title-->
-                                            <a href="#" class="fs-5 fw-bolder text-gray-800 text-hover-primary mb-2">Committee Review Approvals</a>
-                                            <!--end::Title-->
-                                            <!--begin::User-->
-                                            <div class="text-gray-400">Lead by
-                                            <a href="#">Michael Walters</a></div>
-                                            <!--end::User-->
-                                        </div>
-                                        <!--end::Info-->
-                                        <!--begin::Action-->
-                                        <a href="#" class="btn btn-bg-light btn-active-color-primary btn-sm">View</a>
-                                        <!--end::Action-->
-                                    </div>
-                                    <!--end::Time-->
-                                    <!--begin::Time-->
-                                    <div class="d-flex flex-stack position-relative mt-8">
-                                        <!--begin::Bar-->
-                                        <div class="position-absolute h-100 w-4px bg-secondary rounded top-0 start-0"></div>
-                                        <!--end::Bar-->
-                                        <!--begin::Info-->
-                                        <div class="fw-bold ms-5 text-gray-600">
-                                            <!--begin::Time-->
-                                            <div class="fs-5">12:00 - 13:00
-                                            <span class="fs-7 text-gray-400 text-uppercase">pm</span></div>
-                                            <!--end::Time-->
-                                            <!--begin::Title-->
-                                            <a href="#" class="fs-5 fw-bolder text-gray-800 text-hover-primary mb-2">Sales Pitch Proposal</a>
-                                            <!--end::Title-->
-                                            <!--begin::User-->
-                                            <div class="text-gray-400">Lead by
-                                            <a href="#">Mark Randall</a></div>
-                                            <!--end::User-->
-                                        </div>
-                                        <!--end::Info-->
-                                        <!--begin::Action-->
-                                        <a href="#" class="btn btn-bg-light btn-active-color-primary btn-sm">View</a>
-                                        <!--end::Action-->
-                                    </div>
-                                    <!--end::Time-->
-                                    <!--begin::Time-->
-                                    <div class="d-flex flex-stack position-relative mt-8">
-                                        <!--begin::Bar-->
-                                        <div class="position-absolute h-100 w-4px bg-secondary rounded top-0 start-0"></div>
-                                        <!--end::Bar-->
-                                        <!--begin::Info-->
-                                        <div class="fw-bold ms-5 text-gray-600">
-                                            <!--begin::Time-->
-                                            <div class="fs-5">10:00 - 11:00
-                                            <span class="fs-7 text-gray-400 text-uppercase">am</span></div>
-                                            <!--end::Time-->
-                                            <!--begin::Title-->
-                                            <a href="#" class="fs-5 fw-bolder text-gray-800 text-hover-primary mb-2">Committee Review Approvals</a>
-                                            <!--end::Title-->
-                                            <!--begin::User-->
-                                            <div class="text-gray-400">Lead by
-                                            <a href="#">David Stevenson</a></div>
-                                            <!--end::User-->
-                                        </div>
-                                        <!--end::Info-->
-                                        <!--begin::Action-->
-                                        <a href="#" class="btn btn-bg-light btn-active-color-primary btn-sm">View</a>
-                                        <!--end::Action-->
-                                    </div>
-                                    <!--end::Time-->
-                                </div>
-                                <!--end::Day-->
-                                <!--begin::Day-->
-                                <div id="kt_schedule_day_7" class="tab-pane fade show">
-                                    <!--begin::Time-->
-                                    <div class="d-flex flex-stack position-relative mt-8">
-                                        <!--begin::Bar-->
-                                        <div class="position-absolute h-100 w-4px bg-secondary rounded top-0 start-0"></div>
-                                        <!--end::Bar-->
-                                        <!--begin::Info-->
-                                        <div class="fw-bold ms-5 text-gray-600">
-                                            <!--begin::Time-->
-                                            <div class="fs-5">11:00 - 11:45
-                                            <span class="fs-7 text-gray-400 text-uppercase">am</span></div>
-                                            <!--end::Time-->
-                                            <!--begin::Title-->
-                                            <a href="#" class="fs-5 fw-bolder text-gray-800 text-hover-primary mb-2">9 Degree Project Estimation Meeting</a>
-                                            <!--end::Title-->
-                                            <!--begin::User-->
-                                            <div class="text-gray-400">Lead by
-                                            <a href="#">Yannis Gloverson</a></div>
-                                            <!--end::User-->
-                                        </div>
-                                        <!--end::Info-->
-                                        <!--begin::Action-->
-                                        <a href="#" class="btn btn-bg-light btn-active-color-primary btn-sm">View</a>
-                                        <!--end::Action-->
-                                    </div>
-                                    <!--end::Time-->
-                                    <!--begin::Time-->
-                                    <div class="d-flex flex-stack position-relative mt-8">
-                                        <!--begin::Bar-->
-                                        <div class="position-absolute h-100 w-4px bg-secondary rounded top-0 start-0"></div>
-                                        <!--end::Bar-->
-                                        <!--begin::Info-->
-                                        <div class="fw-bold ms-5 text-gray-600">
-                                            <!--begin::Time-->
-                                            <div class="fs-5">12:00 - 13:00
-                                            <span class="fs-7 text-gray-400 text-uppercase">pm</span></div>
-                                            <!--end::Time-->
-                                            <!--begin::Title-->
-                                            <a href="#" class="fs-5 fw-bolder text-gray-800 text-hover-primary mb-2">Project Review &amp; Testing</a>
-                                            <!--end::Title-->
-                                            <!--begin::User-->
-                                            <div class="text-gray-400">Lead by
-                                            <a href="#">Sean Bean</a></div>
-                                            <!--end::User-->
-                                        </div>
-                                        <!--end::Info-->
-                                        <!--begin::Action-->
-                                        <a href="#" class="btn btn-bg-light btn-active-color-primary btn-sm">View</a>
-                                        <!--end::Action-->
-                                    </div>
-                                    <!--end::Time-->
-                                    <!--begin::Time-->
-                                    <div class="d-flex flex-stack position-relative mt-8">
-                                        <!--begin::Bar-->
-                                        <div class="position-absolute h-100 w-4px bg-secondary rounded top-0 start-0"></div>
-                                        <!--end::Bar-->
-                                        <!--begin::Info-->
-                                        <div class="fw-bold ms-5 text-gray-600">
-                                            <!--begin::Time-->
-                                            <div class="fs-5">14:30 - 15:30
-                                            <span class="fs-7 text-gray-400 text-uppercase">pm</span></div>
-                                            <!--end::Time-->
-                                            <!--begin::Title-->
-                                            <a href="#" class="fs-5 fw-bolder text-gray-800 text-hover-primary mb-2">Development Team Capacity Review</a>
-                                            <!--end::Title-->
-                                            <!--begin::User-->
-                                            <div class="text-gray-400">Lead by
-                                            <a href="#">Peter Marcus</a></div>
-                                            <!--end::User-->
-                                        </div>
-                                        <!--end::Info-->
-                                        <!--begin::Action-->
-                                        <a href="#" class="btn btn-bg-light btn-active-color-primary btn-sm">View</a>
-                                        <!--end::Action-->
-                                    </div>
-                                    <!--end::Time-->
-                                </div>
-                                <!--end::Day-->
-                                <!--begin::Day-->
-                                <div id="kt_schedule_day_8" class="tab-pane fade show">
-                                    <!--begin::Time-->
-                                    <div class="d-flex flex-stack position-relative mt-8">
-                                        <!--begin::Bar-->
-                                        <div class="position-absolute h-100 w-4px bg-secondary rounded top-0 start-0"></div>
-                                        <!--end::Bar-->
-                                        <!--begin::Info-->
-                                        <div class="fw-bold ms-5 text-gray-600">
-                                            <!--begin::Time-->
-                                            <div class="fs-5">12:00 - 13:00
-                                            <span class="fs-7 text-gray-400 text-uppercase">pm</span></div>
-                                            <!--end::Time-->
-                                            <!--begin::Title-->
-                                            <a href="#" class="fs-5 fw-bolder text-gray-800 text-hover-primary mb-2">Committee Review Approvals</a>
-                                            <!--end::Title-->
-                                            <!--begin::User-->
-                                            <div class="text-gray-400">Lead by
-                                            <a href="#">Yannis Gloverson</a></div>
-                                            <!--end::User-->
-                                        </div>
-                                        <!--end::Info-->
-                                        <!--begin::Action-->
-                                        <a href="#" class="btn btn-bg-light btn-active-color-primary btn-sm">View</a>
-                                        <!--end::Action-->
-                                    </div>
-                                    <!--end::Time-->
-                                    <!--begin::Time-->
-                                    <div class="d-flex flex-stack position-relative mt-8">
-                                        <!--begin::Bar-->
-                                        <div class="position-absolute h-100 w-4px bg-secondary rounded top-0 start-0"></div>
-                                        <!--end::Bar-->
-                                        <!--begin::Info-->
-                                        <div class="fw-bold ms-5 text-gray-600">
-                                            <!--begin::Time-->
-                                            <div class="fs-5">10:00 - 11:00
-                                            <span class="fs-7 text-gray-400 text-uppercase">am</span></div>
-                                            <!--end::Time-->
-                                            <!--begin::Title-->
-                                            <a href="#" class="fs-5 fw-bolder text-gray-800 text-hover-primary mb-2">Sales Pitch Proposal</a>
-                                            <!--end::Title-->
-                                            <!--begin::User-->
-                                            <div class="text-gray-400">Lead by
-                                            <a href="#">Bob Harris</a></div>
-                                            <!--end::User-->
-                                        </div>
-                                        <!--end::Info-->
-                                        <!--begin::Action-->
-                                        <a href="#" class="btn btn-bg-light btn-active-color-primary btn-sm">View</a>
-                                        <!--end::Action-->
-                                    </div>
-                                    <!--end::Time-->
-                                    <!--begin::Time-->
-                                    <div class="d-flex flex-stack position-relative mt-8">
-                                        <!--begin::Bar-->
-                                        <div class="position-absolute h-100 w-4px bg-secondary rounded top-0 start-0"></div>
-                                        <!--end::Bar-->
-                                        <!--begin::Info-->
-                                        <div class="fw-bold ms-5 text-gray-600">
-                                            <!--begin::Time-->
-                                            <div class="fs-5">11:00 - 11:45
-                                            <span class="fs-7 text-gray-400 text-uppercase">am</span></div>
-                                            <!--end::Time-->
-                                            <!--begin::Title-->
-                                            <a href="#" class="fs-5 fw-bolder text-gray-800 text-hover-primary mb-2">Team Backlog Grooming Session</a>
-                                            <!--end::Title-->
-                                            <!--begin::User-->
-                                            <div class="text-gray-400">Lead by
-                                            <a href="#">Mark Randall</a></div>
-                                            <!--end::User-->
-                                        </div>
-                                        <!--end::Info-->
-                                        <!--begin::Action-->
-                                        <a href="#" class="btn btn-bg-light btn-active-color-primary btn-sm">View</a>
-                                        <!--end::Action-->
-                                    </div>
-                                    <!--end::Time-->
-                                </div>
-                                <!--end::Day-->
-                                <!--begin::Day-->
-                                <div id="kt_schedule_day_9" class="tab-pane fade show">
-                                    <!--begin::Time-->
-                                    <div class="d-flex flex-stack position-relative mt-8">
-                                        <!--begin::Bar-->
-                                        <div class="position-absolute h-100 w-4px bg-secondary rounded top-0 start-0"></div>
-                                        <!--end::Bar-->
-                                        <!--begin::Info-->
-                                        <div class="fw-bold ms-5 text-gray-600">
-                                            <!--begin::Time-->
-                                            <div class="fs-5">12:00 - 13:00
-                                            <span class="fs-7 text-gray-400 text-uppercase">pm</span></div>
-                                            <!--end::Time-->
-                                            <!--begin::Title-->
-                                            <a href="#" class="fs-5 fw-bolder text-gray-800 text-hover-primary mb-2">Development Team Capacity Review</a>
-                                            <!--end::Title-->
-                                            <!--begin::User-->
-                                            <div class="text-gray-400">Lead by
-                                            <a href="#">Terry Robins</a></div>
-                                            <!--end::User-->
-                                        </div>
-                                        <!--end::Info-->
-                                        <!--begin::Action-->
-                                        <a href="#" class="btn btn-bg-light btn-active-color-primary btn-sm">View</a>
-                                        <!--end::Action-->
-                                    </div>
-                                    <!--end::Time-->
-                                    <!--begin::Time-->
-                                    <div class="d-flex flex-stack position-relative mt-8">
-                                        <!--begin::Bar-->
-                                        <div class="position-absolute h-100 w-4px bg-secondary rounded top-0 start-0"></div>
-                                        <!--end::Bar-->
-                                        <!--begin::Info-->
-                                        <div class="fw-bold ms-5 text-gray-600">
-                                            <!--begin::Time-->
-                                            <div class="fs-5">10:00 - 11:00
-                                            <span class="fs-7 text-gray-400 text-uppercase">am</span></div>
-                                            <!--end::Time-->
-                                            <!--begin::Title-->
-                                            <a href="#" class="fs-5 fw-bolder text-gray-800 text-hover-primary mb-2">Committee Review Approvals</a>
-                                            <!--end::Title-->
-                                            <!--begin::User-->
-                                            <div class="text-gray-400">Lead by
-                                            <a href="#">Walter White</a></div>
-                                            <!--end::User-->
-                                        </div>
-                                        <!--end::Info-->
-                                        <!--begin::Action-->
-                                        <a href="#" class="btn btn-bg-light btn-active-color-primary btn-sm">View</a>
-                                        <!--end::Action-->
-                                    </div>
-                                    <!--end::Time-->
-                                    <!--begin::Time-->
-                                    <div class="d-flex flex-stack position-relative mt-8">
-                                        <!--begin::Bar-->
-                                        <div class="position-absolute h-100 w-4px bg-secondary rounded top-0 start-0"></div>
-                                        <!--end::Bar-->
-                                        <!--begin::Info-->
-                                        <div class="fw-bold ms-5 text-gray-600">
-                                            <!--begin::Time-->
-                                            <div class="fs-5">14:30 - 15:30
-                                            <span class="fs-7 text-gray-400 text-uppercase">pm</span></div>
-                                            <!--end::Time-->
-                                            <!--begin::Title-->
-                                            <a href="#" class="fs-5 fw-bolder text-gray-800 text-hover-primary mb-2">Committee Review Approvals</a>
-                                            <!--end::Title-->
-                                            <!--begin::User-->
-                                            <div class="text-gray-400">Lead by
-                                            <a href="#">Kendell Trevor</a></div>
-                                            <!--end::User-->
-                                        </div>
-                                        <!--end::Info-->
-                                        <!--begin::Action-->
-                                        <a href="#" class="btn btn-bg-light btn-active-color-primary btn-sm">View</a>
-                                        <!--end::Action-->
-                                    </div>
-                                    <!--end::Time-->
-                                </div>
-                                <!--end::Day-->
-                                <!--begin::Day-->
-                                <div id="kt_schedule_day_10" class="tab-pane fade show">
-                                    <!--begin::Time-->
-                                    <div class="d-flex flex-stack position-relative mt-8">
-                                        <!--begin::Bar-->
-                                        <div class="position-absolute h-100 w-4px bg-secondary rounded top-0 start-0"></div>
-                                        <!--end::Bar-->
-                                        <!--begin::Info-->
-                                        <div class="fw-bold ms-5 text-gray-600">
-                                            <!--begin::Time-->
-                                            <div class="fs-5">14:30 - 15:30
-                                            <span class="fs-7 text-gray-400 text-uppercase">pm</span></div>
-                                            <!--end::Time-->
-                                            <!--begin::Title-->
-                                            <a href="#" class="fs-5 fw-bolder text-gray-800 text-hover-primary mb-2">Sales Pitch Proposal</a>
-                                            <!--end::Title-->
-                                            <!--begin::User-->
-                                            <div class="text-gray-400">Lead by
-                                            <a href="#">Karina Clarke</a></div>
-                                            <!--end::User-->
-                                        </div>
-                                        <!--end::Info-->
-                                        <!--begin::Action-->
-                                        <a href="#" class="btn btn-bg-light btn-active-color-primary btn-sm">View</a>
-                                        <!--end::Action-->
-                                    </div>
-                                    <!--end::Time-->
-                                    <!--begin::Time-->
-                                    <div class="d-flex flex-stack position-relative mt-8">
-                                        <!--begin::Bar-->
-                                        <div class="position-absolute h-100 w-4px bg-secondary rounded top-0 start-0"></div>
-                                        <!--end::Bar-->
-                                        <!--begin::Info-->
-                                        <div class="fw-bold ms-5 text-gray-600">
-                                            <!--begin::Time-->
-                                            <div class="fs-5">16:30 - 17:30
-                                            <span class="fs-7 text-gray-400 text-uppercase">pm</span></div>
-                                            <!--end::Time-->
-                                            <!--begin::Title-->
-                                            <a href="#" class="fs-5 fw-bolder text-gray-800 text-hover-primary mb-2">Dashboard UI/UX Design Review</a>
-                                            <!--end::Title-->
-                                            <!--begin::User-->
-                                            <div class="text-gray-400">Lead by
-                                            <a href="#">Walter White</a></div>
-                                            <!--end::User-->
-                                        </div>
-                                        <!--end::Info-->
-                                        <!--begin::Action-->
-                                        <a href="#" class="btn btn-bg-light btn-active-color-primary btn-sm">View</a>
-                                        <!--end::Action-->
-                                    </div>
-                                    <!--end::Time-->
-                                    <!--begin::Time-->
-                                    <div class="d-flex flex-stack position-relative mt-8">
-                                        <!--begin::Bar-->
-                                        <div class="position-absolute h-100 w-4px bg-secondary rounded top-0 start-0"></div>
-                                        <!--end::Bar-->
-                                        <!--begin::Info-->
-                                        <div class="fw-bold ms-5 text-gray-600">
-                                            <!--begin::Time-->
-                                            <div class="fs-5">12:00 - 13:00
-                                            <span class="fs-7 text-gray-400 text-uppercase">pm</span></div>
-                                            <!--end::Time-->
-                                            <!--begin::Title-->
-                                            <a href="#" class="fs-5 fw-bolder text-gray-800 text-hover-primary mb-2">Marketing Campaign Discussion</a>
-                                            <!--end::Title-->
-                                            <!--begin::User-->
-                                            <div class="text-gray-400">Lead by
-                                            <a href="#">Peter Marcus</a></div>
-                                            <!--end::User-->
-                                        </div>
-                                        <!--end::Info-->
-                                        <!--begin::Action-->
-                                        <a href="#" class="btn btn-bg-light btn-active-color-primary btn-sm">View</a>
-                                        <!--end::Action-->
-                                    </div>
-                                    <!--end::Time-->
-                                </div>
-                                <!--end::Day-->
-                                <!--begin::Day-->
-                                <div id="kt_schedule_day_11" class="tab-pane fade show">
-                                    <!--begin::Time-->
-                                    <div class="d-flex flex-stack position-relative mt-8">
-                                        <!--begin::Bar-->
-                                        <div class="position-absolute h-100 w-4px bg-secondary rounded top-0 start-0"></div>
-                                        <!--end::Bar-->
-                                        <!--begin::Info-->
-                                        <div class="fw-bold ms-5 text-gray-600">
-                                            <!--begin::Time-->
-                                            <div class="fs-5">12:00 - 13:00
-                                            <span class="fs-7 text-gray-400 text-uppercase">pm</span></div>
-                                            <!--end::Time-->
-                                            <!--begin::Title-->
-                                            <a href="#" class="fs-5 fw-bolder text-gray-800 text-hover-primary mb-2">Marketing Campaign Discussion</a>
-                                            <!--end::Title-->
-                                            <!--begin::User-->
-                                            <div class="text-gray-400">Lead by
-                                            <a href="#">Karina Clarke</a></div>
-                                            <!--end::User-->
-                                        </div>
-                                        <!--end::Info-->
-                                        <!--begin::Action-->
-                                        <a href="#" class="btn btn-bg-light btn-active-color-primary btn-sm">View</a>
-                                        <!--end::Action-->
-                                    </div>
-                                    <!--end::Time-->
-                                    <!--begin::Time-->
-                                    <div class="d-flex flex-stack position-relative mt-8">
-                                        <!--begin::Bar-->
-                                        <div class="position-absolute h-100 w-4px bg-secondary rounded top-0 start-0"></div>
-                                        <!--end::Bar-->
-                                        <!--begin::Info-->
-                                        <div class="fw-bold ms-5 text-gray-600">
-                                            <!--begin::Time-->
-                                            <div class="fs-5">12:00 - 13:00
-                                            <span class="fs-7 text-gray-400 text-uppercase">pm</span></div>
-                                            <!--end::Time-->
-                                            <!--begin::Title-->
-                                            <a href="#" class="fs-5 fw-bolder text-gray-800 text-hover-primary mb-2">9 Degree Project Estimation Meeting</a>
-                                            <!--end::Title-->
-                                            <!--begin::User-->
-                                            <div class="text-gray-400">Lead by
-                                            <a href="#">Terry Robins</a></div>
-                                            <!--end::User-->
-                                        </div>
-                                        <!--end::Info-->
-                                        <!--begin::Action-->
-                                        <a href="#" class="btn btn-bg-light btn-active-color-primary btn-sm">View</a>
-                                        <!--end::Action-->
-                                    </div>
-                                    <!--end::Time-->
-                                    <!--begin::Time-->
-                                    <div class="d-flex flex-stack position-relative mt-8">
-                                        <!--begin::Bar-->
-                                        <div class="position-absolute h-100 w-4px bg-secondary rounded top-0 start-0"></div>
-                                        <!--end::Bar-->
-                                        <!--begin::Info-->
-                                        <div class="fw-bold ms-5 text-gray-600">
-                                            <!--begin::Time-->
-                                            <div class="fs-5">10:00 - 11:00
-                                            <span class="fs-7 text-gray-400 text-uppercase">am</span></div>
-                                            <!--end::Time-->
-                                            <!--begin::Title-->
-                                            <a href="#" class="fs-5 fw-bolder text-gray-800 text-hover-primary mb-2">Development Team Capacity Review</a>
-                                            <!--end::Title-->
-                                            <!--begin::User-->
-                                            <div class="text-gray-400">Lead by
-                                            <a href="#">Yannis Gloverson</a></div>
-                                            <!--end::User-->
-                                        </div>
-                                        <!--end::Info-->
-                                        <!--begin::Action-->
-                                        <a href="#" class="btn btn-bg-light btn-active-color-primary btn-sm">View</a>
-                                        <!--end::Action-->
-                                    </div>
-                                    <!--end::Time-->
-                                </div>
-                                <!--end::Day-->
-                            </div>
-                            <!--end::Tab Content-->
-                        </div>
-                        <!--end::Card body-->
-                    </div>
-                    <!--end::Timeline widget-3-->
-                </div>
-                <!--end::Col-->
-            </div>
-            <!--end::Row-->
-            <!--begin::Row-->
-            <div class="row g-5 g-xl-10 mb-5 mb-xl-10">
-                <!--begin::Col-->
-                <div class="col-xxl-6">
-                    <!--begin::Card widget 18-->
-                    <div class="card card-flush border-0 h-md-100">
-                        <!--begin::Body-->
-                        <div class="card-body py-9">
-                            <!--begin::Row-->
-                            <div class="row gx-9 h-100">
-                                <!--begin::Col-->
-                                <div class="col-sm-6 mb-10 mb-sm-0">
-                                    <!--begin::Image-->
-                                    <div class="bgi-no-repeat bgi-position-center bgi-size-cover card-rounded min-h-400px min-h-sm-100 h-100" style="background-size: 100% 100%;background-image:url('assets/media/stock/600x600/img-33.jpg');"></div>
-                                    <!--end::Image-->
-                                </div>
-                                <!--end::Col-->
-                                <!--begin::Col-->
-                                <div class="col-sm-6">
-                                    <!--begin::Wrapper-->
-                                    <div class="d-flex flex-column h-100">
-                                        <!--begin::Header-->
-                                        <div class="mb-7">
-                                            <!--begin::Headin-->
-                                            <div class="d-flex flex-stack mb-6">
-                                                <!--begin::Title-->
-                                                <div class="flex-shrink-0 me-5">
-                                                    <span class="text-gray-400 fs-7 fw-bolder me-2 d-block lh-1 pb-1">Featured</span>
-                                                    <span class="text-gray-800 fs-1 fw-bolder">9 Degree</span>
-                                                </div>
-                                                <!--end::Title-->
-                                                <span class="badge badge-light-primary flex-shrink-0 align-self-center py-3 px-4 fs-7">In Process</span>
-                                            </div>
-                                            <!--end::Heading-->
-                                            <!--begin::Items-->
-                                            <div class="d-flex align-items-center flex-wrap d-grid gap-2">
-                                                <!--begin::Item-->
-                                                <div class="d-flex align-items-center me-5 me-xl-13">
-                                                    <!--begin::Symbol-->
-                                                    <div class="symbol symbol-30px symbol-circle me-3">
-                                                        <img src="assets/media/avatars/300-3.jpg" class="" alt="" />
-                                                    </div>
-                                                    <!--end::Symbol-->
-                                                    <!--begin::Info-->
-                                                    <div class="m-0">
-                                                        <span class="fw-bold text-gray-400 d-block fs-8">Manager</span>
-                                                        <span class="fw-bolder text-gray-800 fs-7">Robert Fox</span>
-                                                    </div>
-                                                    <!--end::Info-->
-                                                </div>
-                                                <!--end::Item-->
-                                                <!--begin::Item-->
-                                                <div class="d-flex align-items-center">
-                                                    <!--begin::Symbol-->
-                                                    <div class="symbol symbol-30px symbol-circle me-3">
-                                                        <span class="symbol-label bg-success">
-                                                            <!--begin::Svg Icon | path: icons/duotune/abstract/abs042.svg-->
-                                                            <span class="svg-icon svg-icon-5 svg-icon-white">
-                                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                                                    <path d="M18 21.6C16.6 20.4 9.1 20.3 6.3 21.2C5.7 21.4 5.1 21.2 4.7 20.8L2 18C4.2 15.8 10.8 15.1 15.8 15.8C16.2 18.3 17 20.5 18 21.6ZM18.8 2.8C18.4 2.4 17.8 2.20001 17.2 2.40001C14.4 3.30001 6.9 3.2 5.5 2C6.8 3.3 7.4 5.5 7.7 7.7C9 7.9 10.3 8 11.7 8C15.8 8 19.8 7.2 21.5 5.5L18.8 2.8Z" fill="currentColor" />
-                                                                    <path opacity="0.3" d="M21.2 17.3C21.4 17.9 21.2 18.5 20.8 18.9L18 21.6C15.8 19.4 15.1 12.8 15.8 7.8C18.3 7.4 20.4 6.70001 21.5 5.60001C20.4 7.00001 20.2 14.5 21.2 17.3ZM8 11.7C8 9 7.7 4.2 5.5 2L2.8 4.8C2.4 5.2 2.2 5.80001 2.4 6.40001C2.7 7.40001 3.00001 9.2 3.10001 11.7C3.10001 15.5 2.40001 17.6 2.10001 18C3.20001 16.9 5.3 16.2 7.8 15.8C8 14.2 8 12.7 8 11.7Z" fill="currentColor" />
-                                                                </svg>
-                                                            </span>
-                                                            <!--end::Svg Icon-->
-                                                        </span>
-                                                    </div>
-                                                    <!--end::Symbol-->
-                                                    <!--begin::Info-->
-                                                    <div class="m-0">
-                                                        <span class="fw-bold text-gray-400 d-block fs-8">Budget</span>
-                                                        <span class="fw-bolder text-gray-800 fs-7">$64.800</span>
-                                                    </div>
-                                                    <!--end::Info-->
-                                                </div>
-                                                <!--end::Item-->
-                                            </div>
-                                            <!--end::Items-->
-                                        </div>
-                                        <!--end::Header-->
-                                        <!--begin::Body-->
-                                        <div class="mb-6">
-                                            <!--begin::Text-->
-                                            <span class="fw-bold text-gray-600 fs-6 mb-8 d-block">Flat cartoony illustrations with vivid unblended colors and asymmetrical beautiful purple hair lady</span>
-                                            <!--end::Text-->
-                                            <!--begin::Stats-->
-                                            <div class="d-flex">
-                                                <!--begin::Stat-->
-                                                <div class="border border-gray-300 border-dashed rounded min-w-100px w-100 py-2 px-4 me-6 mb-3">
-                                                    <!--begin::Date-->
-                                                    <span class="fs-6 text-gray-700 fw-bolder">Feb 6, 2021</span>
-                                                    <!--end::Date-->
-                                                    <!--begin::Label-->
-                                                    <div class="fw-bold text-gray-400">Due Date</div>
-                                                    <!--end::Label-->
-                                                </div>
-                                                <!--end::Stat-->
-                                                <!--begin::Stat-->
-                                                <div class="border border-gray-300 border-dashed rounded min-w-100px w-100 py-2 px-4 mb-3">
-                                                    <!--begin::Number-->
-                                                    <span class="fs-6 text-gray-700 fw-bolder">$
-                                                    <span class="ms-n1" data-kt-countup="true" data-kt-countup-value="284,900.00">0</span></span>
-                                                    <!--end::Number-->
-                                                    <!--begin::Label-->
-                                                    <div class="fw-bold text-gray-400">Budget</div>
-                                                    <!--end::Label-->
-                                                </div>
-                                                <!--end::Stat-->
-                                            </div>
-                                            <!--end::Stats-->
-                                        </div>
-                                        <!--end::Body-->
-                                        <!--begin::Footer-->
-                                        <div class="d-flex flex-stack mt-auto bd-highlight">
-                                            <!--begin::Users group-->
-                                            <div class="symbol-group symbol-hover flex-nowrap">
-                                                <div class="symbol symbol-35px symbol-circle" data-bs-toggle="tooltip" title="Melody Macy">
-                                                    <img alt="Pic" src="assets/media/avatars/300-2.jpg" />
-                                                </div>
-                                                <div class="symbol symbol-35px symbol-circle" data-bs-toggle="tooltip" title="Michael Eberon">
-                                                    <img alt="Pic" src="assets/media/avatars/300-3.jpg" />
-                                                </div>
-                                                <div class="symbol symbol-35px symbol-circle" data-bs-toggle="tooltip" title="Susan Redwood">
-                                                    <span class="symbol-label bg-primary text-inverse-primary fw-bolder">S</span>
-                                                </div>
-                                            </div>
-                                            <!--end::Users group-->
-                                            <!--begin::Actions-->
-                                            <a href="../../demo1/dist/apps/projects/project.html" class="text-primary opacity-75-hover fs-6 fw-bold">View Project
-                                            <!--begin::Svg Icon | path: icons/duotune/arrows/arr095.svg-->
-                                            <span class="svg-icon svg-icon-4 svg-icon-gray-800 ms-1">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                                    <path opacity="0.3" d="M4.7 17.3V7.7C4.7 6.59543 5.59543 5.7 6.7 5.7H9.8C10.2694 5.7 10.65 5.31944 10.65 4.85C10.65 4.38056 10.2694 4 9.8 4H5C3.89543 4 3 4.89543 3 6V19C3 20.1046 3.89543 21 5 21H18C19.1046 21 20 20.1046 20 19V14.2C20 13.7306 19.6194 13.35 19.15 13.35C18.6806 13.35 18.3 13.7306 18.3 14.2V17.3C18.3 18.4046 17.4046 19.3 16.3 19.3H6.7C5.59543 19.3 4.7 18.4046 4.7 17.3Z" fill="currentColor" />
-                                                    <rect x="21.9497" y="3.46448" width="13" height="2" rx="1" transform="rotate(135 21.9497 3.46448)" fill="currentColor" />
-                                                    <path d="M19.8284 4.97161L19.8284 9.93937C19.8284 10.5252 20.3033 11 20.8891 11C21.4749 11 21.9497 10.5252 21.9497 9.93937L21.9497 3.05029C21.9497 2.498 21.502 2.05028 20.9497 2.05028L14.0607 2.05027C13.4749 2.05027 13 2.52514 13 3.11094C13 3.69673 13.4749 4.17161 14.0607 4.17161L19.0284 4.17161C19.4702 4.17161 19.8284 4.52978 19.8284 4.97161Z" fill="currentColor" />
-                                                </svg>
-                                            </span>
-                                            <!--end::Svg Icon--></a>
-                                            <!--end::Actions-->
-                                        </div>
-                                        <!--end::Footer-->
-                                    </div>
-                                    <!--end::Wrapper-->
-                                </div>
-                                <!--end::Col-->
-                            </div>
-                            <!--end::Row-->
-                        </div>
-                        <!--end::Body-->
-                    </div>
-                    <!--end::Card widget 18-->
-                </div>
-                <!--end::Col-->
-                <!--begin::Col-->
-                <div class="col-xxl-6">
-                    <!--begin::Engage widget 8-->
-                    <div class="card h-md-100" style="background: linear-gradient(112.14deg, #00D2FF 0%, #3A7BD5 100%)">
-                        <!--begin::Body-->
-                        <div class="card-body">
-                            <!--begin::Row-->
-                            <div class="row align-items-center h-100">
-                                <!--begin::Col-->
-                                <div class="col-7 ps-xl-13">
-                                    <!--begin::Title-->
-                                    <div class="text-white mb-6 pt-6">
-                                        <span class="fs-4 fw-bold me-2 d-block lh-1 pb-2 opacity-75">Get best offer</span>
-                                        <span class="fs-2qx fw-bolder">Upgrade Your Plan</span>
-                                    </div>
-                                    <!--end::Title-->
-                                    <!--begin::Text-->
-                                    <span class="fw-bold text-white fs-6 mb-8 d-block opacity-75">Flat cartoony and illustrations with vivid unblended purple hair lady</span>
-                                    <!--end::Text-->
-                                    <!--begin::Items-->
-                                    <div class="d-flex align-items-center flex-wrap d-grid gap-2 mb-10 mb-xl-20">
-                                        <!--begin::Item-->
-                                        <div class="d-flex align-items-center me-5 me-xl-13">
-                                            <!--begin::Symbol-->
-                                            <div class="symbol symbol-30px symbol-circle me-3">
-                                                <span class="symbol-label" style="background: #35C7FF">
-                                                    <!--begin::Svg Icon | path: icons/duotune/abstract/abs042.svg-->
-                                                    <span class="svg-icon svg-icon-5 svg-icon-white">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                                            <path d="M18 21.6C16.6 20.4 9.1 20.3 6.3 21.2C5.7 21.4 5.1 21.2 4.7 20.8L2 18C4.2 15.8 10.8 15.1 15.8 15.8C16.2 18.3 17 20.5 18 21.6ZM18.8 2.8C18.4 2.4 17.8 2.20001 17.2 2.40001C14.4 3.30001 6.9 3.2 5.5 2C6.8 3.3 7.4 5.5 7.7 7.7C9 7.9 10.3 8 11.7 8C15.8 8 19.8 7.2 21.5 5.5L18.8 2.8Z" fill="currentColor" />
-                                                            <path opacity="0.3" d="M21.2 17.3C21.4 17.9 21.2 18.5 20.8 18.9L18 21.6C15.8 19.4 15.1 12.8 15.8 7.8C18.3 7.4 20.4 6.70001 21.5 5.60001C20.4 7.00001 20.2 14.5 21.2 17.3ZM8 11.7C8 9 7.7 4.2 5.5 2L2.8 4.8C2.4 5.2 2.2 5.80001 2.4 6.40001C2.7 7.40001 3.00001 9.2 3.10001 11.7C3.10001 15.5 2.40001 17.6 2.10001 18C3.20001 16.9 5.3 16.2 7.8 15.8C8 14.2 8 12.7 8 11.7Z" fill="currentColor" />
-                                                        </svg>
-                                                    </span>
-                                                    <!--end::Svg Icon-->
-                                                </span>
-                                            </div>
-                                            <!--end::Symbol-->
-                                            <!--begin::Info-->
-                                            <div class="text-white">
-                                                <span class="fw-bold d-block fs-8 opacity-75">Projects</span>
-                                                <span class="fw-bolder fs-7">Up to 500</span>
-                                            </div>
-                                            <!--end::Info-->
-                                        </div>
-                                        <!--end::Item-->
-                                        <!--begin::Item-->
-                                        <div class="d-flex align-items-center">
-                                            <!--begin::Symbol-->
-                                            <div class="symbol symbol-30px symbol-circle me-3">
-                                                <span class="symbol-label" style="background: #35C7FF">
-                                                    <!--begin::Svg Icon | path: icons/duotune/abstract/abs042.svg-->
-                                                    <span class="svg-icon svg-icon-5 svg-icon-white">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                                            <path d="M18 21.6C16.6 20.4 9.1 20.3 6.3 21.2C5.7 21.4 5.1 21.2 4.7 20.8L2 18C4.2 15.8 10.8 15.1 15.8 15.8C16.2 18.3 17 20.5 18 21.6ZM18.8 2.8C18.4 2.4 17.8 2.20001 17.2 2.40001C14.4 3.30001 6.9 3.2 5.5 2C6.8 3.3 7.4 5.5 7.7 7.7C9 7.9 10.3 8 11.7 8C15.8 8 19.8 7.2 21.5 5.5L18.8 2.8Z" fill="currentColor" />
-                                                            <path opacity="0.3" d="M21.2 17.3C21.4 17.9 21.2 18.5 20.8 18.9L18 21.6C15.8 19.4 15.1 12.8 15.8 7.8C18.3 7.4 20.4 6.70001 21.5 5.60001C20.4 7.00001 20.2 14.5 21.2 17.3ZM8 11.7C8 9 7.7 4.2 5.5 2L2.8 4.8C2.4 5.2 2.2 5.80001 2.4 6.40001C2.7 7.40001 3.00001 9.2 3.10001 11.7C3.10001 15.5 2.40001 17.6 2.10001 18C3.20001 16.9 5.3 16.2 7.8 15.8C8 14.2 8 12.7 8 11.7Z" fill="currentColor" />
-                                                        </svg>
-                                                    </span>
-                                                    <!--end::Svg Icon-->
-                                                </span>
-                                            </div>
-                                            <!--end::Symbol-->
-                                            <!--begin::Info-->
-                                            <div class="text-white">
-                                                <span class="fw-bold opacity-75 d-block fs-8">Tasks</span>
-                                                <span class="fw-bolder fs-7">Unlimited</span>
-                                            </div>
-                                            <!--end::Info-->
-                                        </div>
-                                        <!--end::Item-->
-                                    </div>
-                                    <!--end::Items-->
-                                    <!--begin::Action-->
-                                    <div class="d-flex flex-column flex-sm-row d-grid gap-2">
-                                        <a href="#" class="btn btn-success flex-shrink-0 me-2" data-bs-toggle="modal" data-bs-target="#kt_modal_upgrade_plan">Upgrade Plan</a>
-                                        <a href="#" class="btn btn-primary flex-shrink-0" style="background: rgba(255, 255, 255, 0.2)" data-bs-toggle="modal" data-bs-target="#kt_modal_create_app">Read Guides</a>
-                                    </div>
-                                    <!--end::Action-->
-                                </div>
-                                <!--end::Col-->
-                                <!--begin::Col-->
-                                <div class="col-5 pt-10">
-                                    <!--begin::Illustration-->
-                                    <div class="bgi-no-repeat bgi-size-contain bgi-position-x-end h-225px" style="background-image:url('assets/media/svg/illustrations/easy/5.svg');"></div>
-                                    <!--end::Illustration-->
-                                </div>
-                                <!--end::Col-->
-                            </div>
-                            <!--end::Row-->
-                        </div>
-                        <!--end::Body-->
-                    </div>
-                    <!--end::Engage widget 8-->
-                </div>
-                <!--end::Col-->
-            </div>
-            <!--end::Row-->
-            <!--begin::Row-->
-            <div class="row g-5 g-xl-10 mb-5 mb-xl-10">
-                <!--begin::Col-->
-                <div class="col-xl-4">
-                    <!--begin::Chart Widget 35-->
-                    <div class="card card-flush h-md-100">
-                        <!--begin::Header-->
-                        <div class="card-header pt-5 mb-6">
-                            <!--begin::Title-->
-                            <h3 class="card-title align-items-start flex-column">
-                                <!--begin::Statistics-->
-                                <div class="d-flex align-items-center mb-2">
-                                    <!--begin::Currency-->
-                                    <span class="fs-3 fw-bold text-gray-400 align-self-start me-1">$</span>
-                                    <!--end::Currency-->
-                                    <!--begin::Value-->
-                                    <span class="fs-2hx fw-bolder text-gray-800 me-2 lh-1 ls-n2">3,274.94</span>
-                                    <!--end::Value-->
-                                    <!--begin::Label-->
-                                    <span class="badge badge-success fs-base">
-                                    <!--begin::Svg Icon | path: icons/duotune/arrows/arr066.svg-->
-                                    <span class="svg-icon svg-icon-5 svg-icon-white ms-n1">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                            <rect opacity="0.5" x="13" y="6" width="13" height="2" rx="1" transform="rotate(90 13 6)" fill="currentColor" />
-                                            <path d="M12.5657 8.56569L16.75 12.75C17.1642 13.1642 17.8358 13.1642 18.25 12.75C18.6642 12.3358 18.6642 11.6642 18.25 11.25L12.7071 5.70711C12.3166 5.31658 11.6834 5.31658 11.2929 5.70711L5.75 11.25C5.33579 11.6642 5.33579 12.3358 5.75 12.75C6.16421 13.1642 6.83579 13.1642 7.25 12.75L11.4343 8.56569C11.7467 8.25327 12.2533 8.25327 12.5657 8.56569Z" fill="currentColor" />
-                                        </svg>
-                                    </span>
-                                    <!--end::Svg Icon-->9.2%</span>
-                                    <!--end::Label-->
-                                </div>
-                                <!--end::Statistics-->
-                                <!--begin::Description-->
-                                <span class="fs-6 fw-bold text-gray-400">Avg. Agent Earnings</span>
-                                <!--end::Description-->
-                            </h3>
-                            <!--end::Title-->
-                            <!--begin::Toolbar-->
-                            <div class="card-toolbar">
-                                <!--begin::Menu-->
-                                <button class="btn btn-icon btn-color-gray-400 btn-active-color-primary justify-content-end" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end" data-kt-menu-overflow="true">
-                                    <!--begin::Svg Icon | path: icons/duotune/general/gen023.svg-->
-                                    <span class="svg-icon svg-icon-1 svg-icon-gray-300 me-n1">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                            <rect opacity="0.3" x="2" y="2" width="20" height="20" rx="4" fill="currentColor" />
-                                            <rect x="11" y="11" width="2.6" height="2.6" rx="1.3" fill="currentColor" />
-                                            <rect x="15" y="11" width="2.6" height="2.6" rx="1.3" fill="currentColor" />
-                                            <rect x="7" y="11" width="2.6" height="2.6" rx="1.3" fill="currentColor" />
-                                        </svg>
-                                    </span>
-                                    <!--end::Svg Icon-->
-                                </button>
-                                <!--begin::Menu 2-->
-                                <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg-light-primary fw-bold w-200px" data-kt-menu="true">
-                                    <!--begin::Menu item-->
-                                    <div class="menu-item px-3">
-                                        <div class="menu-content fs-6 text-dark fw-bolder px-3 py-4">Quick Actions</div>
-                                    </div>
-                                    <!--end::Menu item-->
-                                    <!--begin::Menu separator-->
-                                    <div class="separator mb-3 opacity-75"></div>
-                                    <!--end::Menu separator-->
-                                    <!--begin::Menu item-->
-                                    <div class="menu-item px-3">
-                                        <a href="#" class="menu-link px-3">New Ticket</a>
-                                    </div>
-                                    <!--end::Menu item-->
-                                    <!--begin::Menu item-->
-                                    <div class="menu-item px-3">
-                                        <a href="#" class="menu-link px-3">New Customer</a>
-                                    </div>
-                                    <!--end::Menu item-->
-                                    <!--begin::Menu item-->
-                                    <div class="menu-item px-3" data-kt-menu-trigger="hover" data-kt-menu-placement="right-start">
-                                        <!--begin::Menu item-->
-                                        <a href="#" class="menu-link px-3">
-                                            <span class="menu-title">New Group</span>
-                                            <span class="menu-arrow"></span>
-                                        </a>
-                                        <!--end::Menu item-->
-                                        <!--begin::Menu sub-->
-                                        <div class="menu-sub menu-sub-dropdown w-175px py-4">
-                                            <!--begin::Menu item-->
-                                            <div class="menu-item px-3">
-                                                <a href="#" class="menu-link px-3">Admin Group</a>
-                                            </div>
-                                            <!--end::Menu item-->
-                                            <!--begin::Menu item-->
-                                            <div class="menu-item px-3">
-                                                <a href="#" class="menu-link px-3">Staff Group</a>
-                                            </div>
-                                            <!--end::Menu item-->
-                                            <!--begin::Menu item-->
-                                            <div class="menu-item px-3">
-                                                <a href="#" class="menu-link px-3">Member Group</a>
-                                            </div>
-                                            <!--end::Menu item-->
-                                        </div>
-                                        <!--end::Menu sub-->
-                                    </div>
-                                    <!--end::Menu item-->
-                                    <!--begin::Menu item-->
-                                    <div class="menu-item px-3">
-                                        <a href="#" class="menu-link px-3">New Contact</a>
-                                    </div>
-                                    <!--end::Menu item-->
-                                    <!--begin::Menu separator-->
-                                    <div class="separator mt-3 opacity-75"></div>
-                                    <!--end::Menu separator-->
-                                    <!--begin::Menu item-->
-                                    <div class="menu-item px-3">
-                                        <div class="menu-content px-3 py-3">
-                                            <a class="btn btn-primary btn-sm px-4" href="#">Generate Reports</a>
-                                        </div>
-                                    </div>
-                                    <!--end::Menu item-->
-                                </div>
-                                <!--end::Menu 2-->
-                                <!--end::Menu-->
-                            </div>
-                            <!--end::Toolbar-->
-                        </div>
-                        <!--end::Header-->
-                        <!--begin::Body-->
-                        <div class="card-body py-0 px-0">
-                            <!--begin::Nav-->
-                            <ul class="nav d-flex justify-content-between mb-3 mx-9">
-                                <!--begin::Item-->
-                                <li class="nav-item mb-3">
-                                    <!--begin::Link-->
-                                    <a class="nav-link btn btn-flex flex-center btn-active-danger btn-color-gray-600 btn-active-color-white rounded-2 w-45px h-35px active" data-bs-toggle="tab" id="kt_charts_widget_35_tab_1" href="#kt_charts_widget_35_tab_content_1">1d</a>
-                                    <!--end::Link-->
-                                </li>
-                                <!--end::Item-->
-                                <!--begin::Item-->
-                                <li class="nav-item mb-3">
-                                    <!--begin::Link-->
-                                    <a class="nav-link btn btn-flex flex-center btn-active-danger btn-color-gray-600 btn-active-color-white rounded-2 w-45px h-35px" data-bs-toggle="tab" id="kt_charts_widget_35_tab_2" href="#kt_charts_widget_35_tab_content_2">5d</a>
-                                    <!--end::Link-->
-                                </li>
-                                <!--end::Item-->
-                                <!--begin::Item-->
-                                <li class="nav-item mb-3">
-                                    <!--begin::Link-->
-                                    <a class="nav-link btn btn-flex flex-center btn-active-danger btn-color-gray-600 btn-active-color-white rounded-2 w-45px h-35px" data-bs-toggle="tab" id="kt_charts_widget_35_tab_3" href="#kt_charts_widget_35_tab_content_3">1m</a>
-                                    <!--end::Link-->
-                                </li>
-                                <!--end::Item-->
-                                <!--begin::Item-->
-                                <li class="nav-item mb-3">
-                                    <!--begin::Link-->
-                                    <a class="nav-link btn btn-flex flex-center btn-active-danger btn-color-gray-600 btn-active-color-white rounded-2 w-45px h-35px" data-bs-toggle="tab" id="kt_charts_widget_35_tab_4" href="#kt_charts_widget_35_tab_content_4">6m</a>
-                                    <!--end::Link-->
-                                </li>
-                                <!--end::Item-->
-                                <!--begin::Item-->
-                                <li class="nav-item mb-3">
-                                    <!--begin::Link-->
-                                    <a class="nav-link btn btn-flex flex-center btn-active-danger btn-color-gray-600 btn-active-color-white rounded-2 w-45px h-35px" data-bs-toggle="tab" id="kt_charts_widget_35_tab_5" href="#kt_charts_widget_35_tab_content_5">1y</a>
-                                    <!--end::Link-->
-                                </li>
-                                <!--end::Item-->
-                            </ul>
-                            <!--end::Nav-->
-                            <!--begin::Tab Content-->
-                            <div class="tab-content mt-n6">
-                                <!--begin::Tap pane-->
-                                <div class="tab-pane fade active show" id="kt_charts_widget_35_tab_content_1">
-                                    <!--begin::Chart-->
-                                    <div id="kt_charts_widget_35_chart_1" data-kt-chart-color="primary" class="min-h-auto h-200px ps-3 pe-6"></div>
-                                    <!--end::Chart-->
-                                    <!--begin::Table container-->
-                                    <div class="table-responsive mx-9 mt-n6">
-                                        <!--begin::Table-->
-                                        <table class="table align-middle gs-0 gy-4">
-                                            <!--begin::Table head-->
-                                            <thead>
-                                                <tr>
-                                                    <th class="min-w-100px"></th>
-                                                    <th class="min-w-100px text-end pe-0"></th>
-                                                    <th class="text-end min-w-50px"></th>
-                                                </tr>
-                                            </thead>
-                                            <!--end::Table head-->
-                                            <!--begin::Table body-->
-                                            <tbody>
-                                                <tr>
-                                                    <td>
-                                                        <a href="#" class="text-gray-600 fw-bolder fs-6">2:30 PM</a>
-                                                    </td>
-                                                    <td class="pe-0 text-end">
-                                                        <span class="text-gray-800 fw-bolder fs-6 me-1">$2,756.26</span>
-                                                    </td>
-                                                    <td class="pe-0 text-end">
-                                                        <span class="fw-bolder fs-6 text-danger">-139.34</span>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <a href="#" class="text-gray-600 fw-bolder fs-6">3:10 PM</a>
-                                                    </td>
-                                                    <td class="pe-0 text-end">
-                                                        <span class="text-gray-800 fw-bolder fs-6 me-1">$3,207.03</span>
-                                                    </td>
-                                                    <td class="pe-0 text-end">
-                                                        <span class="fw-bolder fs-6 text-success">+576.24</span>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <a href="#" class="text-gray-600 fw-bolder fs-6">3:55 PM</a>
-                                                    </td>
-                                                    <td class="pe-0 text-end">
-                                                        <span class="text-gray-800 fw-bolder fs-6 me-1">$3,274.94</span>
-                                                    </td>
-                                                    <td class="pe-0 text-end">
-                                                        <span class="fw-bolder fs-6 text-success">+124.03</span>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                            <!--end::Table body-->
-                                        </table>
-                                        <!--end::Table-->
-                                    </div>
-                                    <!--end::Table container-->
-                                </div>
-                                <!--end::Tap pane-->
-                                <!--begin::Tap pane-->
-                                <div class="tab-pane fade" id="kt_charts_widget_35_tab_content_2">
-                                    <!--begin::Chart-->
-                                    <div id="kt_charts_widget_35_chart_2" data-kt-chart-color="primary" class="min-h-auto h-200px ps-3 pe-6"></div>
-                                    <!--end::Chart-->
-                                    <!--begin::Table container-->
-                                    <div class="table-responsive mx-9 mt-n6">
-                                        <!--begin::Table-->
-                                        <table class="table align-middle gs-0 gy-4">
-                                            <!--begin::Table head-->
-                                            <thead>
-                                                <tr>
-                                                    <th class="min-w-100px"></th>
-                                                    <th class="min-w-100px text-end pe-0"></th>
-                                                    <th class="text-end min-w-50px"></th>
-                                                </tr>
-                                            </thead>
-                                            <!--end::Table head-->
-                                            <!--begin::Table body-->
-                                            <tbody>
-                                                <tr>
-                                                    <td>
-                                                        <a href="#" class="text-gray-600 fw-bolder fs-6">4:30 PM</a>
-                                                    </td>
-                                                    <td class="pe-0 text-end">
-                                                        <span class="text-gray-800 fw-bolder fs-6 me-1">$2,345.45</span>
-                                                    </td>
-                                                    <td class="pe-0 text-end">
-                                                        <span class="fw-bolder fs-6 text-success">+134.02</span>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <a href="#" class="text-gray-600 fw-bolder fs-6">11:35 AM</a>
-                                                    </td>
-                                                    <td class="pe-0 text-end">
-                                                        <span class="text-gray-800 fw-bolder fs-6 me-1">$756.26</span>
-                                                    </td>
-                                                    <td class="pe-0 text-end">
-                                                        <span class="fw-bolder fs-6 text-primary">-124.03</span>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <a href="#" class="text-gray-600 fw-bolder fs-6">3:30 PM</a>
-                                                    </td>
-                                                    <td class="pe-0 text-end">
-                                                        <span class="text-gray-800 fw-bolder fs-6 me-1">$1,756.26</span>
-                                                    </td>
-                                                    <td class="pe-0 text-end">
-                                                        <span class="fw-bolder fs-6 text-danger">+144.04</span>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                            <!--end::Table body-->
-                                        </table>
-                                        <!--end::Table-->
-                                    </div>
-                                    <!--end::Table container-->
-                                </div>
-                                <!--end::Tap pane-->
-                                <!--begin::Tap pane-->
-                                <div class="tab-pane fade" id="kt_charts_widget_35_tab_content_3">
-                                    <!--begin::Chart-->
-                                    <div id="kt_charts_widget_35_chart_3" data-kt-chart-color="primary" class="min-h-auto h-200px ps-3 pe-6"></div>
-                                    <!--end::Chart-->
-                                    <!--begin::Table container-->
-                                    <div class="table-responsive mx-9 mt-n6">
-                                        <!--begin::Table-->
-                                        <table class="table align-middle gs-0 gy-4">
-                                            <!--begin::Table head-->
-                                            <thead>
-                                                <tr>
-                                                    <th class="min-w-100px"></th>
-                                                    <th class="min-w-100px text-end pe-0"></th>
-                                                    <th class="text-end min-w-50px"></th>
-                                                </tr>
-                                            </thead>
-                                            <!--end::Table head-->
-                                            <!--begin::Table body-->
-                                            <tbody>
-                                                <tr>
-                                                    <td>
-                                                        <a href="#" class="text-gray-600 fw-bolder fs-6">3:20 AM</a>
-                                                    </td>
-                                                    <td class="pe-0 text-end">
-                                                        <span class="text-gray-800 fw-bolder fs-6 me-1">$3,756.26</span>
-                                                    </td>
-                                                    <td class="pe-0 text-end">
-                                                        <span class="fw-bolder fs-6 text-primary">+185.03</span>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <a href="#" class="text-gray-600 fw-bolder fs-6">12:30 AM</a>
-                                                    </td>
-                                                    <td class="pe-0 text-end">
-                                                        <span class="text-gray-800 fw-bolder fs-6 me-1">$2,756.26</span>
-                                                    </td>
-                                                    <td class="pe-0 text-end">
-                                                        <span class="fw-bolder fs-6 text-danger">+124.03</span>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <a href="#" class="text-gray-600 fw-bolder fs-6">4:30 PM</a>
-                                                    </td>
-                                                    <td class="pe-0 text-end">
-                                                        <span class="text-gray-800 fw-bolder fs-6 me-1">$756.26</span>
-                                                    </td>
-                                                    <td class="pe-0 text-end">
-                                                        <span class="fw-bolder fs-6 text-success">-154.03</span>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                            <!--end::Table body-->
-                                        </table>
-                                        <!--end::Table-->
-                                    </div>
-                                    <!--end::Table container-->
-                                </div>
-                                <!--end::Tap pane-->
-                                <!--begin::Tap pane-->
-                                <div class="tab-pane fade" id="kt_charts_widget_35_tab_content_4">
-                                    <!--begin::Chart-->
-                                    <div id="kt_charts_widget_35_chart_4" data-kt-chart-color="primary" class="min-h-auto h-200px ps-3 pe-6"></div>
-                                    <!--end::Chart-->
-                                    <!--begin::Table container-->
-                                    <div class="table-responsive mx-9 mt-n6">
-                                        <!--begin::Table-->
-                                        <table class="table align-middle gs-0 gy-4">
-                                            <!--begin::Table head-->
-                                            <thead>
-                                                <tr>
-                                                    <th class="min-w-100px"></th>
-                                                    <th class="min-w-100px text-end pe-0"></th>
-                                                    <th class="text-end min-w-50px"></th>
-                                                </tr>
-                                            </thead>
-                                            <!--end::Table head-->
-                                            <!--begin::Table body-->
-                                            <tbody>
-                                                <tr>
-                                                    <td>
-                                                        <a href="#" class="text-gray-600 fw-bolder fs-6">2:30 PM</a>
-                                                    </td>
-                                                    <td class="pe-0 text-end">
-                                                        <span class="text-gray-800 fw-bolder fs-6 me-1">$2,756.26</span>
-                                                    </td>
-                                                    <td class="pe-0 text-end">
-                                                        <span class="fw-bolder fs-6 text-warning">+124.03</span>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <a href="#" class="text-gray-600 fw-bolder fs-6">5:30 AM</a>
-                                                    </td>
-                                                    <td class="pe-0 text-end">
-                                                        <span class="text-gray-800 fw-bolder fs-6 me-1">$1,756.26</span>
-                                                    </td>
-                                                    <td class="pe-0 text-end">
-                                                        <span class="fw-bolder fs-6 text-info">+144.65</span>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <a href="#" class="text-gray-600 fw-bolder fs-6">4:30 PM</a>
-                                                    </td>
-                                                    <td class="pe-0 text-end">
-                                                        <span class="text-gray-800 fw-bolder fs-6 me-1">$2,085.25</span>
-                                                    </td>
-                                                    <td class="pe-0 text-end">
-                                                        <span class="fw-bolder fs-6 text-primary">+154.06</span>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                            <!--end::Table body-->
-                                        </table>
-                                        <!--end::Table-->
-                                    </div>
-                                    <!--end::Table container-->
-                                </div>
-                                <!--end::Tap pane-->
-                                <!--begin::Tap pane-->
-                                <div class="tab-pane fade" id="kt_charts_widget_35_tab_content_5">
-                                    <!--begin::Chart-->
-                                    <div id="kt_charts_widget_35_chart_5" data-kt-chart-color="primary" class="min-h-auto h-200px ps-3 pe-6"></div>
-                                    <!--end::Chart-->
-                                    <!--begin::Table container-->
-                                    <div class="table-responsive mx-9 mt-n6">
-                                        <!--begin::Table-->
-                                        <table class="table align-middle gs-0 gy-4">
-                                            <!--begin::Table head-->
-                                            <thead>
-                                                <tr>
-                                                    <th class="min-w-100px"></th>
-                                                    <th class="min-w-100px text-end pe-0"></th>
-                                                    <th class="text-end min-w-50px"></th>
-                                                </tr>
-                                            </thead>
-                                            <!--end::Table head-->
-                                            <!--begin::Table body-->
-                                            <tbody>
-                                                <tr>
-                                                    <td>
-                                                        <a href="#" class="text-gray-600 fw-bolder fs-6">2:30 PM</a>
-                                                    </td>
-                                                    <td class="pe-0 text-end">
-                                                        <span class="text-gray-800 fw-bolder fs-6 me-1">$2,045.04</span>
-                                                    </td>
-                                                    <td class="pe-0 text-end">
-                                                        <span class="fw-bolder fs-6 text-warning">+114.03</span>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <a href="#" class="text-gray-600 fw-bolder fs-6">3:30 AM</a>
-                                                    </td>
-                                                    <td class="pe-0 text-end">
-                                                        <span class="text-gray-800 fw-bolder fs-6 me-1">$756.26</span>
-                                                    </td>
-                                                    <td class="pe-0 text-end">
-                                                        <span class="fw-bolder fs-6 text-primary">-124.03</span>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <a href="#" class="text-gray-600 fw-bolder fs-6">10:30 PM</a>
-                                                    </td>
-                                                    <td class="pe-0 text-end">
-                                                        <span class="text-gray-800 fw-bolder fs-6 me-1">$1.756.26</span>
-                                                    </td>
-                                                    <td class="pe-0 text-end">
-                                                        <span class="fw-bolder fs-6 text-info">+165.86</span>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                            <!--end::Table body-->
-                                        </table>
-                                        <!--end::Table-->
-                                    </div>
-                                    <!--end::Table container-->
-                                </div>
-                                <!--end::Tap pane-->
-                            </div>
-                            <!--end::Tab Content-->
-                        </div>
-                        <!--end::Body-->
-                    </div>
-                    <!--end::Chart Widget 33-->
-                </div>
-                <!--end::Col-->
-                <!--begin::Col-->
-                <div class="col-xl-8">
-                    <!--begin::Tables widget 14-->
-                    <div class="card card-flush h-md-100">
-                        <!--begin::Header-->
-                        <div class="card-header pt-7">
-                            <!--begin::Title-->
-                            <h3 class="card-title align-items-start flex-column">
-                                <span class="card-label fw-bolder text-gray-800">Projects Stats</span>
-                                <span class="text-gray-400 mt-1 fw-bold fs-6">Updated 37 minutes ago</span>
-                            </h3>
-                            <!--end::Title-->
-                            <!--begin::Toolbar-->
-                            <div class="card-toolbar">
-                                <a href="../../demo1/dist/apps/ecommerce/catalog/add-product.html" class="btn btn-sm btn-light">History</a>
-                            </div>
-                            <!--end::Toolbar-->
-                        </div>
-                        <!--end::Header-->
-                        <!--begin::Body-->
-                        <div class="card-body pt-6">
-                            <!--begin::Table container-->
-                            <div class="table-responsive">
-                                <!--begin::Table-->
-                                <table class="table table-row-dashed align-middle gs-0 gy-3 my-0">
-                                    <!--begin::Table head-->
-                                    <thead>
-                                        <tr class="fs-7 fw-bolder text-gray-400 border-bottom-0">
-                                            <th class="p-0 pb-3 min-w-175px text-start">ITEM</th>
-                                            <th class="p-0 pb-3 min-w-100px text-end">BUDGET</th>
-                                            <th class="p-0 pb-3 min-w-100px text-end">PROGRESS</th>
-                                            <th class="p-0 pb-3 min-w-175px text-end pe-12">STATUS</th>
-                                            <th class="p-0 pb-3 w-125px text-end pe-7">CHART</th>
-                                            <th class="p-0 pb-3 w-50px text-end">VIEW</th>
-                                        </tr>
-                                    </thead>
-                                    <!--end::Table head-->
-                                    <!--begin::Table body-->
-                                    <tbody>
-                                        <tr>
-                                            <td>
-                                                <div class="d-flex align-items-center">
-                                                    <div class="symbol symbol-50px me-3">
-                                                        <img src="assets/media/stock/600x600/img-49.jpg" class="" alt="" />
-                                                    </div>
-                                                    <div class="d-flex justify-content-start flex-column">
-                                                        <a href="#" class="text-gray-800 fw-bolder text-hover-primary mb-1 fs-6">Mivy App</a>
-                                                        <span class="text-gray-400 fw-bold d-block fs-7">Jane Cooper</span>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td class="text-end pe-0">
-                                                <span class="text-gray-600 fw-bolder fs-6">$32,400</span>
-                                            </td>
-                                            <td class="text-end pe-0">
-                                                <!--begin::Label-->
-                                                <span class="badge badge-success fs-base">
-                                                <!--begin::Svg Icon | path: icons/duotune/arrows/arr066.svg-->
-                                                <span class="svg-icon svg-icon-5 svg-icon-white ms-n1">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                                        <rect opacity="0.5" x="13" y="6" width="13" height="2" rx="1" transform="rotate(90 13 6)" fill="currentColor" />
-                                                        <path d="M12.5657 8.56569L16.75 12.75C17.1642 13.1642 17.8358 13.1642 18.25 12.75C18.6642 12.3358 18.6642 11.6642 18.25 11.25L12.7071 5.70711C12.3166 5.31658 11.6834 5.31658 11.2929 5.70711L5.75 11.25C5.33579 11.6642 5.33579 12.3358 5.75 12.75C6.16421 13.1642 6.83579 13.1642 7.25 12.75L11.4343 8.56569C11.7467 8.25327 12.2533 8.25327 12.5657 8.56569Z" fill="currentColor" />
-                                                    </svg>
-                                                </span>
-                                                <!--end::Svg Icon-->9.2%</span>
-                                                <!--end::Label-->
-                                            </td>
-                                            <td class="text-end pe-12">
-                                                <span class="badge py-3 px-4 fs-7 badge-light-primary">In Process</span>
-                                            </td>
-                                            <td class="text-end pe-0">
-                                                <div id="kt_table_widget_14_chart_1" class="h-50px mt-n8 pe-7" data-kt-chart-color="success"></div>
-                                            </td>
-                                            <td class="text-end">
-                                                <a href="#" class="btn btn-sm btn-icon btn-bg-light btn-active-color-primary w-30px h-30px">
-                                                    <!--begin::Svg Icon | path: icons/duotune/arrows/arr001.svg-->
-                                                    <span class="svg-icon svg-icon-5 svg-icon-gray-700">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                                            <path d="M14.4 11H3C2.4 11 2 11.4 2 12C2 12.6 2.4 13 3 13H14.4V11Z" fill="currentColor" />
-                                                            <path opacity="0.3" d="M14.4 20V4L21.7 11.3C22.1 11.7 22.1 12.3 21.7 12.7L14.4 20Z" fill="currentColor" />
-                                                        </svg>
-                                                    </span>
-                                                    <!--end::Svg Icon-->
-                                                </a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="d-flex align-items-center">
-                                                    <div class="symbol symbol-50px me-3">
-                                                        <img src="assets/media/stock/600x600/img-40.jpg" class="" alt="" />
-                                                    </div>
-                                                    <div class="d-flex justify-content-start flex-column">
-                                                        <a href="#" class="text-gray-800 fw-bolder text-hover-primary mb-1 fs-6">Avionica</a>
-                                                        <span class="text-gray-400 fw-bold d-block fs-7">Esther Howard</span>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td class="text-end pe-0">
-                                                <span class="text-gray-600 fw-bolder fs-6">$256,910</span>
-                                            </td>
-                                            <td class="text-end pe-0">
-                                                <!--begin::Label-->
-                                                <span class="badge badge-danger fs-base">
-                                                <!--begin::Svg Icon | path: icons/duotune/arrows/arr065.svg-->
-                                                <span class="svg-icon svg-icon-5 svg-icon-white ms-n1">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                                        <rect opacity="0.5" x="11" y="18" width="13" height="2" rx="1" transform="rotate(-90 11 18)" fill="currentColor" />
-                                                        <path d="M11.4343 15.4343L7.25 11.25C6.83579 10.8358 6.16421 10.8358 5.75 11.25C5.33579 11.6642 5.33579 12.3358 5.75 12.75L11.2929 18.2929C11.6834 18.6834 12.3166 18.6834 12.7071 18.2929L18.25 12.75C18.6642 12.3358 18.6642 11.6642 18.25 11.25C17.8358 10.8358 17.1642 10.8358 16.75 11.25L12.5657 15.4343C12.2533 15.7467 11.7467 15.7467 11.4343 15.4343Z" fill="currentColor" />
-                                                    </svg>
-                                                </span>
-                                                <!--end::Svg Icon-->0.4%</span>
-                                                <!--end::Label-->
-                                            </td>
-                                            <td class="text-end pe-12">
-                                                <span class="badge py-3 px-4 fs-7 badge-light-warning">On Hold</span>
-                                            </td>
-                                            <td class="text-end pe-0">
-                                                <div id="kt_table_widget_14_chart_2" class="h-50px mt-n8 pe-7" data-kt-chart-color="danger"></div>
-                                            </td>
-                                            <td class="text-end">
-                                                <a href="#" class="btn btn-sm btn-icon btn-bg-light btn-active-color-primary w-30px h-30px">
-                                                    <!--begin::Svg Icon | path: icons/duotune/arrows/arr001.svg-->
-                                                    <span class="svg-icon svg-icon-5 svg-icon-gray-700">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                                            <path d="M14.4 11H3C2.4 11 2 11.4 2 12C2 12.6 2.4 13 3 13H14.4V11Z" fill="currentColor" />
-                                                            <path opacity="0.3" d="M14.4 20V4L21.7 11.3C22.1 11.7 22.1 12.3 21.7 12.7L14.4 20Z" fill="currentColor" />
-                                                        </svg>
-                                                    </span>
-                                                    <!--end::Svg Icon-->
-                                                </a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="d-flex align-items-center">
-                                                    <div class="symbol symbol-50px me-3">
-                                                        <img src="assets/media/stock/600x600/img-39.jpg" class="" alt="" />
-                                                    </div>
-                                                    <div class="d-flex justify-content-start flex-column">
-                                                        <a href="#" class="text-gray-800 fw-bolder text-hover-primary mb-1 fs-6">Charto CRM</a>
-                                                        <span class="text-gray-400 fw-bold d-block fs-7">Jenny Wilson</span>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td class="text-end pe-0">
-                                                <span class="text-gray-600 fw-bolder fs-6">$8,220</span>
-                                            </td>
-                                            <td class="text-end pe-0">
-                                                <!--begin::Label-->
-                                                <span class="badge badge-success fs-base">
-                                                <!--begin::Svg Icon | path: icons/duotune/arrows/arr066.svg-->
-                                                <span class="svg-icon svg-icon-5 svg-icon-white ms-n1">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                                        <rect opacity="0.5" x="13" y="6" width="13" height="2" rx="1" transform="rotate(90 13 6)" fill="currentColor" />
-                                                        <path d="M12.5657 8.56569L16.75 12.75C17.1642 13.1642 17.8358 13.1642 18.25 12.75C18.6642 12.3358 18.6642 11.6642 18.25 11.25L12.7071 5.70711C12.3166 5.31658 11.6834 5.31658 11.2929 5.70711L5.75 11.25C5.33579 11.6642 5.33579 12.3358 5.75 12.75C6.16421 13.1642 6.83579 13.1642 7.25 12.75L11.4343 8.56569C11.7467 8.25327 12.2533 8.25327 12.5657 8.56569Z" fill="currentColor" />
-                                                    </svg>
-                                                </span>
-                                                <!--end::Svg Icon-->9.2%</span>
-                                                <!--end::Label-->
-                                            </td>
-                                            <td class="text-end pe-12">
-                                                <span class="badge py-3 px-4 fs-7 badge-light-primary">In Process</span>
-                                            </td>
-                                            <td class="text-end pe-0">
-                                                <div id="kt_table_widget_14_chart_3" class="h-50px mt-n8 pe-7" data-kt-chart-color="success"></div>
-                                            </td>
-                                            <td class="text-end">
-                                                <a href="#" class="btn btn-sm btn-icon btn-bg-light btn-active-color-primary w-30px h-30px">
-                                                    <!--begin::Svg Icon | path: icons/duotune/arrows/arr001.svg-->
-                                                    <span class="svg-icon svg-icon-5 svg-icon-gray-700">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                                            <path d="M14.4 11H3C2.4 11 2 11.4 2 12C2 12.6 2.4 13 3 13H14.4V11Z" fill="currentColor" />
-                                                            <path opacity="0.3" d="M14.4 20V4L21.7 11.3C22.1 11.7 22.1 12.3 21.7 12.7L14.4 20Z" fill="currentColor" />
-                                                        </svg>
-                                                    </span>
-                                                    <!--end::Svg Icon-->
-                                                </a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="d-flex align-items-center">
-                                                    <div class="symbol symbol-50px me-3">
-                                                        <img src="assets/media/stock/600x600/img-47.jpg" class="" alt="" />
-                                                    </div>
-                                                    <div class="d-flex justify-content-start flex-column">
-                                                        <a href="#" class="text-gray-800 fw-bolder text-hover-primary mb-1 fs-6">Tower Hill</a>
-                                                        <span class="text-gray-400 fw-bold d-block fs-7">Cody Fisher</span>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td class="text-end pe-0">
-                                                <span class="text-gray-600 fw-bolder fs-6">$74,000</span>
-                                            </td>
-                                            <td class="text-end pe-0">
-                                                <!--begin::Label-->
-                                                <span class="badge badge-success fs-base">
-                                                <!--begin::Svg Icon | path: icons/duotune/arrows/arr066.svg-->
-                                                <span class="svg-icon svg-icon-5 svg-icon-white ms-n1">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                                        <rect opacity="0.5" x="13" y="6" width="13" height="2" rx="1" transform="rotate(90 13 6)" fill="currentColor" />
-                                                        <path d="M12.5657 8.56569L16.75 12.75C17.1642 13.1642 17.8358 13.1642 18.25 12.75C18.6642 12.3358 18.6642 11.6642 18.25 11.25L12.7071 5.70711C12.3166 5.31658 11.6834 5.31658 11.2929 5.70711L5.75 11.25C5.33579 11.6642 5.33579 12.3358 5.75 12.75C6.16421 13.1642 6.83579 13.1642 7.25 12.75L11.4343 8.56569C11.7467 8.25327 12.2533 8.25327 12.5657 8.56569Z" fill="currentColor" />
-                                                    </svg>
-                                                </span>
-                                                <!--end::Svg Icon-->9.2%</span>
-                                                <!--end::Label-->
-                                            </td>
-                                            <td class="text-end pe-12">
-                                                <span class="badge py-3 px-4 fs-7 badge-light-success">Complated</span>
-                                            </td>
-                                            <td class="text-end pe-0">
-                                                <div id="kt_table_widget_14_chart_4" class="h-50px mt-n8 pe-7" data-kt-chart-color="success"></div>
-                                            </td>
-                                            <td class="text-end">
-                                                <a href="#" class="btn btn-sm btn-icon btn-bg-light btn-active-color-primary w-30px h-30px">
-                                                    <!--begin::Svg Icon | path: icons/duotune/arrows/arr001.svg-->
-                                                    <span class="svg-icon svg-icon-5 svg-icon-gray-700">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                                            <path d="M14.4 11H3C2.4 11 2 11.4 2 12C2 12.6 2.4 13 3 13H14.4V11Z" fill="currentColor" />
-                                                            <path opacity="0.3" d="M14.4 20V4L21.7 11.3C22.1 11.7 22.1 12.3 21.7 12.7L14.4 20Z" fill="currentColor" />
-                                                        </svg>
-                                                    </span>
-                                                    <!--end::Svg Icon-->
-                                                </a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="d-flex align-items-center">
-                                                    <div class="symbol symbol-50px me-3">
-                                                        <img src="assets/media/stock/600x600/img-48.jpg" class="" alt="" />
-                                                    </div>
-                                                    <div class="d-flex justify-content-start flex-column">
-                                                        <a href="#" class="text-gray-800 fw-bolder text-hover-primary mb-1 fs-6">9 Degree</a>
-                                                        <span class="text-gray-400 fw-bold d-block fs-7">Savannah Nguyen</span>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td class="text-end pe-0">
-                                                <span class="text-gray-600 fw-bolder fs-6">$183,300</span>
-                                            </td>
-                                            <td class="text-end pe-0">
-                                                <!--begin::Label-->
-                                                <span class="badge badge-danger fs-base">
-                                                <!--begin::Svg Icon | path: icons/duotune/arrows/arr065.svg-->
-                                                <span class="svg-icon svg-icon-5 svg-icon-white ms-n1">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                                        <rect opacity="0.5" x="11" y="18" width="13" height="2" rx="1" transform="rotate(-90 11 18)" fill="currentColor" />
-                                                        <path d="M11.4343 15.4343L7.25 11.25C6.83579 10.8358 6.16421 10.8358 5.75 11.25C5.33579 11.6642 5.33579 12.3358 5.75 12.75L11.2929 18.2929C11.6834 18.6834 12.3166 18.6834 12.7071 18.2929L18.25 12.75C18.6642 12.3358 18.6642 11.6642 18.25 11.25C17.8358 10.8358 17.1642 10.8358 16.75 11.25L12.5657 15.4343C12.2533 15.7467 11.7467 15.7467 11.4343 15.4343Z" fill="currentColor" />
-                                                    </svg>
-                                                </span>
-                                                <!--end::Svg Icon-->0.4%</span>
-                                                <!--end::Label-->
-                                            </td>
-                                            <td class="text-end pe-12">
-                                                <span class="badge py-3 px-4 fs-7 badge-light-primary">In Process</span>
-                                            </td>
-                                            <td class="text-end pe-0">
-                                                <div id="kt_table_widget_14_chart_5" class="h-50px mt-n8 pe-7" data-kt-chart-color="danger"></div>
-                                            </td>
-                                            <td class="text-end">
-                                                <a href="#" class="btn btn-sm btn-icon btn-bg-light btn-active-color-primary w-30px h-30px">
-                                                    <!--begin::Svg Icon | path: icons/duotune/arrows/arr001.svg-->
-                                                    <span class="svg-icon svg-icon-5 svg-icon-gray-700">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                                            <path d="M14.4 11H3C2.4 11 2 11.4 2 12C2 12.6 2.4 13 3 13H14.4V11Z" fill="currentColor" />
-                                                            <path opacity="0.3" d="M14.4 20V4L21.7 11.3C22.1 11.7 22.1 12.3 21.7 12.7L14.4 20Z" fill="currentColor" />
-                                                        </svg>
-                                                    </span>
-                                                    <!--end::Svg Icon-->
-                                                </a>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                    <!--end::Table body-->
-                                </table>
-                            </div>
-                            <!--end::Table-->
-                        </div>
-                        <!--end: Card Body-->
-                    </div>
-                    <!--end::Tables widget 14-->
-                </div>
-                <!--end::Col-->
-            </div>
-            <!--end::Row-->
-            <!--begin::Row-->
-            <div class="row g-5 g-xl-10">
-                <!--begin::Col-->
-                <div class="col-xl-4">
-                    <!--begin::Engage widget 1-->
-                    <div class="card h-md-100">
-                        <!--begin::Body-->
-                        <div class="card-body d-flex flex-column flex-center">
-                            <!--begin::Heading-->
-                            <div class="mb-2">
-                                <!--begin::Title-->
-                                <h1 class="fw-bold text-gray-800 text-center lh-lg">Have your tried
-                                <br />new
-                                <span class="fw-boldest">Invoice Manager?</span></h1>
-                                <!--end::Title-->
-                                <!--begin::Illustration-->
-                                <div class="flex-grow-1 bgi-no-repeat bgi-size-contain bgi-position-x-center card-rounded-bottom h-200px mh-200px my-5 my-lg-12" style="background-image:url('assets/media/svg/illustrations/easy/2.svg')"></div>
-                                <!--end::Illustration-->
-                            </div>
-                            <!--end::Heading-->
-                            <!--begin::Links-->
-                            <div class="text-center mb-1">
-                                <!--begin::Link-->
-                                <a class="btn btn-sm btn-primary me-2" data-bs-target="#kt_modal_new_address" data-bs-toggle="modal">Try Now</a>
-                                <!--end::Link-->
-                                <!--begin::Link-->
-                                <a class="btn btn-sm btn-light" href="../../demo1/dist/apps/user-management/users/view.html">Learn More</a>
-                                <!--end::Link-->
-                            </div>
-                            <!--end::Links-->
-                        </div>
-                        <!--end::Body-->
-                    </div>
-                    <!--end::Engage widget 1-->
-                </div>
-                <!--end::Col-->
-                <!--begin::Col-->
-                <div class="col-xl-8">
-                    <!--begin::Timeline Widget 4-->
-                    <div class="card h-md-100">
-                        <!--begin::Card header-->
-                        <div class="card-header position-relative py-0 border-bottom-1">
-                            <!--begin::Card title-->
-                            <h3 class="card-title text-gray-800 fw-bolder">Active Tasks</h3>
-                            <!--end::Card title-->
-                            <!--begin::Tabs-->
-                            <ul class="nav nav-stretch nav-pills nav-pills-custom d-flex mt-4">
-                                <!--begin::Nav item-->
-                                <li class="nav-item p-0 ms-0">
-                                    <a class="nav-link btn btn-color-gray-400 flex-center px-3 active" data-kt-timeline-widget-4="tab" data-bs-toggle="tab" href="#kt_timeline_widget_4_tab_day">
-                                        <!--begin::Title-->
-                                        <span class="nav-text fw-bold fs-4 mb-3">Day</span>
-                                        <!--end::Title-->
-                                        <!--begin::Bullet-->
-                                        <span class="bullet-custom position-absolute z-index-2 w-100 h-1px top-100 bottom-n100 bg-primary rounded"></span>
-                                        <!--end::Bullet-->
-                                    </a>
-                                </li>
-                                <!--end::Nav item-->
-                                <!--begin::Nav item-->
-                                <li class="nav-item p-0 ms-0">
-                                    <a class="nav-link btn btn-color-gray-400 flex-center px-3" data-kt-timeline-widget-4="tab" data-bs-toggle="tab" href="#kt_timeline_widget_4_tab_week">
-                                        <!--begin::Title-->
-                                        <span class="nav-text fw-bold fs-4 mb-3">Week</span>
-                                        <!--end::Title-->
-                                        <!--begin::Bullet-->
-                                        <span class="bullet-custom position-absolute z-index-2 w-100 h-1px top-100 bottom-n100 bg-primary rounded"></span>
-                                        <!--end::Bullet-->
-                                    </a>
-                                </li>
-                                <!--end::Nav item-->
-                                <!--begin::Nav item-->
-                                <li class="nav-item p-0 ms-0">
-                                    <a class="nav-link btn btn-color-gray-400 flex-center px-3" data-kt-timeline-widget-4="tab" data-bs-toggle="tab" href="#kt_timeline_widget_4_tab_month">
-                                        <!--begin::Title-->
-                                        <span class="nav-text fw-bold fs-4 mb-3">Month</span>
-                                        <!--end::Title-->
-                                        <!--begin::Bullet-->
-                                        <span class="bullet-custom position-absolute z-index-2 w-100 h-1px top-100 bottom-n100 bg-primary rounded"></span>
-                                        <!--end::Bullet-->
-                                    </a>
-                                </li>
-                                <!--end::Nav item-->
-                                <!--begin::Nav item-->
-                                <li class="nav-item p-0 ms-0">
-                                    <a class="nav-link btn btn-color-gray-400 flex-center px-3" data-kt-timeline-widget-4="tab" data-bs-toggle="tab" href="#kt_timeline_widget_4_tab_2022">
-                                        <!--begin::Title-->
-                                        <span class="nav-text fw-bold fs-4 mb-3">2022</span>
-                                        <!--end::Title-->
-                                        <!--begin::Bullet-->
-                                        <span class="bullet-custom position-absolute z-index-2 w-100 h-1px top-100 bottom-n100 bg-primary rounded"></span>
-                                        <!--end::Bullet-->
-                                    </a>
-                                </li>
-                                <!--end::Nav item-->
-                            </ul>
-                            <!--end::Tabs-->
-                        </div>
-                        <!--end::Card header-->
-                        <!--begin::Card body-->
-                        <div class="card-body pb-0">
-                            <!--begin::Tab content-->
-                            <div class="tab-content">
-                                <!--begin::Tab pane-->
-                                <div class="tab-pane active" id="kt_timeline_widget_4_tab_day" role="tabpanel" aria-labelledby="day-tab" data-kt-timeline-widget-4-blockui="true">
-                                    <div class="table-responsive pb-10">
-                                        <!--begin::Timeline-->
-                                        <div id="kt_timeline_widget_4_1" class="vis-timeline-custom h-350px min-w-700px" data-kt-timeline-widget-4-image-root="assets/media/"></div>
-                                        <!--end::Timeline-->
-                                    </div>
-                                </div>
-                                <!--end::Tab pane-->
-                                <!--begin::Tab pane-->
-                                <div class="tab-pane" id="kt_timeline_widget_4_tab_week" role="tabpanel" aria-labelledby="week-tab" data-kt-timeline-widget-4-blockui="true">
-                                    <div class="table-responsive pb-10">
-                                        <!--begin::Timeline-->
-                                        <div id="kt_timeline_widget_4_2" class="vis-timeline-custom h-350px min-w-700px" data-kt-timeline-widget-4-image-root="assets/media/"></div>
-                                        <!--end::Timeline-->
-                                    </div>
-                                </div>
-                                <!--end::Tab pane-->
-                                <!--begin::Tab pane-->
-                                <div class="tab-pane" id="kt_timeline_widget_4_tab_month" role="tabpanel" aria-labelledby="month-tab" data-kt-timeline-widget-4-blockui="true">
-                                    <div class="table-responsive pb-10">
-                                        <!--begin::Timeline-->
-                                        <div id="kt_timeline_widget_4_3" class="vis-timeline-custom h-350px min-w-700px" data-kt-timeline-widget-4-image-root="assets/media/"></div>
-                                        <!--end::Timeline-->
-                                    </div>
-                                </div>
-                                <!--end::Tab pane-->
-                                <!--begin::Tab pane-->
-                                <div class="tab-pane" id="kt_timeline_widget_4_tab_2022" role="tabpanel" aria-labelledby="week-tab" data-kt-timeline-widget-4-blockui="true">
-                                    <div class="table-responsive pb-10">
-                                        <!--begin::Timeline-->
-                                        <div id="kt_timeline_widget_4_4" class="vis-timeline-custom h-350px min-w-700px" data-kt-timeline-widget-4-image-root="assets/media/"></div>
-                                        <!--end::Timeline-->
-                                    </div>
-                                </div>
-                                <!--end::Tab pane-->
-                            </div>
-                            <!--end::Tab content-->
-                        </div>
-                        <!--end::Card body-->
-                    </div>
-                    <!--end::Timeline Widget 1-->
-                </div>
-                <!--end::Col-->
-            </div>
-            <!--end::Row-->
         </div>
-        <!--end::Container-->
+
+        <div class="flex flex-col sm:flex-row sm:space-x-7">
+        <div
+            class="mt-4 flex shrink-0 flex-col items-center sm:items-start"
+        >
+            <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-8 w-8 text-info"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="1.5"
+            >
+            <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z"
+            />
+            <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z"
+            />
+            </svg>
+            <div class="mt-4">
+            <div class="flex items-center space-x-1">
+                <p
+                class="text-2xl font-semibold text-slate-700 dark:text-navy-100"
+                >
+                $6,556.55
+                </p>
+                <button
+                class="btn h-6 w-6 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
+                >
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-4 w-4"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                >
+                    <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
+                    />
+                </svg>
+                </button>
+            </div>
+            <p class="text-xs text-slate-400 dark:text-navy-300">
+                Ce mois
+            </p>
+            </div>
+            <div class="mt-3 flex items-center space-x-2">
+            <div class="ax-transparent-gridline w-28">
+                <div
+                x-init="$nextTick(() => { $el._x_chart = new ApexCharts($el,pages.charts.analyticsSalesThisMonth); $el._x_chart.render() });"
+                ></div>
+            </div>
+            <div class="flex items-center space-x-0.5">
+                <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-4 w-4 text-success"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                >
+                <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M7 11l5-5m0 0l5 5m-5-5v12"
+                />
+                </svg>
+                <p class="text-sm+ text-slate-800 dark:text-navy-100">
+                3.2%
+                </p>
+            </div>
+            </div>
+        <!--
+            <button
+            class="btn mt-8 space-x-2 rounded-full border border-slate-300 px-3 text-xs+ font-medium text-slate-700 hover:bg-slate-150 focus:bg-slate-150 active:bg-slate-150/80 dark:border-navy-450 dark:text-navy-100 dark:hover:bg-navy-500 dark:focus:bg-navy-500 dark:active:bg-navy-500/90"
+            >
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-4.5 w-4.5 text-slate-400 dark:text-navy-300"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                stroke-width="2"
+            >
+                <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M15 13l-3 3m0 0l-3-3m3 3V8m0 13a9 9 0 110-18 9 9 0 010 18z"
+                />
+            </svg>
+            <span> Download Report</span>
+            </button>
+        -->
+        </div>
+
+        <div class="ax-transparent-gridline grid w-full grid-cols-1">
+            <div
+            x-init="$nextTick(() => { $el._x_chart = new ApexCharts($el,pages.charts.analyticsSalesOverview); $el._x_chart.render() });"
+            ></div>
+        </div>
+        </div>
     </div>
-    <!--end::Post-->
-</div>
-<!--end::Content-->
+    <div class="col-span-12 lg:col-span-4">
+        <div
+        class="grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-5 lg:grid-cols-2"
+        >
+        <div class="rounded-lg bg-slate-150 p-4 dark:bg-navy-700">
+            <div class="flex justify-between space-x-1">
+            <p
+                class="text-xl font-semibold text-slate-700 dark:text-navy-100"
+            >
+                $67.6k
+            </p>
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-5 w-5 text-primary dark:text-accent"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                stroke-width="2"
+            >
+                <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                />
+            </svg>
+            </div>
+            <p class="mt-1 text-xs+">Revenu</p>
+        </div>
+        <div class="rounded-lg bg-slate-150 p-4 dark:bg-navy-700">
+            <div class="flex justify-between">
+            <p
+                class="text-xl font-semibold text-slate-700 dark:text-navy-100"
+            >
+                12.6K
+            </p>
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-5 w-5 text-success"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                stroke-width="2"
+            >
+                <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"
+                />
+            </svg>
+            </div>
+            <p class="mt-1 text-xs+">Avoir</p>
+        </div>
+        <div class="rounded-lg bg-slate-150 p-4 dark:bg-navy-700">
+            <div class="flex justify-between">
+            <p
+                class="text-xl font-semibold text-slate-700 dark:text-navy-100"
+            >
+                143
+            </p>
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-5 w-5 text-warning"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                stroke-width="2"
+            >
+                <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                />
+            </svg>
+            </div>
+            <p class="mt-1 text-xs+">Pending</p>
+        </div>
+        <div class="rounded-lg bg-slate-150 p-4 dark:bg-navy-700">
+            <div class="flex justify-between">
+            <p
+                class="text-xl font-semibold text-slate-700 dark:text-navy-100"
+            >
+                651
+            </p>
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-5 w-5 text-info"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                stroke-width="2"
+            >
+                <path
+                d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z"
+                />
+                <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0"
+                />
+            </svg>
+            </div>
+            <p class="mt-1 text-xs+">Dispatch</p>
+        </div>
+        <div class="rounded-lg bg-slate-150 p-4 dark:bg-navy-700">
+            <div class="flex justify-between space-x-1">
+            <p
+                class="text-xl font-semibold text-slate-700 dark:text-navy-100"
+            >
+                46k
+            </p>
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-5 w-5 text-secondary"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                stroke-width="2"
+            >
+                <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"
+                />
+            </svg>
+            </div>
+            <p class="mt-1 text-xs+">Products</p>
+        </div>
+        <div class="rounded-lg bg-slate-150 p-4 dark:bg-navy-700">
+            <div class="flex justify-between">
+            <p
+                class="text-xl font-semibold text-slate-700 dark:text-navy-100"
+            >
+                8.8k
+            </p>
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-5 w-5 text-error"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                stroke-width="2"
+            >
+                <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"
+                />
+            </svg>
+            </div>
+            <p class="mt-1 text-xs+">Clients</p>
+        </div>
+        </div>
+    </div>
+    <div class="card col-span-12 lg:col-span-8">
+        <div class="flex items-center justify-between py-3 px-4">
+        <h2
+            class="font-medium tracking-wide text-slate-700 dark:text-navy-100"
+        >
+            Statut des projets
+        </h2>
+        <div
+            x-data="usePopper({placement:'bottom-end',offset:4})"
+            @click.outside="if(isShowPopper) isShowPopper = false"
+            class="inline-flex"
+        >
+            <button
+            x-ref="popperRef"
+            @click="isShowPopper = !isShowPopper"
+            class="btn h-8 w-8 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
+            >
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-5 w-5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                stroke-width="2"
+            >
+                <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"
+                />
+            </svg>
+            </button>
+
+            <div
+            x-ref="popperRoot"
+            class="popper-root"
+            :class="isShowPopper && 'show'"
+            >
+            <div
+                class="popper-box rounded-md border border-slate-150 bg-white py-1.5 font-inter dark:border-navy-500 dark:bg-navy-700"
+            >
+                <ul>
+                <li>
+                    <a
+                    href="dashboards-crm-analytics.html#"
+                    class="flex h-8 items-center px-3 pr-8 font-medium tracking-wide outline-none transition-all hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100"
+                    >Action</a
+                    >
+                </li>
+                <li>
+                    <a
+                    href="dashboards-crm-analytics.html#"
+                    class="flex h-8 items-center px-3 pr-8 font-medium tracking-wide outline-none transition-all hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100"
+                    >Another Action</a
+                    >
+                </li>
+                <li>
+                    <a
+                    href="dashboards-crm-analytics.html#"
+                    class="flex h-8 items-center px-3 pr-8 font-medium tracking-wide outline-none transition-all hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100"
+                    >Something else</a
+                    >
+                </li>
+                </ul>
+                <div class="my-1 h-px bg-slate-150 dark:bg-navy-500"></div>
+                <ul>
+                <li>
+                    <a
+                    href="dashboards-crm-analytics.html#"
+                    class="flex h-8 items-center px-3 pr-8 font-medium tracking-wide outline-none transition-all hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100"
+                    >Separated Link</a
+                    >
+                </li>
+                </ul>
+            </div>
+            </div>
+        </div>
+        </div>
+        <div class="grid grid-cols-1 gap-y-4 pb-3 sm:grid-cols-3">
+        <div
+            class="flex flex-col justify-between border-4 border-transparent border-l-info px-4"
+        >
+            <div>
+            <p
+                class="text-base font-medium text-slate-600 dark:text-navy-100"
+            >
+                Web Design
+            </p>
+            <p class="text-xs text-slate-400 dark:text-navy-300">
+                Design Learn Management System
+            </p>
+            <div class="badge mt-2 bg-info/10 text-info dark:bg-info/15">
+                UI/UX Design
+            </div>
+            </div>
+            <div>
+            <div class="mt-8">
+                <p class="font-inter">
+                <span
+                    class="text-2xl font-medium text-slate-600 dark:text-navy-100"
+                    >%55.</span
+                ><span class="text-xs">23</span>
+                </p>
+                <p class="mt-1 text-xs">June 08, 2021</p>
+            </div>
+            <div class="mt-8 flex items-center justify-between space-x-2">
+                <div class="flex -space-x-3">
+                <div class="avatar h-8 w-8 hover:z-10">
+                    <img
+                    class="rounded-full ring ring-white dark:ring-navy-700"
+                    src="{{asset('assets/images/avatar/avatar-16.jpg')}}"
+                    alt="avatar"
+                    />
+                </div>
+                <div class="avatar h-8 w-8 hover:z-10">
+                    <div
+                    class="is-initial rounded-full bg-info text-xs+ uppercase text-white ring ring-white dark:ring-navy-700"
+                    >
+                    jd
+                    </div>
+                </div>
+                <div class="avatar h-8 w-8 hover:z-10">
+                    <img
+                    class="rounded-full ring ring-white dark:ring-navy-700"
+                    src="{{asset('assets/images/avatar/avatar-20.jpg')}}"
+                    alt="avatar"
+                    />
+                </div>
+                </div>
+                <button
+                class="btn h-8 w-8 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
+                >
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-5 w-5"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                >
+                    <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"
+                    />
+                    <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                    />
+                </svg>
+                </button>
+            </div>
+            </div>
+        </div>
+        <div
+            class="flex flex-col justify-between border-4 border-transparent border-l-secondary px-4"
+        >
+            <div>
+            <p
+                class="text-base font-medium text-slate-600 dark:text-navy-100"
+            >
+                Mobile App
+            </p>
+            <p class="text-xs text-slate-400 dark:text-navy-300">
+                Ecommerce Application
+            </p>
+            <div
+                class="badge mt-2 bg-secondary/10 text-secondary dark:bg-secondary-light/15 dark:text-secondary-light"
+            >
+                Ecommerce
+            </div>
+            </div>
+            <div>
+            <div class="mt-8">
+                <p class="font-inter">
+                <span
+                    class="text-2xl font-medium text-slate-600 dark:text-navy-100"
+                    >%14.</span
+                ><span class="text-xs">84</span>
+                </p>
+                <p class="mt-1 text-xs">May 01, 2021</p>
+            </div>
+            <div class="mt-8 flex items-center justify-between space-x-2">
+                <div class="flex -space-x-3">
+                <div class="avatar h-8 w-8 hover:z-10">
+                    <img
+                    class="rounded-full ring ring-white dark:ring-navy-700"
+                    src="{{asset('assets/images/avatar/avatar-16.jpg')}}"
+                    alt="avatar"
+                    />
+                </div>
+                <div class="avatar h-8 w-8 hover:z-10">
+                    <div
+                    class="is-initial rounded-full bg-success text-xs+ uppercase text-white ring ring-white dark:ring-navy-700"
+                    >
+                    uh
+                    </div>
+                </div>
+                <div class="avatar h-8 w-8 hover:z-10">
+                    <img
+                    class="rounded-full ring ring-white dark:ring-navy-700"
+                    src="{{asset('assets/images/avatar/avatar-14.jpg')}}"
+                    alt="avatar"
+                    />
+                </div>
+                </div>
+                <button
+                class="btn h-8 w-8 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
+                >
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-5 w-5"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                >
+                    <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"
+                    />
+                    <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                    />
+                </svg>
+                </button>
+            </div>
+            </div>
+        </div>
+        <div
+            class="flex flex-col justify-between border-4 border-transparent border-l-warning px-4"
+        >
+            <div>
+            <p
+                class="text-base font-medium text-slate-600 dark:text-navy-100"
+            >
+                Design System
+            </p>
+            <p class="text-xs text-slate-400 dark:text-navy-300">
+                Create LMS design system on figma
+            </p>
+            <div class="mt-2 flex space-x-1.5">
+                <div
+                class="badge bg-warning/10 text-warning dark:bg-warning/15"
+                >
+                LMS
+                </div>
+                <div
+                class="badge bg-warning/10 text-warning dark:bg-warning/15"
+                >
+                Figma
+                </div>
+            </div>
+            </div>
+            <div>
+            <div class="mt-8">
+                <p class="font-inter">
+                <span
+                    class="text-2xl font-medium text-slate-600 dark:text-navy-100"
+                    >%87.</span
+                ><span class="text-xs">40</span>
+                </p>
+                <p class="mt-1 text-xs">September 16, 2021</p>
+            </div>
+            <div class="mt-8 flex items-center justify-between space-x-2">
+                <div class="flex -space-x-3">
+                <div class="avatar h-8 w-8 hover:z-10">
+                    <img
+                    class="rounded-full ring ring-white dark:ring-navy-700"
+                    src="{{asset('assets/images/avatar/avatar-11.jpg')}}"
+                    alt="avatar"
+                    />
+                </div>
+                <div class="avatar h-8 w-8 hover:z-10">
+                    <div
+                    class="is-initial rounded-full bg-error text-xs+ uppercase text-white ring ring-white dark:ring-navy-700"
+                    >
+                    pm
+                    </div>
+                </div>
+                <div class="avatar h-8 w-8 hover:z-10">
+                    <img
+                    class="rounded-full ring ring-white dark:ring-navy-700"
+                    src="{{asset('assets/images/avatar/avatar-10.jpg')}}"
+                    alt="avatar"
+                    />
+                </div>
+                </div>
+                <button
+                class="btn h-8 w-8 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
+                >
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-5 w-5"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                >
+                    <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"
+                    />
+                    <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                    />
+                </svg>
+                </button>
+            </div>
+            </div>
+        </div>
+        </div>
+    </div>
+    <div class="col-span-12 lg:col-span-4">
+        <div class="flex items-center justify-between">
+        <h2
+            class="font-medium tracking-wide text-slate-700 dark:text-navy-100"
+        >
+        Satisfaction des clients
+        </h2>
+        <div
+            x-data="usePopper({placement:'bottom-end',offset:4})"
+            @click.outside="if(isShowPopper) isShowPopper = false"
+            class="inline-flex"
+        >
+            <button
+            x-ref="popperRef"
+            @click="isShowPopper = !isShowPopper"
+            class="btn h-8 w-8 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
+            >
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-5 w-5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                stroke-width="2"
+            >
+                <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"
+                />
+            </svg>
+            </button>
+
+            <div
+            x-ref="popperRoot"
+            class="popper-root"
+            :class="isShowPopper && 'show'"
+            >
+            <div
+                class="popper-box rounded-md border border-slate-150 bg-white py-1.5 font-inter dark:border-navy-500 dark:bg-navy-700"
+            >
+                <ul>
+                <li>
+                    <a
+                    href="dashboards-crm-analytics.html#"
+                    class="flex h-8 items-center px-3 pr-8 font-medium tracking-wide outline-none transition-all hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100"
+                    >Action</a
+                    >
+                </li>
+                <li>
+                    <a
+                    href="dashboards-crm-analytics.html#"
+                    class="flex h-8 items-center px-3 pr-8 font-medium tracking-wide outline-none transition-all hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100"
+                    >Another Action</a
+                    >
+                </li>
+                <li>
+                    <a
+                    href="dashboards-crm-analytics.html#"
+                    class="flex h-8 items-center px-3 pr-8 font-medium tracking-wide outline-none transition-all hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100"
+                    >Something else</a
+                    >
+                </li>
+                </ul>
+                <div class="my-1 h-px bg-slate-150 dark:bg-navy-500"></div>
+                <ul>
+                <li>
+                    <a
+                    href="dashboards-crm-analytics.html#"
+                    class="flex h-8 items-center px-3 pr-8 font-medium tracking-wide outline-none transition-all hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100"
+                    >Separated Link</a
+                    >
+                </li>
+                </ul>
+            </div>
+            </div>
+        </div>
+        </div>
+        <div class="mt-3">
+        <p>
+            <span class="text-3xl text-slate-700 dark:text-navy-100"
+            >9.7</span
+            >
+            <span class="text-xs text-success">+2.1%</span>
+        </p>
+        <p class="text-xs+">Note de performance</p>
+        </div>
+        <div class="mt-4 flex h-2 space-x-1">
+        <div
+            class="w-5/12 rounded-full bg-primary dark:bg-accent"
+            x-tooltip.primary="'Exellent'"
+        ></div>
+        <div
+            class="w-2/12 rounded-full bg-success"
+            x-tooltip.success="'Very Good'"
+        ></div>
+        <div
+            class="w-2/12 rounded-full bg-info"
+            x-tooltip.info="'Good'"
+        ></div>
+
+        <div
+            class="w-2/12 rounded-full bg-warning"
+            x-tooltip.warning="'Poor'"
+        ></div>
+        <div
+            class="w-1/12 rounded-full bg-error"
+            x-tooltip.error="'Very Poor'"
+        ></div>
+        </div>
+
+        <div class="is-scrollbar-hidden mt-4 min-w-full overflow-x-auto">
+        <table class="w-full font-inter">
+            <tbody>
+            <tr>
+                <td class="whitespace-nowrap py-2">
+                <div class="flex items-center space-x-2">
+                    <div
+                    class="h-3.5 w-3.5 rounded-full border-2 border-primary dark:border-accent"
+                    ></div>
+                    <p
+                    class="font-medium tracking-wide text-slate-700 dark:text-navy-100"
+                    >
+                    Exellent
+                    </p>
+                </div>
+                </td>
+                <td class="whitespace-nowrap py-2 text-right">
+                <p class="font-medium text-slate-700 dark:text-navy-100">
+                    1 029
+                </p>
+                </td>
+                <td class="whitespace-nowrap py-2 text-right">42%</td>
+            </tr>
+            <tr>
+                <td class="whitespace-nowrap py-2">
+                <div class="flex items-center space-x-2">
+                    <div
+                    class="h-3.5 w-3.5 rounded-full border-2 border-success"
+                    ></div>
+                    <p
+                    class="font-medium tracking-wide text-slate-700 dark:text-navy-100"
+                    >
+                    Très bien
+                    </p>
+                </div>
+                </td>
+                <td class="whitespace-nowrap py-2 text-right">
+                <p class="font-medium text-slate-700 dark:text-navy-100">
+                    426
+                </p>
+                </td>
+                <td class="whitespace-nowrap py-2 text-right">18%</td>
+            </tr>
+            <tr>
+                <td class="whitespace-nowrap py-2">
+                <div class="flex items-center space-x-2">
+                    <div
+                    class="h-3.5 w-3.5 rounded-full border-2 border-info"
+                    ></div>
+                    <p
+                    class="font-medium tracking-wide text-slate-700 dark:text-navy-100"
+                    >
+                    Bien
+                    </p>
+                </div>
+                </td>
+                <td class="whitespace-nowrap py-2 text-right">
+                <p class="font-medium text-slate-700 dark:text-navy-100">
+                    326
+                </p>
+                </td>
+                <td class="whitespace-nowrap py-2 text-right">14%</td>
+            </tr>
+            <tr>
+                <td class="whitespace-nowrap py-2">
+                <div class="flex items-center space-x-2">
+                    <div
+                    class="h-3.5 w-3.5 rounded-full border-2 border-warning"
+                    ></div>
+                    <p
+                    class="font-medium tracking-wide text-slate-700 dark:text-navy-100"
+                    >
+                    Mauvais
+                    </p>
+                </div>
+                </td>
+                <td class="whitespace-nowrap py-2 text-right">
+                <p class="font-medium text-slate-700 dark:text-navy-100">
+                    395
+                </p>
+                </td>
+                <td class="whitespace-nowrap py-2 text-right">17%</td>
+            </tr>
+            <tr>
+                <td class="whitespace-nowrap py-2">
+                <div class="flex items-center space-x-2">
+                    <div
+                    class="h-3.5 w-3.5 rounded-full border-2 border-error"
+                    ></div>
+                    <p
+                    class="font-medium tracking-wide text-slate-700 dark:text-navy-100"
+                    >
+                    très mauvais
+                    </p>
+                </div>
+                </td>
+                <td class="whitespace-nowrap py-2 text-right">
+                <p class="font-medium text-slate-700 dark:text-navy-100">
+                    129
+                </p>
+                </td>
+                <td class="whitespace-nowrap py-2 text-right">9%</td>
+            </tr>
+            </tbody>
+        </table>
+        </div>
+    </div>
+    </div>
+    <div
+    class="mt-4 grid grid-cols-12 gap-4 bg-slate-150 py-5 dark:bg-navy-800 sm:mt-5 sm:gap-5 lg:mt-6 lg:gap-6"
+    >
+    <div
+        class="col-span-12 flex flex-col px-[var(--margin-x)] transition-all duration-[.25s] lg:col-span-3 lg:pr-0"
+    >
+        <h2
+        class="text-base font-medium tracking-wide text-slate-700 line-clamp-1 dark:text-navy-100 lg:text-xl"
+        >
+        Meilleures ventes
+        </h2>
+
+        <p class="mt-3 grow">
+            Le classement des meilleurs vendeurs est calculé sur la base des ventes d'un produit et est mis à jour toutes les heures.
+        </p>
+
+        <div class="mt-4">
+        <p>La croissance des ventes</p>
+        <div class="mt-1.5 flex items-center space-x-2">
+            <div
+            class="flex h-7 w-7 items-center justify-center rounded-full bg-success/15 text-success"
+            >
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-4 w-4"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+            >
+                <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M7 11l5-5m0 0l5 5m-5-5v12"
+                />
+            </svg>
+            </div>
+            <p
+            class="text-base font-medium text-slate-700 dark:text-navy-100"
+            >
+            $2,225.22
+            </p>
+        </div>
+        </div>
+    </div>
+    <div
+        class="is-scrollbar-hidden col-span-12 flex space-x-4 overflow-x-auto px-[var(--margin-x)] transition-all duration-[.25s] lg:col-span-9 lg:pl-0"
+    >
+        <div class="card w-72 shrink-0 space-y-9 rounded-xl p-4 sm:px-5">
+        <div class="flex items-center justify-between space-x-2">
+            <div class="flex items-center space-x-3">
+            <div class="avatar">
+                <img
+                class="mask is-squircle"
+                src="{{asset('assets/images/avatar/avatar-5.jpg')}}"
+                alt="image"
+                />
+            </div>
+            <div>
+                <p
+                class="font-medium text-slate-700 line-clamp-1 dark:text-navy-100"
+                >
+                Travis Fuller
+                </p>
+                <p class="text-xs text-slate-400 dark:text-navy-300">
+                Employee
+                </p>
+            </div>
+            </div>
+            <div class="flex space-x-2">
+            <div class="relative cursor-pointer">
+                <button
+                class="btn h-7 w-7 bg-primary/10 p-0 text-primary hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:bg-accent-light/10 dark:text-accent-light dark:hover:bg-accent-light/20 dark:focus:bg-accent-light/20 dark:active:bg-accent-light/25"
+                >
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-4.5 w-4.5"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                >
+                    <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="1.5"
+                    d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
+                    />
+                </svg>
+                </button>
+                <div
+                class="absolute top-0 right-0 -m-1 flex h-4 min-w-[1rem] items-center justify-center rounded-full bg-primary px-1 text-tiny font-medium leading-none text-white dark:bg-accent"
+                >
+                2
+                </div>
+            </div>
+            <div class="relative cursor-pointer">
+                <button
+                class="btn h-7 w-7 bg-primary/10 p-0 text-primary hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:bg-accent-light/10 dark:text-accent-light dark:hover:bg-accent-light/20 dark:focus:bg-accent-light/20 dark:active:bg-accent-light/25"
+                >
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-4.5 w-4.5"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                >
+                    <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="1.5"
+                    d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                    />
+                </svg>
+                </button>
+                <div
+                class="absolute top-0 right-0 -m-1 flex h-4 min-w-[1rem] items-center justify-center rounded-full bg-primary px-1 text-tiny font-medium leading-none text-white dark:bg-accent"
+                >
+                4
+                </div>
+            </div>
+            </div>
+        </div>
+        <div class="flex justify-between space-x-2">
+            <div>
+            <p class="text-xs+">Ventes</p>
+            <p
+                class="text-xl font-semibold text-slate-700 dark:text-navy-100"
+            >
+                2 348
+            </p>
+            </div>
+            <div>
+            <p class="text-xs+">Prospects</p>
+            <p
+                class="text-xl font-semibold text-slate-700 dark:text-navy-100"
+            >
+                3 000
+            </p>
+            </div>
+            <div>
+            <p class="text-xs+">Clients</p>
+            <p
+                class="text-xl font-semibold text-slate-700 dark:text-navy-100"
+            >
+                78
+            </p>
+            </div>
+        </div>
+        <div class="grow">
+            <div class="flex w-full space-x-1">
+            <div
+                x-tooltip="'Phone Calls'"
+                class="h-2 w-4/12 rounded-full bg-primary dark:bg-accent"
+            ></div>
+            <div
+                x-tooltip="'Chats Messages'"
+                class="h-2 w-3/12 rounded-full bg-success"
+            ></div>
+            <div
+                x-tooltip="'Emails'"
+                class="h-2 w-5/12 rounded-full bg-info"
+            ></div>
+            </div>
+            <div class="mt-2 flex flex-wrap">
+            <div
+                class="mr-4 mb-1 inline-flex items-center space-x-2 font-inter"
+            >
+                <div
+                class="h-2 w-2 rounded-full bg-primary dark:bg-accent"
+                ></div>
+                <div class="flex space-x-1 text-xs leading-6">
+                <span
+                    class="font-medium text-slate-700 dark:text-navy-100"
+                    >Appels</span
+                >
+                <span>33%</span>
+                </div>
+            </div>
+            <div
+                class="mr-4 mb-1 inline-flex items-center space-x-2 font-inter"
+            >
+                <div class="h-2 w-2 rounded-full bg-success"></div>
+                <div class="flex space-x-1 text-xs">
+                <span
+                    class="font-medium text-slate-700 dark:text-navy-100"
+                    >reseaux sociaux</span
+                >
+                <span>17%</span>
+                </div>
+            </div>
+            <div
+                class="mb-1 inline-flex items-center space-x-2 font-inter"
+            >
+                <div class="h-2 w-2 rounded-full bg-info"></div>
+                <div class="flex space-x-1 text-xs">
+                <span
+                    class="font-medium text-slate-700 dark:text-navy-100"
+                    >Bouche à oreille</span
+                >
+                <span>50%</span>
+                </div>
+            </div>
+            </div>
+        </div>
+        <div class="flex justify-between">
+            <div class="flex space-x-2">
+            <img
+                x-tooltip="'Award Level 1'"
+                class="h-6 w-6"
+                src="{{asset('assets/images/awards/award-19.svg')}}"
+                alt="avatar"
+            />
+            <img
+                x-tooltip="'Award Level 2'"
+                class="h-6 w-6"
+                src="{{asset('assets/images/awards/award-2.svg')}}"
+                alt="avatar"
+            />
+            <img
+                x-tooltip="'Award Level 3'"
+                class="h-6 w-6"
+                src="{{asset('assets/images/awards/award-5.svg')}}"
+                alt="avatar"
+            />
+            </div>
+            <button
+            class="btn -mr-1.5 h-8 w-8 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
+            >
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-5 w-5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                stroke-width="1.5"
+            >
+                <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"
+                />
+                <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                />
+            </svg>
+            </button>
+        </div>
+        </div>
+        <div class="card w-72 shrink-0 space-y-9 rounded-xl p-4 sm:px-5">
+        <div class="flex items-center justify-between space-x-2">
+            <div class="flex items-center space-x-3">
+            <div class="avatar">
+                <img
+                class="mask is-squircle"
+                src="{{asset('assets/images/avatar/avatar-18.jpg')}}"
+                alt="image"
+                />
+            </div>
+            <div>
+                <p
+                class="font-medium text-slate-700 line-clamp-1 dark:text-navy-100"
+                >
+                Konnor Guzman
+                </p>
+                <p class="text-xs text-slate-400 dark:text-navy-300">
+                Employee
+                </p>
+            </div>
+            </div>
+            <div class="flex space-x-2">
+            <div class="relative cursor-pointer">
+                <button
+                class="btn h-7 w-7 bg-primary/10 p-0 text-primary hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:bg-accent-light/10 dark:text-accent-light dark:hover:bg-accent-light/20 dark:focus:bg-accent-light/20 dark:active:bg-accent-light/25"
+                >
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-4.5 w-4.5"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                >
+                    <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="1.5"
+                    d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
+                    />
+                </svg>
+                </button>
+            </div>
+            <div class="relative cursor-pointer">
+                <button
+                class="btn h-7 w-7 bg-primary/10 p-0 text-primary hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:bg-accent-light/10 dark:text-accent-light dark:hover:bg-accent-light/20 dark:focus:bg-accent-light/20 dark:active:bg-accent-light/25"
+                >
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-4.5 w-4.5"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                >
+                    <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="1.5"
+                    d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                    />
+                </svg>
+                </button>
+                <div
+                class="absolute top-0 right-0 -m-1 flex h-4 min-w-[1rem] items-center justify-center rounded-full bg-primary px-1 text-tiny font-medium leading-none text-white dark:bg-accent"
+                >
+                3
+                </div>
+            </div>
+            </div>
+        </div>
+        <div class="flex justify-between space-x-2">
+            <div>
+            <p class="text-xs+">Ventes</p>
+            <p
+                class="text-xl font-semibold text-slate-700 dark:text-navy-100"
+            >
+                1 451
+            </p>
+            </div>
+            <div>
+            <p class="text-xs+">Prospects</p>
+            <p
+                class="text-xl font-semibold text-slate-700 dark:text-navy-100"
+            >
+                2 000
+            </p>
+            </div>
+            <div>
+            <p class="text-xs+">Clients</p>
+            <p
+                class="text-xl font-semibold text-slate-700 dark:text-navy-100"
+            >
+                54
+            </p>
+            </div>
+        </div>
+        <div class="grow">
+            <div class="flex w-full space-x-1">
+            <div
+                x-tooltip="'Phone Calls'"
+                class="h-2 w-3/12 rounded-full bg-primary dark:bg-accent"
+            ></div>
+            <div
+                x-tooltip="'Chats Messages'"
+                class="h-2 w-7/12 rounded-full bg-success"
+            ></div>
+            <div
+                x-tooltip="'Emails'"
+                class="h-2 w-2/12 rounded-full bg-info"
+            ></div>
+            </div>
+            <div class="mt-2 flex flex-wrap">
+            <div
+                class="mr-4 mb-1 inline-flex items-center space-x-2 font-inter"
+            >
+                <div
+                class="h-2 w-2 rounded-full bg-primary dark:bg-accent"
+                ></div>
+                <div class="flex space-x-1 text-xs leading-6">
+                <span
+                    class="font-medium text-slate-700 dark:text-navy-100"
+                    >Appels</span
+                >
+                <span>24%</span>
+                </div>
+            </div>
+            <div
+                class="mr-4 mb-1 inline-flex items-center space-x-2 font-inter"
+            >
+                <div class="h-2 w-2 rounded-full bg-success"></div>
+                <div class="flex space-x-1 text-xs">
+                <span
+                    class="font-medium text-slate-700 dark:text-navy-100"
+                    >Reseaux sociaux</span
+                >
+                <span>56%</span>
+                </div>
+            </div>
+            <div
+                class="mb-1 inline-flex items-center space-x-2 font-inter"
+            >
+                <div class="h-2 w-2 rounded-full bg-info"></div>
+                <div class="flex space-x-1 text-xs">
+                <span
+                    class="font-medium text-slate-700 dark:text-navy-100"
+                    >Emails</span
+                >
+                <span>20%</span>
+                </div>
+            </div>
+            </div>
+        </div>
+        <div class="flex justify-between">
+            <div class="flex space-x-2">
+            <img
+                x-tooltip="'Award Level 1'"
+                class="h-6 w-6"
+                src="{{asset('assets/images/awards/award-1.svg')}}"
+                alt="avatar"
+            />
+            <img
+                x-tooltip="'Award Level 2'"
+                class="h-6 w-6"
+                src="{{asset('assets/images/awards/award-6.svg')}}"
+                alt="avatar"
+            />
+            <img
+                x-tooltip="'Award Level 3'"
+                class="h-6 w-6"
+                src="{{asset('assets/images/awards/award-9.svg')}}"
+                alt="avatar"
+            />
+            </div>
+            <button
+            class="btn -mr-1.5 h-8 w-8 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
+            >
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-5 w-5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                stroke-width="1.5"
+            >
+                <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"
+                />
+                <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                />
+            </svg>
+            </button>
+        </div>
+        </div>
+        <div class="card w-72 shrink-0 space-y-9 rounded-xl p-4 sm:px-5">
+        <div class="flex items-center justify-between space-x-2">
+            <div class="flex items-center space-x-3">
+            <div class="avatar">
+                <img
+                class="mask is-squircle"
+                src="{{asset('assets/images/avatar/avatar-6.jpg')}}"
+                alt="image"
+                />
+            </div>
+            <div>
+                <p
+                class="font-medium text-slate-700 line-clamp-1 dark:text-navy-100"
+                >
+                Alfredo Elliott
+                </p>
+                <p class="text-xs text-slate-400 dark:text-navy-300">
+                Contractors
+                </p>
+            </div>
+            </div>
+            <div class="flex space-x-2">
+            <div class="relative cursor-pointer">
+                <button
+                class="btn h-7 w-7 bg-primary/10 p-0 text-primary hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:bg-accent-light/10 dark:text-accent-light dark:hover:bg-accent-light/20 dark:focus:bg-accent-light/20 dark:active:bg-accent-light/25"
+                >
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-4.5 w-4.5"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                >
+                    <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="1.5"
+                    d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
+                    />
+                </svg>
+                </button>
+                <div
+                class="absolute top-0 right-0 -m-1 flex h-4 min-w-[1rem] items-center justify-center rounded-full bg-primary px-1 text-tiny font-medium leading-none text-white dark:bg-accent"
+                >
+                4
+                </div>
+            </div>
+            <div class="relative cursor-pointer">
+                <button
+                class="btn h-7 w-7 bg-primary/10 p-0 text-primary hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:bg-accent-light/10 dark:text-accent-light dark:hover:bg-accent-light/20 dark:focus:bg-accent-light/20 dark:active:bg-accent-light/25"
+                >
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-4.5 w-4.5"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                >
+                    <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="1.5"
+                    d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                    />
+                </svg>
+                </button>
+            </div>
+            </div>
+        </div>
+        <div class="flex justify-between space-x-2">
+            <div>
+            <p class="text-xs+">Ventes</p>
+            <p
+                class="text-xl font-semibold text-slate-700 dark:text-navy-100"
+            >
+                423
+            </p>
+            </div>
+            <div>
+            <p class="text-xs+">Prospects</p>
+            <p
+                class="text-xl font-semibold text-slate-700 dark:text-navy-100"
+            >
+                500
+            </p>
+            </div>
+            <div>
+            <p class="text-xs+">Clients</p>
+            <p
+                class="text-xl font-semibold text-slate-700 dark:text-navy-100"
+            >
+                16
+            </p>
+            </div>
+        </div>
+        <div class="grow">
+            <div class="flex w-full space-x-1">
+            <div
+                x-tooltip="'Phone Calls'"
+                class="h-2 w-8/12 rounded-full bg-primary dark:bg-accent"
+            ></div>
+            <div
+                x-tooltip="'Chats Messages'"
+                class="h-2 w-2/12 rounded-full bg-success"
+            ></div>
+            <div
+                x-tooltip="'Emails'"
+                class="h-2 w-2/12 rounded-full bg-info"
+            ></div>
+            </div>
+            <div class="mt-2 flex flex-wrap">
+            <div
+                class="mr-4 mb-1 inline-flex items-center space-x-2 font-inter"
+            >
+                <div
+                class="h-2 w-2 rounded-full bg-primary dark:bg-accent"
+                ></div>
+                <div class="flex space-x-1 text-xs leading-6">
+                <span
+                    class="font-medium text-slate-700 dark:text-navy-100"
+                    >Calls</span
+                >
+                <span>60%</span>
+                </div>
+            </div>
+            <div
+                class="mr-4 mb-1 inline-flex items-center space-x-2 font-inter"
+            >
+                <div class="h-2 w-2 rounded-full bg-success"></div>
+                <div class="flex space-x-1 text-xs">
+                <span
+                    class="font-medium text-slate-700 dark:text-navy-100"
+                    >Reseaux sociaux</span
+                >
+                <span>23%</span>
+                </div>
+            </div>
+            <div
+                class="mb-1 inline-flex items-center space-x-2 font-inter"
+            >
+                <div class="h-2 w-2 rounded-full bg-info"></div>
+                <div class="flex space-x-1 text-xs">
+                <span
+                    class="font-medium text-slate-700 dark:text-navy-100"
+                    >Bouche à oreille</span
+                >
+                <span>17%</span>
+                </div>
+            </div>
+            </div>
+        </div>
+        <div class="flex justify-between">
+            <div class="flex space-x-2">
+            <img
+                x-tooltip="'Award Level 2'"
+                class="h-6 w-6"
+                src="{{asset('assets/images/awards/award-14.svg')}}"
+                alt="avatar"
+            />
+            <img
+                x-tooltip="'Award Level 3'"
+                class="h-6 w-6"
+                src="{{asset('assets/images/awards/award-13.svg')}}"
+                alt="avatar"
+            />
+            </div>
+            <button
+            class="btn -mr-1.5 h-8 w-8 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
+            >
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-5 w-5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                stroke-width="1.5"
+            >
+                <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"
+                />
+                <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                />
+            </svg>
+            </button>
+        </div>
+        </div>
+        <div class="card w-72 shrink-0 space-y-9 rounded-xl p-4 sm:px-5">
+        <div class="flex items-center justify-between space-x-2">
+            <div class="flex items-center space-x-3">
+            <div class="avatar">
+                <img
+                class="mask is-squircle"
+                src="{{asset('assets/images/avatar/avatar-11.jpg')}}"
+                alt="image"
+                />
+            </div>
+            <div>
+                <p
+                class="font-medium text-slate-700 line-clamp-1 dark:text-navy-100"
+                >
+                Samantha Shelton
+                </p>
+                <p class="text-xs text-slate-400 dark:text-navy-300">
+                Contractors
+                </p>
+            </div>
+            </div>
+            <div class="flex space-x-2">
+            <div class="relative cursor-pointer">
+                <button
+                class="btn h-7 w-7 bg-primary/10 p-0 text-primary hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:bg-accent-light/10 dark:text-accent-light dark:hover:bg-accent-light/20 dark:focus:bg-accent-light/20 dark:active:bg-accent-light/25"
+                >
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-4.5 w-4.5"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                >
+                    <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="1.5"
+                    d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
+                    />
+                </svg>
+                </button>
+                <div
+                class="absolute top-0 right-0 -m-1 flex h-4 min-w-[1rem] items-center justify-center rounded-full bg-primary px-1 text-tiny font-medium leading-none text-white dark:bg-accent"
+                >
+                2
+                </div>
+            </div>
+            <div class="relative cursor-pointer">
+                <button
+                class="btn h-7 w-7 bg-primary/10 p-0 text-primary hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:bg-accent-light/10 dark:text-accent-light dark:hover:bg-accent-light/20 dark:focus:bg-accent-light/20 dark:active:bg-accent-light/25"
+                >
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-4.5 w-4.5"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                >
+                    <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="1.5"
+                    d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                    />
+                </svg>
+                </button>
+            </div>
+            </div>
+        </div>
+        <div class="flex justify-between space-x-2">
+            <div>
+            <p class="text-xs+">Ventes</p>
+            <p
+                class="text-xl font-semibold text-slate-700 dark:text-navy-100"
+            >
+                579
+            </p>
+            </div>
+            <div>
+            <p class="text-xs+">Prospects</p>
+            <p
+                class="text-xl font-semibold text-slate-700 dark:text-navy-100"
+            >
+                800
+            </p>
+            </div>
+            <div>
+            <p class="text-xs+">Clients</p>
+            <p
+                class="text-xl font-semibold text-slate-700 dark:text-navy-100"
+            >
+                24
+            </p>
+            </div>
+        </div>
+        <div class="grow">
+            <div class="flex w-full space-x-1">
+            <div
+                x-tooltip="'Phone Calls'"
+                class="h-2 w-4/12 rounded-full bg-primary dark:bg-accent"
+            ></div>
+            <div
+                x-tooltip="'Chats Messages'"
+                class="h-2 w-4/12 rounded-full bg-success"
+            ></div>
+            <div
+                x-tooltip="'Emails'"
+                class="h-2 w-4/12 rounded-full bg-info"
+            ></div>
+            </div>
+            <div class="mt-2 flex flex-wrap">
+            <div
+                class="mr-4 mb-1 inline-flex items-center space-x-2 font-inter"
+            >
+                <div
+                class="h-2 w-2 rounded-full bg-primary dark:bg-accent"
+                ></div>
+                <div class="flex space-x-1 text-xs leading-6">
+                <span
+                    class="font-medium text-slate-700 dark:text-navy-100"
+                    >Calls</span
+                >
+                <span>30%</span>
+                </div>
+            </div>
+            <div
+                class="mr-4 mb-1 inline-flex items-center space-x-2 font-inter"
+            >
+                <div class="h-2 w-2 rounded-full bg-success"></div>
+                <div class="flex space-x-1 text-xs">
+                <span
+                    class="font-medium text-slate-700 dark:text-navy-100"
+                    >Reseaux sociaux</span
+                >
+                <span>36%</span>
+                </div>
+            </div>
+            <div
+                class="mb-1 inline-flex items-center space-x-2 font-inter"
+            >
+                <div class="h-2 w-2 rounded-full bg-info"></div>
+                <div class="flex space-x-1 text-xs">
+                <span
+                    class="font-medium text-slate-700 dark:text-navy-100"
+                    >Bouche à oreille</span
+                >
+                <span>34%</span>
+                </div>
+            </div>
+            </div>
+        </div>
+        <div class="flex justify-between">
+            <div class="flex space-x-2">
+            <img
+                x-tooltip="'Award Level 2'"
+                class="h-6 w-6"
+                src="{{asset('assets/images/awards/award-15.svg')}}"
+                alt="avatar"
+            />
+            <img
+                x-tooltip="'Award Level 3'"
+                class="h-6 w-6"
+                src="{{asset('assets/images/awards/award-13.svg')}}"
+                alt="avatar"
+            />
+            </div>
+            <button
+            class="btn -mr-1.5 h-8 w-8 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
+            >
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-5 w-5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                stroke-width="1.5"
+            >
+                <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"
+                />
+                <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                />
+            </svg>
+            </button>
+        </div>
+        </div>
+        <div class="card w-72 shrink-0 space-y-9 rounded-xl p-4 sm:px-5">
+        <div class="flex items-center justify-between space-x-2">
+            <div class="flex items-center space-x-3">
+            <div class="avatar">
+                <img
+                class="mask is-squircle"
+                src="{{asset('assets/images/avatar/avatar-19.jpg')}}"
+                alt="image"
+                />
+            </div>
+            <div>
+                <p
+                class="font-medium text-slate-700 line-clamp-1 dark:text-navy-100"
+                >
+                Derrick Simmons
+                </p>
+                <p class="text-xs text-slate-400 dark:text-navy-300">
+                Employee
+                </p>
+            </div>
+            </div>
+            <div class="flex space-x-2">
+            <div class="relative cursor-pointer">
+                <button
+                class="btn h-7 w-7 bg-primary/10 p-0 text-primary hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:bg-accent-light/10 dark:text-accent-light dark:hover:bg-accent-light/20 dark:focus:bg-accent-light/20 dark:active:bg-accent-light/25"
+                >
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-4.5 w-4.5"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                >
+                    <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="1.5"
+                    d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
+                    />
+                </svg>
+                </button>
+            </div>
+            <div class="relative cursor-pointer">
+                <button
+                class="btn h-7 w-7 bg-primary/10 p-0 text-primary hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:bg-accent-light/10 dark:text-accent-light dark:hover:bg-accent-light/20 dark:focus:bg-accent-light/20 dark:active:bg-accent-light/25"
+                >
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-4.5 w-4.5"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                >
+                    <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="1.5"
+                    d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                    />
+                </svg>
+                </button>
+            </div>
+            </div>
+        </div>
+        <div class="flex justify-between space-x-2">
+            <div>
+            <p class="text-xs+">Ventes</p>
+            <p
+                class="text-xl font-semibold text-slate-700 dark:text-navy-100"
+            >
+                6 541
+            </p>
+            </div>
+            <div>
+            <p class="text-xs+">Prospects</p>
+            <p
+                class="text-xl font-semibold text-slate-700 dark:text-navy-100"
+            >
+                8 000
+            </p>
+            </div>
+            <div>
+            <p class="text-xs+">Clients</p>
+            <p
+                class="text-xl font-semibold text-slate-700 dark:text-navy-100"
+            >
+                145
+            </p>
+            </div>
+        </div>
+        <div class="grow">
+            <div class="flex w-full space-x-1">
+            <div
+                x-tooltip="'Phone Calls'"
+                class="h-2 w-6/12 rounded-full bg-primary dark:bg-accent"
+            ></div>
+            <div
+                x-tooltip="'Chats Messages'"
+                class="h-2 w-4/12 rounded-full bg-success"
+            ></div>
+            <div
+                x-tooltip="'Emails'"
+                class="h-2 w-2/12 rounded-full bg-info"
+            ></div>
+            </div>
+            <div class="mt-2 flex flex-wrap">
+            <div
+                class="mr-4 mb-1 inline-flex items-center space-x-2 font-inter"
+            >
+                <div
+                class="h-2 w-2 rounded-full bg-primary dark:bg-accent"
+                ></div>
+                <div class="flex space-x-1 text-xs leading-6">
+                <span
+                    class="font-medium text-slate-700 dark:text-navy-100"
+                    >Appels</span
+                >
+                <span>55%</span>
+                </div>
+            </div>
+            <div
+                class="mr-4 mb-1 inline-flex items-center space-x-2 font-inter"
+            >
+                <div class="h-2 w-2 rounded-full bg-success"></div>
+                <div class="flex space-x-1 text-xs">
+                <span
+                    class="font-medium text-slate-700 dark:text-navy-100"
+                    >Reseaux sociaux</span
+                >
+                <span>30%</span>
+                </div>
+            </div>
+            <div
+                class="mb-1 inline-flex items-center space-x-2 font-inter"
+            >
+                <div class="h-2 w-2 rounded-full bg-info"></div>
+                <div class="flex space-x-1 text-xs">
+                <span
+                    class="font-medium text-slate-700 dark:text-navy-100"
+                    >Bouche à oreille</span
+                >
+                <span>15%</span>
+                </div>
+            </div>
+            </div>
+        </div>
+        <div class="flex justify-between">
+            <div class="flex space-x-2">
+            <img
+                x-tooltip="'Award Level 2'"
+                class="h-6 w-6"
+                src="{{asset('assets/images/awards/award-15.svg')}}"
+                alt="avatar"
+            />
+            <img
+                x-tooltip="'Award Level 3'"
+                class="h-6 w-6"
+                src="{{asset('assets/images/awards/award-5.svg')}}"
+                alt="avatar"
+            />
+            <img
+                x-tooltip="'Award Level 3'"
+                class="h-6 w-6"
+                src="{{asset('assets/images/awards/award-25.svg')}}"
+                alt="avatar"
+            />
+            </div>
+            <button
+            class="btn -mr-1.5 h-8 w-8 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
+            >
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-5 w-5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                stroke-width="1.5"
+            >
+                <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"
+                />
+                <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                />
+            </svg>
+            </button>
+        </div>
+        </div>
+        <div class="card w-72 shrink-0 space-y-9 rounded-xl p-4 sm:px-5">
+        <div class="flex items-center justify-between space-x-2">
+            <div class="flex items-center space-x-3">
+            <div class="avatar">
+                <img
+                class="mask is-squircle"
+                src="{{asset('assets/images/avatar/avatar-7.jpg')}}"
+                alt="image"
+                />
+            </div>
+            <div>
+                <p
+                class="font-medium text-slate-700 line-clamp-1 dark:text-navy-100"
+                >
+                Katrina West
+                </p>
+                <p class="text-xs text-slate-400 dark:text-navy-300">
+                Employee
+                </p>
+            </div>
+            </div>
+            <div class="flex space-x-2">
+            <div class="relative cursor-pointer">
+                <button
+                class="btn h-7 w-7 bg-primary/10 p-0 text-primary hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:bg-accent-light/10 dark:text-accent-light dark:hover:bg-accent-light/20 dark:focus:bg-accent-light/20 dark:active:bg-accent-light/25"
+                >
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-4.5 w-4.5"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                >
+                    <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="1.5"
+                    d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
+                    />
+                </svg>
+                </button>
+                <div
+                class="absolute top-0 right-0 -m-1 flex h-4 min-w-[1rem] items-center justify-center rounded-full bg-primary px-1 text-tiny font-medium leading-none text-white dark:bg-accent"
+                >
+                1
+                </div>
+            </div>
+            <div class="relative cursor-pointer">
+                <button
+                class="btn h-7 w-7 bg-primary/10 p-0 text-primary hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:bg-accent-light/10 dark:text-accent-light dark:hover:bg-accent-light/20 dark:focus:bg-accent-light/20 dark:active:bg-accent-light/25"
+                >
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-4.5 w-4.5"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                >
+                    <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="1.5"
+                    d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                    />
+                </svg>
+                </button>
+            </div>
+            </div>
+        </div>
+
+        <div class="flex justify-between space-x-2">
+            <div>
+            <p class="text-xs+">Ventes</p>
+            <p
+                class="text-xl font-semibold text-slate-700 dark:text-navy-100"
+            >
+                3 481
+            </p>
+            </div>
+            <div>
+            <p class="text-xs+">Prospects</p>
+            <p
+                class="text-xl font-semibold text-slate-700 dark:text-navy-100"
+            >
+                5 000
+            </p>
+            </div>
+            <div>
+            <p class="text-xs+">Clients</p>
+            <p
+                class="text-xl font-semibold text-slate-700 dark:text-navy-100"
+            >
+                96
+            </p>
+            </div>
+        </div>
+
+        <div class="grow">
+            <div class="flex w-full space-x-1">
+            <div
+                x-tooltip="'Phone Calls'"
+                class="h-2 w-1/12 rounded-full bg-primary dark:bg-accent"
+            ></div>
+            <div
+                x-tooltip="'Chats Messages'"
+                class="h-2 w-5/12 rounded-full bg-success"
+            ></div>
+            <div
+                x-tooltip="'Emails'"
+                class="h-2 w-6/12 rounded-full bg-info"
+            ></div>
+            </div>
+            <div class="mt-2 flex flex-wrap">
+            <div
+                class="mr-4 mb-1 inline-flex items-center space-x-2 font-inter"
+            >
+                <div
+                class="h-2 w-2 rounded-full bg-primary dark:bg-accent"
+                ></div>
+                <div class="flex space-x-1 text-xs leading-6">
+                <span
+                    class="font-medium text-slate-700 dark:text-navy-100"
+                    >Appels</span
+                >
+                <span>9%</span>
+                </div>
+            </div>
+            <div
+                class="mr-4 mb-1 inline-flex items-center space-x-2 font-inter"
+            >
+                <div class="h-2 w-2 rounded-full bg-success"></div>
+                <div class="flex space-x-1 text-xs">
+                <span
+                    class="font-medium text-slate-700 dark:text-navy-100"
+                    >Reseaux sociaux</span
+                >
+                <span>41%</span>
+                </div>
+            </div>
+            <div
+                class="mb-1 inline-flex items-center space-x-2 font-inter"
+            >
+                <div class="h-2 w-2 rounded-full bg-info"></div>
+                <div class="flex space-x-1 text-xs">
+                <span
+                    class="font-medium text-slate-700 dark:text-navy-100"
+                    >Bouche à oreille</span
+                >
+                <span>50%</span>
+                </div>
+            </div>
+            </div>
+        </div>
+
+        <div class="flex justify-between">
+            <div class="flex space-x-2">
+            <img
+                x-tooltip="'Award Level 2'"
+                class="h-6 w-6"
+                src="{{asset('assets/images/awards/award-1.svg')}}"
+                alt="avatar"
+            />
+            <img
+                x-tooltip="'Award Level 3'"
+                class="h-6 w-6"
+                src="{{asset('assets/images/awards/award-24.svg')}}"
+                alt="avatar"
+            />
+            <img
+                x-tooltip="'Award Level 3'"
+                class="h-6 w-6"
+                src="{{asset('assets/images/awards/award-30.svg')}}"
+                alt="avatar"
+            />
+            </div>
+            <button
+            class="btn -mr-1.5 h-8 w-8 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
+            >
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-5 w-5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                stroke-width="1.5"
+            >
+                <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"
+                />
+                <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                />
+            </svg>
+            </button>
+        </div>
+        </div>
+    </div>
+    </div>
+    <div
+    class="mt-4 grid grid-cols-12 gap-4 px-[var(--margin-x)] transition-all duration-[.25s] sm:mt-5 sm:gap-5 lg:mt-6 lg:gap-6"
+    >
+    <div class="card col-span-12 sm:col-span-6">
+        <div class="my-3 flex items-center justify-between px-4 sm:px-5">
+        <h2
+            class="font-medium tracking-wide text-slate-700 dark:text-navy-100"
+        >
+            Bandwidth Report
+        </h2>
+        <div
+            x-data="usePopper({placement:'bottom-end',offset:4})"
+            @click.outside="if(isShowPopper) isShowPopper = false"
+            class="inline-flex"
+        >
+            <button
+            x-ref="popperRef"
+            @click="isShowPopper = !isShowPopper"
+            class="btn -mr-1.5 h-8 w-8 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
+            >
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-5 w-5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                stroke-width="2"
+            >
+                <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"
+                />
+            </svg>
+            </button>
+
+            <div
+            x-ref="popperRoot"
+            class="popper-root"
+            :class="isShowPopper && 'show'"
+            >
+            <div
+                class="popper-box rounded-md border border-slate-150 bg-white py-1.5 font-inter dark:border-navy-500 dark:bg-navy-700"
+            >
+                <ul>
+                <li>
+                    <a
+                    href="dashboards-crm-analytics.html#"
+                    class="flex h-8 items-center px-3 pr-8 font-medium tracking-wide outline-none transition-all hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100"
+                    >Action</a
+                    >
+                </li>
+                <li>
+                    <a
+                    href="dashboards-crm-analytics.html#"
+                    class="flex h-8 items-center px-3 pr-8 font-medium tracking-wide outline-none transition-all hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100"
+                    >Another Action</a
+                    >
+                </li>
+                <li>
+                    <a
+                    href="dashboards-crm-analytics.html#"
+                    class="flex h-8 items-center px-3 pr-8 font-medium tracking-wide outline-none transition-all hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100"
+                    >Something else</a
+                    >
+                </li>
+                </ul>
+                <div class="my-1 h-px bg-slate-150 dark:bg-navy-500"></div>
+                <ul>
+                <li>
+                    <a
+                    href="dashboards-crm-analytics.html#"
+                    class="flex h-8 items-center px-3 pr-8 font-medium tracking-wide outline-none transition-all hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100"
+                    >Separated Link</a
+                    >
+                </li>
+                </ul>
+            </div>
+            </div>
+        </div>
+        </div>
+
+        <div
+        class="grid grid-cols-1 gap-4 px-4 sm:gap-5 sm:px-5 lg:grid-cols-2"
+        >
+        <div
+            class="rounded-lg border border-slate-150 p-4 dark:border-navy-600"
+        >
+            <div class="flex justify-between">
+            <div>
+                <span
+                class="text-2xl font-medium text-slate-700 dark:text-navy-100"
+                >393</span
+                >
+                <span class="text-xs">Mb</span>
+            </div>
+            <p class="text-xs+">HTTP Traffic</p>
+            </div>
+
+            <div class="progress mt-3 h-1.5 bg-slate-150 dark:bg-navy-500">
+            <div
+                class="is-active relative w-8/12 overflow-hidden rounded-full bg-success"
+            ></div>
+            </div>
+            <div
+            class="mt-2 flex justify-between text-xs text-slate-400 dark:text-navy-300"
+            >
+            <p>Monthly Prospects</p>
+            <p>17%</p>
+            </div>
+        </div>
+        <div
+            class="rounded-lg border border-slate-150 p-4 dark:border-navy-600"
+        >
+            <div class="flex justify-between">
+            <div>
+                <span
+                class="text-2xl font-medium text-slate-700 dark:text-navy-100"
+                >293</span
+                >
+                <span class="text-xs">Mb</span>
+            </div>
+            <p class="text-xs+">SMTP Traffic</p>
+            </div>
+
+            <div class="progress mt-3 h-1.5 bg-slate-150 dark:bg-navy-500">
+            <div
+                class="relative w-8/12 overflow-hidden rounded-full bg-warning"
+            ></div>
+            </div>
+            <div
+            class="mt-2 flex justify-between text-xs text-slate-400 dark:text-navy-300"
+            >
+            <p>Monthly Prospects</p>
+            <p>65%</p>
+            </div>
+        </div>
+        <div
+            class="rounded-lg border border-slate-150 p-4 dark:border-navy-600"
+        >
+            <div class="flex justify-between">
+            <div>
+                <span
+                class="text-2xl font-medium text-slate-700 dark:text-navy-100"
+                >293</span
+                >
+                <span class="text-xs">Mb</span>
+            </div>
+            <p class="text-xs+">FTP Traffic</p>
+            </div>
+
+            <div class="progress mt-3 h-1.5 bg-slate-150 dark:bg-navy-500">
+            <div
+                class="relative w-5/12 overflow-hidden rounded-full bg-secondary"
+            ></div>
+            </div>
+            <div
+            class="mt-2 flex justify-between text-xs text-slate-400 dark:text-navy-300"
+            >
+            <p>Monthly Prospects</p>
+            <p>79%</p>
+            </div>
+        </div>
+        <div
+            class="rounded-lg border border-slate-150 p-4 dark:border-navy-600"
+        >
+            <div class="flex justify-between">
+            <div>
+                <span
+                class="text-2xl font-medium text-slate-700 dark:text-navy-100"
+                >36</span
+                >
+                <span class="text-xs">Mb</span>
+            </div>
+            <p class="text-xs+">POP3 Traffic</p>
+            </div>
+
+            <div class="progress mt-3 h-1.5 bg-slate-150 dark:bg-navy-500">
+            <div
+                class="is-active relative w-4/12 overflow-hidden rounded-full bg-slate-500 dark:bg-navy-400"
+            ></div>
+            </div>
+            <div
+            class="mt-2 flex justify-between text-xs text-slate-400 dark:text-navy-300"
+            >
+            <p>Monthly Prospects</p>
+            <p>79%</p>
+            </div>
+        </div>
+        </div>
+
+        <div
+        class="mt-4 flex grow items-center justify-between px-4 sm:px-5"
+        >
+        <div class="flex items-center space-x-2">
+            <p class="text-xs+">Performance</p>
+
+            <p class="text-slate-800 dark:text-navy-100">3.2%</p>
+
+            <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-4 w-4 text-success"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            >
+            <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M7 11l5-5m0 0l5 5m-5-5v12"
+            />
+            </svg>
+        </div>
+        <a
+            href="dashboards-crm-analytics.html#"
+            class="border-b border-dotted border-current pb-0.5 text-xs+ font-medium text-primary outline-none transition-colors duration-300 hover:text-primary/70 focus:text-primary/70 dark:text-accent-light dark:hover:text-accent-light/70 dark:focus:text-accent-light/70"
+            >Download Report</a
+        >
+        </div>
+
+        <div class="ax-transparent-gridline ax-rounded-b-lg">
+        <div
+            x-init="$nextTick(() => { $el._x_chart = new ApexCharts($el,pages.charts.analyticsBandwidth); $el._x_chart.render() });"
+        ></div>
+        </div>
+    </div>
+    <div class="card col-span-12 pb-4 sm:col-span-6">
+        <div class="my-3 flex items-center justify-between px-4 sm:px-5">
+        <h2
+            class="font-medium tracking-wide text-slate-700 dark:text-navy-100"
+        >
+        Activité des utilisateurs
+        </h2>
+        <div
+            x-data="usePopper({placement:'bottom-end',offset:4})"
+            @click.outside="if(isShowPopper) isShowPopper = false"
+            class="inline-flex"
+        >
+            <button
+            x-ref="popperRef"
+            @click="isShowPopper = !isShowPopper"
+            class="btn -mr-1.5 h-8 w-8 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
+            >
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-5 w-5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                stroke-width="2"
+            >
+                <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"
+                />
+            </svg>
+            </button>
+
+            <div
+            x-ref="popperRoot"
+            class="popper-root"
+            :class="isShowPopper && 'show'"
+            >
+            <div
+                class="popper-box rounded-md border border-slate-150 bg-white py-1.5 font-inter dark:border-navy-500 dark:bg-navy-700"
+            >
+                <ul>
+                <li>
+                    <a
+                    href="dashboards-crm-analytics.html#"
+                    class="flex h-8 items-center px-3 pr-8 font-medium tracking-wide outline-none transition-all hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100"
+                    >Action</a
+                    >
+                </li>
+                <li>
+                    <a
+                    href="dashboards-crm-analytics.html#"
+                    class="flex h-8 items-center px-3 pr-8 font-medium tracking-wide outline-none transition-all hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100"
+                    >Another Action</a
+                    >
+                </li>
+                <li>
+                    <a
+                    href="dashboards-crm-analytics.html#"
+                    class="flex h-8 items-center px-3 pr-8 font-medium tracking-wide outline-none transition-all hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100"
+                    >Something else</a
+                    >
+                </li>
+                </ul>
+                <div class="my-1 h-px bg-slate-150 dark:bg-navy-500"></div>
+                <ul>
+                <li>
+                    <a
+                    href="dashboards-crm-analytics.html#"
+                    class="flex h-8 items-center px-3 pr-8 font-medium tracking-wide outline-none transition-all hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100"
+                    >Separated Link</a
+                    >
+                </li>
+                </ul>
+            </div>
+            </div>
+        </div>
+        </div>
+        <ol class="timeline line-space px-4 [--size:1.5rem] sm:px-5">
+        <li class="timeline-item">
+            <div
+            class="timeline-item-point rounded-full border border-current bg-white text-secondary dark:bg-navy-700 dark:text-secondary-light"
+            >
+            <i class="fa fa-user-edit text-tiny"></i>
+            </div>
+            <div class="timeline-item-content flex-1 pl-4 sm:pl-8">
+            <div
+                class="flex flex-col justify-between pb-2 sm:flex-row sm:pb-0"
+            >
+                <p
+                class="pb-2 font-medium leading-none text-slate-600 dark:text-navy-100 sm:pb-0"
+                >
+                User Photo Changed
+                </p>
+                <span class="text-xs text-slate-400 dark:text-navy-300"
+                >12 minute ago</span
+                >
+            </div>
+            <p class="py-1">John Doe changed his avatar photo</p>
+            <div class="avatar mt-2 h-16 w-16">
+                <img
+                class="mask is-squircle"
+                src="{{asset('assets/images/avatar/avatar-19.jpg')}}"
+                alt="avatar"
+                />
+            </div>
+            </div>
+        </li>
+        <li class="timeline-item">
+            <div
+            class="timeline-item-point rounded-full border border-current bg-white text-success dark:bg-navy-700"
+            >
+            <i class="fa fa-leaf text-tiny"></i>
+            </div>
+            <div class="timeline-item-content flex-1 pl-4 sm:pl-8">
+            <div
+                class="flex flex-col justify-between pb-2 sm:flex-row sm:pb-0"
+            >
+                <p
+                class="pb-2 font-medium leading-none text-slate-600 dark:text-navy-100 sm:pb-0"
+                >
+                Design Completed
+                </p>
+                <span class="text-xs text-slate-400 dark:text-navy-300"
+                >3 hours ago</span
+                >
+            </div>
+            <p class="py-1">
+                Robert Nolan completed the design of the CRM application
+            </p>
+            <a
+                href="dashboards-crm-analytics.html#"
+                class="inline-flex items-center space-x-1 pt-2 text-slate-600 transition-colors hover:text-primary dark:text-navy-100 dark:hover:text-accent"
+            >
+                <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-5 w-5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                stroke-width="1.5"
+                >
+                <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                />
+                </svg>
+                <span>File_final.fig</span>
+            </a>
+            <div class="pt-2">
+                <a
+                href="dashboards-crm-analytics.html#"
+                class="tag rounded-full border border-secondary/30 bg-secondary/10 text-secondary hover:bg-secondary/20 focus:bg-secondary/20 active:bg-secondary/25 dark:border-secondary-light/30 dark:bg-secondary-light/10 dark:text-secondary-light dark:hover:bg-secondary-light/20 dark:focus:bg-secondary-light/20 dark:active:bg-secondary-light/25"
+                >
+                UI/UX
+                </a>
+
+                <a
+                href="dashboards-crm-analytics.html#"
+                class="tag rounded-full border border-info/30 bg-info/10 text-info hover:bg-info/20 focus:bg-info/20 active:bg-info/25"
+                >
+                CRM
+                </a>
+
+                <a
+                href="dashboards-crm-analytics.html#"
+                class="tag rounded-full border border-success/30 bg-success/10 text-success hover:bg-success/20 focus:bg-success/20 active:bg-success/25"
+                >
+                Dashboard
+                </a>
+            </div>
+            </div>
+        </li>
+        <li class="timeline-item">
+            <div
+            class="timeline-item-point rounded-full border border-current bg-white text-warning dark:bg-navy-700"
+            >
+            <i class="fa fa-project-diagram text-tiny"></i>
+            </div>
+            <div class="timeline-item-content flex-1 pl-4 sm:pl-8">
+            <div
+                class="flex flex-col justify-between pb-2 sm:flex-row sm:pb-0"
+            >
+                <p
+                class="pb-2 font-medium leading-none text-slate-600 dark:text-navy-100 sm:pb-0"
+                >
+                ER Diagram
+                </p>
+                <span class="text-xs text-slate-400 dark:text-navy-300"
+                >a day ago</span
+                >
+            </div>
+            <p class="py-1">Team completed the ER diagram app</p>
+            <div>
+                <p class="text-xs text-slate-400 dark:text-navy-300">
+                Members:
+                </p>
+                <div class="mt-2 flex justify-between">
+                <div class="flex flex-wrap -space-x-2">
+                    <div class="avatar h-7 w-7 hover:z-10">
+                    <img
+                        class="rounded-full ring ring-white dark:ring-navy-700"
+                        src="{{asset('assets/images/avatar/avatar-16.jpg')}}"
+                        alt="avatar"
+                    />
+                    </div>
+
+                    <div class="avatar h-7 w-7 hover:z-10">
+                    <div
+                        class="is-initial rounded-full bg-info text-xs+ uppercase text-white ring ring-white dark:ring-navy-700"
+                    >
+                        jd
+                    </div>
+                    </div>
+
+                    <div class="avatar h-7 w-7 hover:z-10">
+                    <img
+                        class="rounded-full ring ring-white dark:ring-navy-700"
+                        src="{{asset('assets/images/avatar/avatar-20.jpg')}}"
+                        alt="avatar"
+                    />
+                    </div>
+
+                    <div class="avatar h-7 w-7 hover:z-10">
+                    <img
+                        class="rounded-full ring ring-white dark:ring-navy-700"
+                        src="{{asset('assets/images/avatar/avatar-8.jpg')}}"
+                        alt="avatar"
+                    />
+                    </div>
+
+                    <div class="avatar h-7 w-7 hover:z-10">
+                    <img
+                        class="rounded-full ring ring-white dark:ring-navy-700"
+                        src="{{asset('assets/images/avatar/avatar-5.jpg')}}"
+                        alt="avatar"
+                    />
+                    </div>
+                </div>
+                <button
+                    class="btn h-7 w-7 rounded-full bg-slate-150 p-0 font-medium text-slate-800 hover:bg-slate-200 focus:bg-slate-200 active:bg-slate-200/80 dark:bg-navy-500 dark:text-navy-50 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90"
+                >
+                    <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-5 w-5 rotate-45"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    >
+                    <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M7 11l5-5m0 0l5 5m-5-5v12"
+                    />
+                    </svg>
+                </button>
+                </div>
+            </div>
+            </div>
+        </li>
+        <li class="timeline-item">
+            <div
+            class="timeline-item-point rounded-full border border-current bg-white text-error dark:bg-navy-700"
+            >
+            <i class="fa fa-history text-tiny"></i>
+            </div>
+            <div class="timeline-item-content flex-1 pl-4 sm:pl-8">
+            <div
+                class="flex flex-col justify-between pb-2 sm:flex-row sm:pb-0"
+            >
+                <p
+                class="pb-2 font-medium leading-none text-slate-600 dark:text-navy-100 sm:pb-0"
+                >
+                Weekly Report
+                </p>
+                <span class="text-xs text-slate-400 dark:text-navy-300"
+                >a day ago</span
+                >
+            </div>
+            <p class="py-1">The weekly report was uploaded</p>
+            </div>
+        </li>
+        </ol>
+    </div>
+    </div>
+</main>
 @endsection
