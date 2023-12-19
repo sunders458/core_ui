@@ -42,23 +42,23 @@
           <li>
             <a
               x-data="navLink"
-              href="dashboards-crm-analytics.html"
+              href="#"
               :class="isActive ? 'font-medium text-primary dark:text-accent-light' : 'text-slate-500 hover:text-slate-800 dark:text-navy-200 dark:hover:text-navy-50'"
               class="flex py-2 text-xs+ tracking-wide outline-none transition-colors duration-300 ease-in-out"
             >
-              Reporting financier
+            Tableau de bord
             </a>
           </li>
-          <li>
+          {{-- <li>
             <a
               x-data="navLink"
               href="dashboards-orders.html"
               :class="isActive ? 'font-medium text-primary dark:text-accent-light' : 'text-slate-500 hover:text-slate-800 dark:text-navy-200 dark:hover:text-navy-50'"
               class="flex py-2 text-xs+ tracking-wide outline-none transition-colors duration-300 ease-in-out"
             >
-                Reporting Projets
+                Reporting
             </a>
-          </li>
+          </li> --}}
         </ul>
 
 

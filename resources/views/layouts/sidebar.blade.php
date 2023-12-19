@@ -3,7 +3,7 @@
     @include('layouts.mainSidebar')
 
     <!-- Sidebar Panel -->
-    @if(request()->is('clients')|| request()->is('prospects/create'))
+    @if(request()->is('clients')|| request()->is('prospects/create')|| request()->is('clients/create'))
         @include('layouts.menus.menuClient')
     @elseif (request()->is('settings')|| request()->is('users')|| request()->is('users/create'))
         @include('layouts.menus.menuSettings')

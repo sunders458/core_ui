@@ -41,6 +41,7 @@ class CreateUsersTable extends Migration
             $table->string('phone')->unique()->nullable()->comment( 'Contacts' );
             $table->string('phone_representant')->unique()->nullable()->comment( 'Contacts du representant légale' );
             $table->enum('status',['0','1','2'])->default('1');
+            $table->tinyInteger('type')->default('0');
             $table->string( 'email' )->unique()->nullable()->comment( 'Adresse mail' );
             $table->date( 'entry_at', 45 )->nullable()->comment( 'Date d\'entrée dans le cabinet' );
             $table->date( 'out_at', 45 )->nullable()->comment( 'Date de sortie' );

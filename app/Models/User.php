@@ -40,9 +40,19 @@ class User extends Authenticatable implements JWTSubject
         'conjoint', 
         'city',
         'residence',
-        'nationality', 'eglise_id', 'pays_id', 
-        'phone', 'phone_representant', 'status', 'email', 'entry_at', 'out_at', 
-        'password', 'address', 'parent_id'
+        'nationality', 
+        'eglise_id', 
+        'pays_id', 
+        'phone', 
+        'phone_representant',
+        'status', 
+        'type',
+        'email', 
+        'entry_at',
+        'out_at', 
+        'password', 
+        'address',
+        'parent_id'
     ];
 
     /**

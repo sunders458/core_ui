@@ -47,14 +47,15 @@ class ProspectController extends Controller
         $this->validate($request, [
             'name' => 'required',
             'email' => 'email|unique:users,email',
-            //'password' => 'required|same:confirm-password',
         ]);
 
         $input = $request->all();
         $input['password'] = bcrypt('password');
-    
+        $input['type'] = 0;
+       
+        $role = Role::where('name','Abonnés')->first();
         $prospect = User::create($input);
-        $prospect->assignRole($request->input('roles'));
+        $prospect->assignRole($role->id);
     
         return redirect()->route('prospects.index')
                         ->with('success','User created successfully');

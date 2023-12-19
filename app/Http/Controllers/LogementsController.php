@@ -1,12 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
-use Spatie\Permission\Models\Role;
-use App\Models\Pays;
-use App\Models\User;
+
+use App\Models\Logements;
 use Illuminate\Http\Request;
 
-class CustomerController extends Controller
+class LogementsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +15,7 @@ class CustomerController extends Controller
     public function index()
     {
         //
-        return view('customers.customerIndex');
+        return view('logements.logement_index');
     }
 
     /**
@@ -27,9 +26,6 @@ class CustomerController extends Controller
     public function create()
     {
         //
-        $roles = Role::pluck('name','name')->all();
-        $countries = Pays::all();
-        return view('customers.customerCreate',compact('roles','countries'));
     }
 
     /**
@@ -41,29 +37,15 @@ class CustomerController extends Controller
     public function store(Request $request)
     {
         //
-        $this->validate($request, [
-            'name' => 'required',
-            'email' => 'email|unique:users,email',
-        ]);
-
-        $input = $request->all();
-        $input['password'] = bcrypt('password');
-        $input['type'] = 1;
-        $role = Role::where('name','Abonnés')->first();
-        $prospect = User::create($input);
-        $prospect->assignRole($role->id);
-    
-        return redirect()->route('clients.index')
-                        ->with('success','User created successfully');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Logements  $logements
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Logements $logements)
     {
         //
     }
@@ -71,10 +53,10 @@ class CustomerController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Logements  $logements
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Logements $logements)
     {
         //
     }
@@ -83,10 +65,10 @@ class CustomerController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Models\Logements  $logements
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Logements $logements)
     {
         //
     }
@@ -94,10 +76,10 @@ class CustomerController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\Logements  $logements
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Logements $logements)
     {
         //
     }

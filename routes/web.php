@@ -7,6 +7,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\LogementsController;
 use App\Http\Controllers\ProspectController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\ProjetController;
@@ -58,6 +59,7 @@ Auth::routes();
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::group(['middleware' => ['auth']], function() {
+    Route::resource('logements', LogementsController::class);
     Route::resource('clients', CustomerController::class);
     Route::resource('prospects', ProspectController::class);
     Route::get('settings', [SettingController::class,'index']);

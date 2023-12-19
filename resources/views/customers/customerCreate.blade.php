@@ -8,7 +8,7 @@
       <h2
         class="text-xl font-medium text-slate-800 dark:text-navy-50 lg:text-2xl"
       >
-        Formulaire d'ajout
+        Formulaire d'ajout clients
       </h2> 
     </div>
     <div class="grid grid-cols-8 gap-4 sm:gap-5 lg:gap-6">
@@ -252,7 +252,7 @@
                     <span class="relative mt-1.5 flex">
                       <input
                         class="form-input peer w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 pl-9 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
-                        placeholder="(999) 99-9999-9999"
+                        placeholder="(225) 99-9999-9999"
                         type="text"
                         x-input-mask="{numericOnly: true, blocks: [0, 3, 2, 4, 4], delimiters: ['(', ') ', '-']}"
                         name="phone"
