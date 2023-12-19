@@ -60,7 +60,7 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('ho
 Route::group(['middleware' => ['auth']], function() {
     Route::resource('clients', CustomerController::class);
     Route::resource('prospects', ProspectController::class);
-    Route::get('/settings', [SettingController::class,'index']);
+    Route::get('settings', [SettingController::class,'index']);
     Route::resource('roles', RoleController::class);
     Route::resource('users', UserController::class);
     Route::resource('projets',ProjetController ::class);

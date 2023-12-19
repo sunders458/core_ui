@@ -1,7 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Spatie\Permission\Models\Role;
+use App\Models\Pays;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class CustomerController extends Controller
@@ -25,6 +27,9 @@ class CustomerController extends Controller
     public function create()
     {
         //
+        $roles = Role::pluck('name','name')->all();
+        $countries = Pays::all();
+        return view('customers.customerCreate',compact('roles','countries'));
     }
 
     /**

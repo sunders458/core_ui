@@ -124,7 +124,7 @@
               <li>
                 <a
                   x-data="navLink"
-                  href="dashboards-banking-1.html"
+                  href="{{route('clients.index')}}"
                   :class="isActive ? 'font-medium text-primary dark:text-accent-light' : 'text-slate-500 hover:text-slate-800 dark:text-navy-200 dark:hover:text-navy-50'"
                   class="flex items-center justify-between p-2 text-xs+ tracking-wide outline-none transition-[color,padding-left] duration-300 ease-in-out hover:pl-4"
                 >
@@ -132,14 +132,14 @@
                     <div
                       class="h-1.5 w-1.5 rounded-full border border-current opacity-40"
                     ></div>
-                    <span>Banking v1</span>
+                    <span>Clients</span>
                   </div>
                 </a>
               </li>
               <li>
                 <a
                   x-data="navLink"
-                  href="dashboards-banking-2.html"
+                  href="{{route('clients.create')}}"
                   :class="isActive ? 'font-medium text-primary dark:text-accent-light' : 'text-slate-500 hover:text-slate-800 dark:text-navy-200 dark:hover:text-navy-50'"
                   class="flex items-center justify-between p-2 text-xs+ tracking-wide outline-none transition-[color,padding-left] duration-300 ease-in-out hover:pl-4"
                 >
@@ -147,13 +147,14 @@
                     <div
                       class="h-1.5 w-1.5 rounded-full border border-current opacity-40"
                     ></div>
-                    <span>Banking v2</span>
+                    <span>Ajouter un clients</span>
                   </div>
                 </a>
               </li>
             </ul>
           </li>
-          <li>
+
+          {{-- <li>
             <a
               x-data="navLink"
               href="dashboards-personal.html"
@@ -172,7 +173,7 @@
             >
               CMS Analytics
             </a>
-          </li>
+          </li> --}}
           
         </ul>
         <div class="my-3 mx-4 h-px bg-slate-200 dark:bg-navy-500"></div>

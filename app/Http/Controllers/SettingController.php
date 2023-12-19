@@ -9,6 +9,6 @@ class SettingController extends Controller
     //
     public function index()
     {
-       // return view('parametres.index');
+      return view('parametres.index');
     }
 }

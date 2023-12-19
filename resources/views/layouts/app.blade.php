@@ -30,7 +30,7 @@
     />
   </head>
 
-  <body x-data class="is-header-blur" x-bind="$store.global.documentBody">
+  <body x-data class="is-header-blur is-sidebar-open" x-bind="$store.global.documentBody">
     <!-- App preloader-->
     <div
       class="app-preloader fixed z-50 grid h-full w-full place-content-center bg-slate-50 dark:bg-navy-900"

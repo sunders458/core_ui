@@ -25,7 +25,8 @@ class RoleController extends Controller
     {
         //
         $roles = Role::orderBy('id','DESC')->paginate(5);
-        return view('roleIndex',compact('roles'))
+        $permission = Permission::get();
+        return view('parametres.roles.role_index',compact('roles','permission'))
             ->with('i', ($request->input('page', 1) - 1) * 5);
     }
 
@@ -180,29 +181,40 @@ class RoleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request,$id)
     {
         //
         $role = Role::find($id);
         $permission = Permission::get();
-
-        $roleinput = "role";
-        $roles = Permission::where('name', 'LIKE', '%'.$roleinput.'%')->get();
-
-        $userinput = "user";
-        $users = Permission::where('name', 'LIKE', '%'.$userinput.'%')->get();
+        $theroles = Role::orderBy('id','DESC')->paginate(5);
         
-
         $rolePermissions = DB::table("role_has_permissions")->where("role_has_permissions.role_id",$id)
             ->pluck('role_has_permissions.permission_id','role_has_permissions.permission_id')
             ->all();
+        return view('parametres.roles.role_edit',compact(
+            'role',
+            'theroles',
+            'permission',
+            'rolePermissions',
+        ))->with('i', ($request->input('page', 1) - 1) * 5);;
+
+        // $roleinput = "role";
+        // $roles = Permission::where('name', 'LIKE', '%'.$roleinput.'%')->get();
+
+        // $userinput = "user";
+        // $users = Permission::where('name', 'LIKE', '%'.$userinput.'%')->get();
+        
+
+        // $rolePermissions = DB::table("role_has_permissions")->where("role_has_permissions.role_id",$id)
+        //     ->pluck('role_has_permissions.permission_id','role_has_permissions.permission_id')
+        //     ->all();
     
-        return view('roleEdit',
-            compact(
-                    'role','roles',
-                    'rolePermissions',
-                    'users',
-                ));
+        // return view('roleEdit',
+        //     compact(
+        //             'role','roles',
+        //             'rolePermissions',
+        //             'users',
+        //         ));
     }
 
     /**
@@ -239,5 +251,8 @@ class RoleController extends Controller
     public function destroy($id)
     {
         //
+        DB::table("roles")->where('id',$id)->delete();
+        return redirect()->route('roles.index')
+                        ->with('success','Role deleted successfully');
     }
 }
