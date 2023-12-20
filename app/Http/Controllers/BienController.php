@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Logements;
+use App\Models\Bien;
 use Illuminate\Http\Request;
 
-class LogementsController extends Controller
+class BienController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +15,6 @@ class LogementsController extends Controller
     public function index()
     {
         //
-        return view('logements.logement_index');
     }
 
     /**
@@ -26,7 +25,6 @@ class LogementsController extends Controller
     public function create()
     {
         //
-        return view('logements.logement_create');
     }
 
     /**
@@ -43,10 +41,10 @@ class LogementsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Logements  $logements
+     * @param  \App\Models\Bien  $bien
      * @return \Illuminate\Http\Response
      */
-    public function show(Logements $logements)
+    public function show(Bien $bien)
     {
         //
     }
@@ -54,10 +52,10 @@ class LogementsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Logements  $logements
+     * @param  \App\Models\Bien  $bien
      * @return \Illuminate\Http\Response
      */
-    public function edit(Logements $logements)
+    public function edit(Bien $bien)
     {
         //
     }
@@ -66,10 +64,10 @@ class LogementsController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Logements  $logements
+     * @param  \App\Models\Bien  $bien
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Logements $logements)
+    public function update(Request $request, Bien $bien)
     {
         //
     }
@@ -77,10 +75,10 @@ class LogementsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Logements  $logements
+     * @param  \App\Models\Bien  $bien
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Logements $logements)
+    public function destroy(Bien $bien)
     {
         //
     }

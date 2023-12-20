@@ -5,9 +5,16 @@
     <!-- Sidebar Panel -->
     @if(request()->is('clients')|| request()->is('prospects/create')|| request()->is('clients/create'))
         @include('layouts.menus.menuClient')
-    @elseif (request()->is('settings')|| request()->is('users')|| request()->is('users/create'))
+    @endif  
+    @if(request()->is('logements')|| request()->is('logements/create'))
+        @include('layouts.menus.menubien')
+    @endif 
+
+    @if (request()->is('settings')|| request()->is('users')|| request()->is('users/create'))
         @include('layouts.menus.menuSettings')
-    @else
+    @endif
+    @if(request()->is('/'))
         @include('layouts.sidebarPanel')
     @endif
   </div>
+  logements
