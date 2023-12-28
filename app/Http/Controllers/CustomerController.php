@@ -13,10 +13,12 @@ class CustomerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         //
-        return view('customers.customerIndex');
+        $data = User::orderBy('name','ASC')->where('type',1)->paginate(10);
+        return view('customers.customerIndex',compact('data'))
+            ->with('i', ($request->input('page', 1) - 1) * 20);
     }
 
     /**
