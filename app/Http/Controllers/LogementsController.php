@@ -16,7 +16,9 @@ class LogementsController extends Controller
     public function index()
     {
         //
-        return view('logements.logement_index');
+        $logements= Bien::where('type_bien','logement')->paginate(10);
+        
+        return view('logements.logement_index',compact('logements'));
     }
 
     /**
@@ -41,12 +43,13 @@ class LogementsController extends Controller
         //
         $input = $request->all();
         if($image=$request->file('illustration')){
-            $destionationPath = $request->file('illustration')->store('images/illustrations');
+            $destionationPath = $request->file('illustration')->storePublicly('images/illustrations');
             // $ext = $image->getClientOriginalName();
              //$illustrationImage = $destionationPath . $ext;
             // $image->move($destionationPath,$illustrationImage);  
             $input['illustration'] = "https://myawsimo.s3.eu-north-1.amazonaws.com/$destionationPath";
         };
+        $input['type_bien']="logement";
         $biens = Bien::create($input);
         $image = array();
         if($files = $request->file('gallerie')){
@@ -61,7 +64,7 @@ class LogementsController extends Controller
                 // $file->move($upload_path, $image_full_name);
                 //
 
-                $image_url= $file->store('images/galleries');
+                $image_url= $file->storePublicly('images/galleries');
                 $image[]=$image_url;
                 $images =Gallery::create([
                     'path'=> "https://myawsimo.s3.eu-north-1.amazonaws.com/$image_url",
@@ -85,6 +88,7 @@ class LogementsController extends Controller
     public function show(Bien $biens)
     {
         //
+        dd($biens);
     }
 
     /**

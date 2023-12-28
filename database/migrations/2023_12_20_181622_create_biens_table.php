@@ -35,11 +35,13 @@ class CreateBiensTable extends Migration
             $table->string('ilot')->nullable()->comment('Lot et ilot unique');
             $table->string('type_logement')->nullable();
             $table->string('finition')->nullable();
+            $table->string('type_bien')->nullable();
             $table->string('garage')->default("non");
             $table->string('dependance')->default("non");
             $table->tinyInteger('condition')->default(0);
             $table->integer('promotion_id')->nullable();
             $table->integer('client_id')->nullable();
+            $table->integer('site_id')->nullable();
             $table->integer('etat_avancement')->default(0);
             $table->timestamps();
         });

@@ -38,5 +38,7 @@ class Bien extends Model
         'promotion_id',
         'client_id',
         'etat_avancement',
+        'type_bien',
+        'site_id',
     ];
 }

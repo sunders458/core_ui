@@ -214,13 +214,14 @@
                     </span>
                   </label>
                   <label class="block">
-                    <span>Taux d'avencement</span>
+                    <span>Taux d'avancement</span>
                     <span class="relative mt-1.5 flex">
                       <input
                         class="form-input peer w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 pl-9 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
-                        placeholder="Entrez la longitude"
+                        placeholder="10"
                         type="number"
-                        name="longitude"
+                        min=0 max=100 step=1
+                        name="etat_avancement"
                       />
                       <span
                         class="pointer-events-none absolute flex h-full w-10 items-center justify-center text-slate-400 peer-focus:text-primary dark:text-navy-300 dark:peer-focus:text-accent"
@@ -317,6 +318,20 @@
               <option value>Selectinnez la finition</option>
               <option value="Gros Œuvre">Gros Œuvre</option>
               <option value="Clé en main">Clé en main</option>
+            </select>
+          </label>
+          <label class="block">
+            <span class="font-medium text-slate-600 dark:text-navy-100"
+              >Site</span
+            >
+            <select
+              class="mt-1.5 w-full"
+              x-init="$el._x_tom = new Tom($el,{create: false,sortField: {field: 'text',direction: 'asc'}})"
+              name="site_id"
+            >
+              <option value>Selectinnez le site</option>
+              <option value="1">YAOU</option>
+              <option value="2">Vitré</option>
             </select>
           </label>
           {{-- <label class="block">
