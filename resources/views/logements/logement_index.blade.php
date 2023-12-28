@@ -256,7 +256,8 @@
               <span
                   class="text-base font-medium text-slate-700 dark:text-navy-100"
               >
-                {{$item->prix}} F cfa</span
+                {{number_format($item->prix, 0, ',', ' ')}} F cfa
+              </span
               >
               
               </p>

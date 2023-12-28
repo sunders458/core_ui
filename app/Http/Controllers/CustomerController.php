@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Spatie\Permission\Models\Role;
 use App\Models\Pays;
 use App\Models\User;
+use App\Models\Bien;
 use Illuminate\Http\Request;
 
 class CustomerController extends Controller
@@ -30,8 +31,9 @@ class CustomerController extends Controller
     {
         //
         $roles = Role::pluck('name','name')->all();
+        $lgmts = Bien::orderBy('updated_at','ASC')->get();
         $countries = Pays::all();
-        return view('customers.customerCreate',compact('roles','countries'));
+        return view('customers.customerCreate',compact('roles','countries','lgmts'));
     }
 
     /**
@@ -43,12 +45,14 @@ class CustomerController extends Controller
     public function store(Request $request)
     {
         //
+        
         $this->validate($request, [
             'name' => 'required',
             'email' => 'email|unique:users,email',
         ]);
-
+        
         $input = $request->all();
+        //dd($input);
         $input['password'] = bcrypt('password');
         $input['type'] = 1;
         $role = Role::where('name','Abonnés')->first();

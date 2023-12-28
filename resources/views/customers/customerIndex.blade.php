@@ -236,7 +236,8 @@
                 {{$item->phone}}
                 </td>
                 <td class="whitespace-nowrap px-4 py-3 sm:px-5">
-                  {{$item->updated_at}}
+                  
+                  {{ \Carbon\Carbon::parse($item->updated_at)->locale('fr')->translatedFormat('D d M Y') }}
                 </td>
                 <td class="whitespace-nowrap px-4 py-3 sm:px-5">
                   {{$item->email}}
