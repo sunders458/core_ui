@@ -45,22 +45,24 @@ class CustomerController extends Controller
     public function store(Request $request)
     {
         //
-        
         $this->validate($request, [
             'name' => 'required',
             'email' => 'email|unique:users,email',
         ]);
-        
         $input = $request->all();
-        //dd($input);
+        if($input['bien_id'])
+        {
+            $biens=Bien::findOrFail($input['bien_id']);
+        };
         $input['password'] = bcrypt('password');
         $input['type'] = 1;
         $role = Role::where('name','Abonnés')->first();
-        $prospect = User::create($input);
-        $prospect->assignRole($role->id);
-    
+        $client = User::create($input);
+        $client->assignRole($role->id);
+        $biens->client_id = $client->id;
+        $biens->save();
         return redirect()->route('clients.index')
-                        ->with('success','User created successfully');
+            ->with('success','User created successfully');
     }
 
     /**
