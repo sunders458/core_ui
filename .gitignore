@@ -6860,3 +6860,10 @@ vendor/symfony/polyfill-php73/Resources/stubs/JsonException.php
 vendor/symfony/polyfill-php80/LICENSE
 vendor/symfony/polyfill-php80/Php80.php
 .env
+public/core_ui/.DS_Store
+public/.DS_Store
+storage/framework/.DS_Store
+storage/.DS_Store
+.DS_Store
+resources/.DS_Store
+resources/.DS_Store
