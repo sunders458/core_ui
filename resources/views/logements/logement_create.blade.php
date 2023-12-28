@@ -2,6 +2,7 @@
 @section('content')
 <!-- Main Content Wrapper -->
 <main class="main-content w-full px-[var(--margin-x)] pb-8">
+  {!! Form::open(array('route' => 'logements.store','files' => true,'method'=>'POST')) !!}
     <div
       class="flex flex-col items-center justify-between space-y-4 py-5 sm:flex-row sm:space-y-0 lg:py-6"
     >
@@ -29,13 +30,15 @@
       <div class="flex justify-center space-x-2">
         <button
           class="btn min-w-[7rem] border border-slate-300 font-medium text-slate-700 hover:bg-slate-150 focus:bg-slate-150 active:bg-slate-150/80 dark:border-navy-450 dark:text-navy-100 dark:hover:bg-navy-500 dark:focus:bg-navy-500 dark:active:bg-navy-500/90"
+          type="reset"
         >
-          Preview
+          Annuler
         </button>
         <button
           class="btn min-w-[7rem] bg-primary font-medium text-white hover:bg-primary-focus focus:bg-primary-focus active:bg-primary-focus/90 dark:bg-accent dark:hover:bg-accent-focus dark:focus:bg-accent-focus dark:active:bg-accent/90"
+          type="submit"
         >
-          Save
+          Enregistrer
         </button>
       </div>
     </div>
@@ -75,29 +78,163 @@
                 <label class="block">
                   <span
                     class="font-medium text-slate-600 dark:text-navy-100"
-                    >Titre</span
+                    >Lot et Ilot</span
                   >
                   <input
                     class="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
-                    placeholder="Enter post title"
+                    placeholder="Entrer le lot et Ilot"
                     type="text"
+                    name="ilot"
                   />
                 </label>
-                <label class="block">
-                  <span
-                    class="font-medium text-slate-600 dark:text-navy-100"
-                    >Caption</span
-                  >
-                  <input
-                    class="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
-                    placeholder="Enter post caption"
-                    type="text"
-                  />
-                </label>
+                <div class="grid grid-cols-1 gap-4 sm:grid-cols-3">
+                  <label class="block">
+                    <span>Superficie</span>
+                    <span class="relative mt-1.5 flex">
+                      <input
+                        class="form-input peer w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 pl-9 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
+                        placeholder="Entrez la superficie"
+                        type="number"
+                        name="superficie"
+                      />
+                      <span
+                        class="pointer-events-none absolute flex h-full w-10 items-center justify-center text-slate-400 peer-focus:text-primary dark:text-navy-300 dark:peer-focus:text-accent"
+                      >
+                        <i class="far fa-clone text-base"></i>
+                      </span>
+                    </span>
+                  </label>
+                  <label class="block">
+                    <span>Nombre de pièces</span>
+                    <span class="relative mt-1.5 flex">
+                      <input
+                        class="form-input peer w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 pl-9 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
+                        placeholder="Entrez le nombre de pièces"
+                        type="number"
+                        name="nbre_pieces"
+                      />
+                      <span
+                        class="pointer-events-none absolute flex h-full w-10 items-center justify-center text-slate-400 peer-focus:text-primary dark:text-navy-300 dark:peer-focus:text-accent"
+                      >
+                      <i class="far fa-warehouse text-base"></i>
+                      </span>
+                    </span>
+                  </label>
+                  <label class="block">
+                    <span>Garages</span>
+                    <br>
+                    <span class="relative mt-1.5 flex">
+                      <input
+                        checked
+                        class="form-radio is-basic h-5 w-5 rounded-full border-slate-400/70 checked:border-slate-500 checked:bg-slate-500 hover:border-slate-500 focus:border-slate-500 dark:border-navy-400 dark:checked:bg-navy-400"
+                        name="garage"
+                        type="radio"
+                      />
+                      &nbsp;&nbsp;
+                      <span>Oui </span>
+                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      <input
+                        class="form-radio is-basic h-5 w-5 rounded-full border-slate-400/70 checked:border-primary checked:bg-primary hover:border-primary focus:border-primary dark:border-navy-400 dark:checked:border-accent dark:checked:bg-accent dark:hover:border-accent dark:focus:border-accent"
+                        name="garage"
+                        type="radio"
+                      />
+                      &nbsp;&nbsp;
+                      <span>Non</span>
+                    </span>
+                  </label>
+                </div>
+
+                <div class="grid grid-cols-1 gap-4 sm:grid-cols-3">
+                  <label class="block">
+                    <span>Localisation</span>
+                    <span class="relative mt-1.5 flex">
+                      <input
+                        class="form-input peer w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 pl-9 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
+                        placeholder="Entrez la localisation"
+                        type="text"
+                        name="localisation"
+                      />
+                      <span
+                        class="pointer-events-none absolute flex h-full w-10 items-center justify-center text-slate-400 peer-focus:text-primary dark:text-navy-300 dark:peer-focus:text-accent"
+                      >
+                        <i class="far fa-clone text-base"></i>
+                      </span>
+                    </span>
+                  </label>
+                  <label class="block">
+                    <span>Logitutude</span>
+                    <span class="relative mt-1.5 flex">
+                      <input
+                        class="form-input peer w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 pl-9 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
+                        placeholder="Entrez la longitude"
+                        type="number"
+                        name="longitude"
+                      />
+                      <span
+                        class="pointer-events-none absolute flex h-full w-10 items-center justify-center text-slate-400 peer-focus:text-primary dark:text-navy-300 dark:peer-focus:text-accent"
+                      >
+                      <i class="far fa-warehouse text-base"></i>
+                      </span>
+                    </span>
+                  </label>
+                  <label class="block">
+                    <span>Latitude</span>
+                    <span class="relative mt-1.5 flex">
+                      <input
+                        class="form-input peer w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 pl-9 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
+                        placeholder="Entrez la latitude"
+                        type="text"
+                        name="latitude"
+                      />
+                      <span
+                        class="pointer-events-none absolute flex h-full w-10 items-center justify-center text-slate-400 peer-focus:text-primary dark:text-navy-300 dark:peer-focus:text-accent"
+                      >
+                      <i class="far fa-warehouse text-base"></i>
+                      </span>
+                    </span>
+                  </label>
+                </div>
+
+
+                <div class="grid grid-cols-1 gap-4 sm:grid-cols-3">
+                  <label class="block">
+                    <span>Prix</span>
+                    <span class="relative mt-1.5 flex">
+                      <input
+                        class="form-input peer w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 pl-9 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
+                        placeholder="Entrez la localisation"
+                        type="number"
+                        name="prix"
+                      />
+                      <span
+                        class="pointer-events-none absolute flex h-full w-10 items-center justify-center text-slate-400 peer-focus:text-primary dark:text-navy-300 dark:peer-focus:text-accent"
+                      >
+                        <i class="far fa-clone text-base"></i>
+                      </span>
+                    </span>
+                  </label>
+                  <label class="block">
+                    <span>Taux d'avencement</span>
+                    <span class="relative mt-1.5 flex">
+                      <input
+                        class="form-input peer w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 pl-9 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
+                        placeholder="Entrez la longitude"
+                        type="number"
+                        name="longitude"
+                      />
+                      <span
+                        class="pointer-events-none absolute flex h-full w-10 items-center justify-center text-slate-400 peer-focus:text-primary dark:text-navy-300 dark:peer-focus:text-accent"
+                      >
+                      <i class="far fa-warehouse text-base"></i>
+                      </span>
+                    </span>
+                  </label>
+                  
+                </div>
                 <div>
                   <span
                     class="font-medium text-slate-600 dark:text-navy-100"
-                    >Post Content</span
+                    >Description</span
                   >
                   <div class="mt-1.5 w-full">
                     <div
@@ -122,6 +259,7 @@
                         },
                         placeholder: 'Enter your content...',
                         theme: 'snow',
+                        name: 'description'
                       })"
                     ></div>
                   </div>
@@ -129,15 +267,16 @@
                 <div>
                   <span
                     class="font-medium text-slate-600 dark:text-navy-100"
-                    >Post Images</span
+                    >Gallerie images</span
                   >
                   <div
                     class="filepond fp-bordered fp-grid mt-1.5 [--fp-grid:2]"
                   >
                     <input
                       type="file"
-                      x-init="$el._x_filepond = FilePond.create($el)"
-                      multiple
+                      {{-- x-init="$el._x_filepond = FilePond.create($el)" --}}
+                      multiple 
+                      name="gallerie[]"
                     />
                   </div>
                 </div>
@@ -147,33 +286,40 @@
         </div>
       </div>
       <div class="col-span-12 lg:col-span-4">
+
         <div class="card space-y-5 p-4 sm:p-5">
           <label class="block">
             <span class="font-medium text-slate-600 dark:text-navy-100"
-              >Selectionnez client</span
-            >
-            <select
-              class="mt-1.5 w-full"
-              x-init="$el._x_tom = new Tom($el,pages.tomSelect.author)"
-              placeholder="Selectionnez le client..."
-            ></select>
-          </label>
-          <label class="block">
-            <span class="font-medium text-slate-600 dark:text-navy-100"
-              >Category</span
+              >Type de logement</span
             >
             <select
               class="mt-1.5 w-full"
               x-init="$el._x_tom = new Tom($el,{create: false,sortField: {field: 'text',direction: 'asc'}})"
+              name="type_logement"
             >
-              <option value>Select the category</option>
-              <option value="digital">Digital</option>
-              <option value="technology">Technology</option>
-              <option value="home">Home</option>
-              <option value="accessories">Accessories</option>
+              <option value>Selectinnez le type de logement</option>
+              <option value="BEVERLY">BEVERLY</option>
+              <option value="EXCELLIUM">EXCELLIUM</option>
+              <option value="HARMONIE">HARMONIE</option>
+              <option value="MEYERS C">MEYERS C</option>
+              <option value="SOMOLI">SOMOLI</option>
             </select>
           </label>
           <label class="block">
+            <span class="font-medium text-slate-600 dark:text-navy-100"
+              >Finition</span
+            >
+            <select
+              class="mt-1.5 w-full"
+              x-init="$el._x_tom = new Tom($el,{create: false,sortField: {field: 'text',direction: 'asc'}})"
+              name="finition"
+            >
+              <option value>Selectinnez la finition</option>
+              <option value="Gros Œuvre">Gros Œuvre</option>
+              <option value="Clé en main">Clé en main</option>
+            </select>
+          </label>
+          {{-- <label class="block">
             <span class="font-medium text-slate-600 dark:text-navy-100"
               >Tags</span
             >
@@ -182,7 +328,7 @@
               placeholder="Enter Tags"
               x-init="$el._x_tom = new Tom($el,{create: true})"
             />
-          </label>
+          </label> 
 
           <label>
             <span class="font-medium text-slate-600 dark:text-navy-100"
@@ -215,8 +361,26 @@
               </span>
             </span>
           </label>
+          --}}
+        </div>
+        <br>
+        <div class="card space-y-5 p-4 sm:p-5">
+          <span
+            class="font-medium text-slate-600 dark:text-navy-100"
+            >Illustration</span
+          >
+          <div
+            class="filepond fp-bordered fp-grid mt-1.5 [--fp-grid:1]"
+          >
+            <input
+              type="file"
+              {{-- x-init="$el._x_filepond = FilePond.create($el)" --}}
+              name="illustration"
+            />
+          </div>
         </div>
       </div>
     </div>
+    {!! Form::close() !!}
   </main>
 @endsection

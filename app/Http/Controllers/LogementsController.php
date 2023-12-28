@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Logements;
+use App\Models\Bien;
+use App\Models\Gallery;
 use Illuminate\Http\Request;
 
 class LogementsController extends Controller
@@ -38,6 +39,41 @@ class LogementsController extends Controller
     public function store(Request $request)
     {
         //
+        $input = $request->all();
+        if($image=$request->file('illustration')){
+            $destionationPath = $request->file('illustration')->store('images/illustrations');
+            // $ext = $image->getClientOriginalName();
+             //$illustrationImage = $destionationPath . $ext;
+            // $image->move($destionationPath,$illustrationImage);  
+            $input['illustration'] = "https://myawsimo.s3.eu-north-1.amazonaws.com/$destionationPath";
+        };
+        $biens = Bien::create($input);
+        $image = array();
+        if($files = $request->file('gallerie')){
+            foreach($files as $file){
+                $id=$biens->id;
+                
+                // $image_name = md5(rand(100, 1000000));
+                // $ext = strtolower($file->getClientOriginalExtension());
+                // $image_full_name = $image_name.'.'.$ext;
+                // $upload_path = 'core_ui/images/illustrations/galleries/';
+                // $image_url = $upload_path.$image_full_name;
+                // $file->move($upload_path, $image_full_name);
+                //
+
+                $image_url= $file->store('images/galleries');
+                $image[]=$image_url;
+                $images =Gallery::create([
+                    'path'=> "https://myawsimo.s3.eu-north-1.amazonaws.com/$image_url",
+                    'bien_id'=>$id
+                ]);
+            }
+        }
+
+        
+
+        return redirect()->route('logements.index')
+                        ->with('success','User created successfully');
     }
 
     /**
@@ -46,7 +82,7 @@ class LogementsController extends Controller
      * @param  \App\Models\Logements  $logements
      * @return \Illuminate\Http\Response
      */
-    public function show(Logements $logements)
+    public function show(Bien $biens)
     {
         //
     }
@@ -57,7 +93,7 @@ class LogementsController extends Controller
      * @param  \App\Models\Logements  $logements
      * @return \Illuminate\Http\Response
      */
-    public function edit(Logements $logements)
+    public function edit(Bien $bien)
     {
         //
     }
@@ -69,7 +105,7 @@ class LogementsController extends Controller
      * @param  \App\Models\Logements  $logements
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Logements $logements)
+    public function update(Request $request, Bien $bien)
     {
         //
     }
@@ -80,7 +116,7 @@ class LogementsController extends Controller
      * @param  \App\Models\Logements  $logements
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Logements $logements)
+    public function destroy(Bien $bien)
     {
         //
     }

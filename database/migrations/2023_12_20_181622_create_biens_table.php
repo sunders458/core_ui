@@ -17,7 +17,7 @@ class CreateBiensTable extends Migration
             $table->id();
             $table->text('libelle')->nullable();
             $table->text('description')->nullable();
-            $table->string('status');
+            $table->integer('status')->default(0);
             $table->string('illustration',2048)->nullable();
             $table->integer('publie')->nullable()->comment('date de mise en vente');
             $table->date('publie_at_debut')->nullable()->comment('Debut des traveaux');
@@ -32,12 +32,14 @@ class CreateBiensTable extends Migration
             $table->integer('nbre_pieces')->nullable();
             $table->integer('nbre_douche')->default(1);
             $table->string('lot')->nullable();
+            $table->string('ilot')->nullable()->comment('Lot et ilot unique');
             $table->string('type_logement')->nullable();
             $table->string('finition')->nullable();
             $table->string('garage')->default("non");
             $table->string('dependance')->default("non");
             $table->tinyInteger('condition')->default(0);
             $table->integer('promotion_id')->nullable();
+            $table->integer('client_id')->nullable();
             $table->integer('etat_avancement')->default(0);
             $table->timestamps();
         });
