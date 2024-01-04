@@ -27,20 +27,6 @@
         Formulaire d'ajout clients
         </h2>
       </div>
-      <div class="flex justify-center space-x-2">
-        <button
-          class="btn min-w-[7rem] border border-slate-300 font-medium text-slate-700 hover:bg-slate-150 focus:bg-slate-150 active:bg-slate-150/80 dark:border-navy-450 dark:text-navy-100 dark:hover:bg-navy-500 dark:focus:bg-navy-500 dark:active:bg-navy-500/90"
-          type="reset"
-        >
-          Annuler
-        </button>
-        <button
-          class="btn min-w-[7rem] bg-primary font-medium text-white hover:bg-primary-focus focus:bg-primary-focus active:bg-primary-focus/90 dark:bg-accent dark:hover:bg-accent-focus dark:focus:bg-accent-focus dark:active:bg-accent/90"
-          type="submit"
-        >
-          Enregistrer
-        </button>
-      </div>
     </div>
     <div class="grid grid-cols-12 gap-4 sm:gap-5 lg:gap-6">
       <div class="col-span-12 lg:col-span-8">
@@ -492,7 +478,8 @@
       
         </div>
         <br>
-        <div class="card space-y-5 p-4 sm:p-5">
+
+        {{-- <div class="card space-y-5 p-4 sm:p-5">
           <span
             class="font-medium text-slate-600 dark:text-navy-100"
             >Pièces Jointes</span
@@ -505,7 +492,7 @@
               name="illustration"
             />
           </div>
-        </div>
+        </div> --}}
       </div>
     </div>
     {!! Form::close() !!}

@@ -48,6 +48,7 @@ class CustomerController extends Controller
         $this->validate($request, [
             'name' => 'required',
             'email' => 'email|unique:users,email',
+            'bien_id'=>'required',
         ]);
         $input = $request->all();
         $input['password'] = bcrypt('password');
