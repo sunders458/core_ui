@@ -50,17 +50,19 @@ class CustomerController extends Controller
             'email' => 'email|unique:users,email',
         ]);
         $input = $request->all();
-        if($input['bien_id'])
-        {
-            $biens=Bien::findOrFail($input['bien_id']);
-        };
         $input['password'] = bcrypt('password');
         $input['type'] = 1;
         $role = Role::where('name','Abonnés')->first();
         $client = User::create($input);
         $client->assignRole($role->id);
-        $biens->client_id = $client->id;
-        $biens->save();
+        if($biens=$request->input('bien_id',[]))
+        {
+            foreach ($biens as $bienId) {
+                $bien = Bien::findOrFail($bienId);
+                $bien->client_id = $client->id;
+                $bien->save();
+            }
+        }
         return redirect()->route('clients.index')
             ->with('success','User created successfully');
     }

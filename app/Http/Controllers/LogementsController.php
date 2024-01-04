@@ -88,7 +88,7 @@ class LogementsController extends Controller
     public function show(Bien $biens)
     {
         //
-        dd($biens);
+        
     }
 
     /**

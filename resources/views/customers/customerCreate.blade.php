@@ -438,7 +438,8 @@
                       <input
                         class="form-checkbox is-outline h-4.5 w-4.5 rounded border-slate-400/70 before:bg-primary checked:border-primary hover:border-primary focus:border-primary dark:border-navy-400 dark:before:bg-accent dark:checked:border-accent dark:hover:border-accent dark:focus:border-accent"
                         type="checkbox"
-                        name="bien_id"
+                        multiple
+                        name="bien_id[]"
                         value="{{$lgmt->id}}"
                       />
                     </label>
