@@ -31,7 +31,7 @@ class CustomerController extends Controller
     {
         //
         $roles = Role::pluck('name','name')->all();
-        $lgmts = Bien::orderBy('updated_at','ASC')->get();
+        $lgmts = Bien::orderBy('updated_at','ASC')->whereNull('client_id')->get();
         $countries = Pays::all();
         return view('customers.customerCreate',compact('roles','countries','lgmts'));
     }

@@ -41,12 +41,12 @@ class LogementsController extends Controller
     public function store(Request $request)
     {
         //
+        $this->validate($request, [
+            'illustration' => 'required',
+        ]);
         $input = $request->all();
         if($image=$request->file('illustration')){
-            $destionationPath = $request->file('illustration')->storePublicly('images/illustrations');
-            // $ext = $image->getClientOriginalName();
-             //$illustrationImage = $destionationPath . $ext;
-            // $image->move($destionationPath,$illustrationImage);  
+            $destionationPath = $request->file('illustration')->storePublicly('images/illustrations'); 
             $input['illustration'] = "https://myawsimo.s3.eu-north-1.amazonaws.com/$destionationPath";
         };
         $input['type_bien']="logement";
@@ -55,15 +55,6 @@ class LogementsController extends Controller
         if($files = $request->file('gallerie')){
             foreach($files as $file){
                 $id=$biens->id;
-                
-                // $image_name = md5(rand(100, 1000000));
-                // $ext = strtolower($file->getClientOriginalExtension());
-                // $image_full_name = $image_name.'.'.$ext;
-                // $upload_path = 'core_ui/images/illustrations/galleries/';
-                // $image_url = $upload_path.$image_full_name;
-                // $file->move($upload_path, $image_full_name);
-                //
-
                 $image_url= $file->storePublicly('images/galleries');
                 $image[]=$image_url;
                 $images =Gallery::create([
@@ -72,9 +63,6 @@ class LogementsController extends Controller
                 ]);
             }
         }
-
-        
-
         return redirect()->route('logements.index')
                         ->with('success','User created successfully');
     }
