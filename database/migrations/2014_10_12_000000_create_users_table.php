@@ -17,7 +17,7 @@ class CreateUsersTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('firstname',45)->nullable();
-            $table->bigInteger( 'user_id')->nullable()->comment( 'Créateur' );
+            $table->bigInteger( 'user_id')->nullable()->comment( 'Créateur /commercial' );
             $table->boolean( 'person_type' )->nullable()->comment( 'Type de personne' );
             $table->string( 'sigle' )->nullable()->comment( 'Sigle entreprise' );
             $table->string('photo',2048)->nullable();

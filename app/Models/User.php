@@ -98,4 +98,8 @@ class User extends Authenticatable implements JWTSubject
     {
         return $this->hasMany(Post::class, 'created_by', 'id');
     } 
+    public function bien()
+    {
+        return $this->belongsToMany(Bien::class,'Bien_User','bien_id','user_id');
+    }
 }

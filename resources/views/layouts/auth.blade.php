@@ -10,7 +10,7 @@
     />
 <!-- CSRF Token -->
 <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>Authentification</title>
+    <title>{{ config('app.name', 'PartnerImmo') }}</title>
     <link rel="icon" type="image/png" href="{{asset('core_ui/images/favicon.png')}}" />
 
     <!-- CSS Assets -->

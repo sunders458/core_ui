@@ -41,4 +41,10 @@ class Bien extends Model
         'type_bien',
         'site_id',
     ];
+
+
+    public function user()
+    {
+        return $this->belongsToMany(User::class,'Bien_User','user_id','bien_id');
+    }
 }

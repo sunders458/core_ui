@@ -5,6 +5,8 @@ use Spatie\Permission\Models\Role;
 use App\Models\Pays;
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Models\Bien;
+use Illuminate\Support\Facades\Auth;
 
 class ProspectController extends Controller
 {
@@ -30,8 +32,9 @@ class ProspectController extends Controller
     {
         //
         $roles = Role::pluck('name','name')->all();
+        $lgmts = Bien::orderBy('updated_at','ASC')->whereNull('client_id')->get();
         $countries = Pays::all();
-        return view('customers.prospect.prospectCreate',compact('roles','countries'));
+        return view('customers.prospect.prospectCreate',compact('roles','countries','lgmts'));
     }
 
     /**
@@ -50,12 +53,16 @@ class ProspectController extends Controller
         ]);
 
         $input = $request->all();
+        $input['user_id'] =Auth::user()->id;
         $input['password'] = bcrypt('password');
         $input['type'] = 0;
        
         $role = Role::where('name','Abonnés')->first();
         $prospect = User::create($input);
         $prospect->assignRole($role->id);
+
+        $input['bien_id'] = $request->input('bien_id');
+        $prospect->bien()->attach($input['bien_id']);
     
         return redirect()->route('prospects.index')
                         ->with('success','User created successfully');
