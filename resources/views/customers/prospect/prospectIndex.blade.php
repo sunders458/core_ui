@@ -71,7 +71,7 @@
               <h2
                 class="text-base font-medium tracking-wide text-slate-700 line-clamp-1 dark:text-navy-100"
               >
-                Collapsible Table
+                Liste des prospects
               </h2>
               <div class="flex">
                 <div class="flex items-center" x-data="{isInputActive:false}">
@@ -205,57 +205,61 @@
                       <th
                         class="whitespace-nowrap bg-slate-200 px-4 py-3 font-semibold text-slate-800 dark:bg-navy-800 dark:text-navy-100 lg:px-5"
                       >
-                        Level
+                        Email
                       </th>
                       <th
                         class="whitespace-nowrap bg-slate-200 px-4 py-3 font-semibold text-slate-800 dark:bg-navy-800 dark:text-navy-100 lg:px-5"
                       >
-                        Stack
+                        Souscription
                       </th>
                       <th
                         class="whitespace-nowrap rounded-tr-lg bg-slate-200 px-4 py-3 font-semibold text-slate-800 dark:bg-navy-800 dark:text-navy-100 lg:px-5"
                       >
-                        More
+                        Actions
                       </th>
                     </tr>
                   </thead>
+                  @foreach ($data as $item)
                   <tbody x-data="{expanded:false}">
                     <tr class="border-y border-transparent">
-                      <td class="whitespace-nowrap px-4 py-3 sm:px-5">1</td>
                       <td class="whitespace-nowrap px-4 py-3 sm:px-5">
-                        <div class="avatar flex">
-                          <img
-                            class="rounded-full"
-                            src="images/avatar/avatar-3.jpg"
-                            alt="avatar"
-                          />
-                        </div>
+                        {{++$i}}
                       </td>
                       <td
-                        class="whitespace-nowrap px-4 py-3 font-medium text-slate-700 dark:text-navy-100 sm:px-5"
+                      class="whitespace-nowrap px-4 py-3 font-medium text-slate-700 dark:text-navy-100 sm:px-5"
                       >
-                        John Doe
-                      </td>
+                      {{$item->name}} {{$item->firstname}}
+                    </td>
+                    <td
+                      class="whitespace-nowrap px-4 py-3 font-medium text-slate-700 dark:text-navy-100 sm:px-5"
+                    >
+                    {{$item->phone}}
+                    </td>
+                    <td class="whitespace-nowrap px-4 py-3 sm:px-5">
+                      
+                      {{ \Carbon\Carbon::parse($item->updated_at)->locale('fr')->translatedFormat('D d M Y') }}
+                    </td>
+                    <td class="whitespace-nowrap px-4 py-3 sm:px-5">
+                      {{$item->email}}
+                    </td>
                       <td class="whitespace-nowrap px-4 py-3 sm:px-5">
-                        443-893-2316
-                      </td>
-                      <td class="whitespace-nowrap px-4 py-3 sm:px-5">
-                        Level 1
-                      </td>
-                      <td class="whitespace-nowrap px-4 py-3 sm:px-5">
+
                         <div class="flex space-x-2">
+
+                          @foreach ($item->bien as $mybien)
+                            
+                          
                           <div
                             class="badge rounded-full border border-info text-info"
                           >
-                            Tailwind
+                            {{$mybien->type_logement}}
                           </div>
-                          <div
-                            class="badge rounded-full border border-success text-success"
-                          >
-                            Alpine
-                          </div>
+                          @endforeach
+
+
                         </div>
                       </td>
+
                       <td class="whitespace-nowrap px-4 py-3 sm:px-5">
                         <button
                           @click="expanded = !expanded"
@@ -421,621 +425,15 @@
                       </td>
                     </tr>
                   </tbody>
-                  <tbody x-data="{expanded:false}">
-                    <tr class="border-y border-transparent">
-                      <td class="whitespace-nowrap px-4 py-3 sm:px-5">2</td>
-                      <td class="whitespace-nowrap px-4 py-3 sm:px-5">
-                        <div class="avatar flex">
-                          <img
-                            class="rounded-full"
-                            src="images/avatar/avatar-8.jpg"
-                            alt="avatar"
-                          />
-                        </div>
-                      </td>
-                      <td
-                        class="whitespace-nowrap px-4 py-3 font-medium text-slate-700 dark:text-navy-100 sm:px-5"
-                      >
-                        Sabina Mores
-                      </td>
-                      <td class="whitespace-nowrap px-4 py-3 sm:px-5">
-                        684-4161-8911
-                      </td>
-                      <td class="whitespace-nowrap px-4 py-3 sm:px-5">
-                        Level 2
-                      </td>
-                      <td class="whitespace-nowrap px-4 py-3 sm:px-5">
-                        <div class="flex space-x-2">
-                          <div
-                            class="badge rounded-full border border-warning text-warning"
-                          >
-                            React
-                          </div>
-                          <div
-                            class="badge rounded-full border border-info text-info"
-                          >
-                            Remix
-                          </div>
-                        </div>
-                      </td>
-                      <td class="whitespace-nowrap px-4 py-3 sm:px-5">
-                        <button
-                          @click="expanded = !expanded"
-                          class="btn h-8 w-8 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
-                        >
-                          <i
-                            :class="expanded && '-rotate-180'"
-                            class="fas fa-chevron-down text-sm transition-transform"
-                          ></i>
-                        </button>
-                      </td>
-                    </tr>
-                    <tr
-                      class="border-y border-transparent border-b-slate-200 dark:border-b-navy-500"
-                    >
-                      <td colspan="100" class="p-0">
-                        <div x-show="expanded" x-collapse>
-                          <div class="px-4 pb-4 sm:px-5">
-                            <p>
-                              Lorem ipsum dolor, sit amet consectetur
-                              adipisicing elit. Aut amet sunt repudiandae!
-                            </p>
-                            <div
-                              class="is-scrollbar-hidden min-w-full overflow-x-auto"
-                            >
-                              <table class="is-hoverable w-full text-left">
-                                <thead>
-                                  <tr
-                                    class="border-y border-transparent border-b-slate-200 dark:border-b-navy-500"
-                                  >
-                                    <th
-                                      class="whitespace-nowrap px-3 py-3 font-semibold text-slate-800 dark:text-navy-100 lg:px-5"
-                                    >
-                                      #
-                                    </th>
-                                    <th
-                                      class="whitespace-nowrap px-3 py-3 font-semibold text-slate-800 dark:text-navy-100 lg:px-5"
-                                    >
-                                      Name
-                                    </th>
-                                    <th
-                                      class="whitespace-nowrap px-3 py-3 font-semibold text-slate-800 dark:text-navy-100 lg:px-5"
-                                    >
-                                      Job
-                                    </th>
-                                    <th
-                                      class="whitespace-nowrap px-3 py-3 font-semibold text-slate-800 dark:text-navy-100 lg:px-5"
-                                    >
-                                      Favorite Color
-                                    </th>
-                                  </tr>
-                                </thead>
-                                <tbody>
-                                  <tr
-                                    class="border-y border-transparent border-b-slate-200 dark:border-b-navy-500"
-                                  >
-                                    <td
-                                      class="whitespace-nowrap px-4 py-3 sm:px-5"
-                                    >
-                                      1
-                                    </td>
-                                    <td
-                                      class="whitespace-nowrap px-4 py-3 sm:px-5"
-                                    >
-                                      Cy Ganderton
-                                    </td>
-                                    <td
-                                      class="whitespace-nowrap px-4 py-3 sm:px-5"
-                                    >
-                                      Quality Control Specialist
-                                    </td>
-                                    <td
-                                      class="whitespace-nowrap px-4 py-3 sm:px-5"
-                                    >
-                                      Blue
-                                    </td>
-                                  </tr>
-                                  <tr
-                                    class="border-y border-transparent border-b-slate-200 dark:border-b-navy-500"
-                                  >
-                                    <td
-                                      class="whitespace-nowrap px-4 py-3 sm:px-5"
-                                    >
-                                      2
-                                    </td>
-                                    <td
-                                      class="whitespace-nowrap px-4 py-3 sm:px-5"
-                                    >
-                                      Hart Hagerty
-                                    </td>
-                                    <td
-                                      class="whitespace-nowrap px-4 py-3 sm:px-5"
-                                    >
-                                      Desktop Support Technician
-                                    </td>
-                                    <td
-                                      class="whitespace-nowrap px-4 py-3 sm:px-5"
-                                    >
-                                      Purple
-                                    </td>
-                                  </tr>
-                                  <tr
-                                    class="border-y border-transparent border-b-slate-200 dark:border-b-navy-500"
-                                  >
-                                    <td
-                                      class="whitespace-nowrap px-4 py-3 sm:px-5"
-                                    >
-                                      3
-                                    </td>
-                                    <td
-                                      class="whitespace-nowrap px-4 py-3 sm:px-5"
-                                    >
-                                      Brice Swyre
-                                    </td>
-                                    <td
-                                      class="whitespace-nowrap px-4 py-3 sm:px-5"
-                                    >
-                                      Tax Accountant
-                                    </td>
-                                    <td
-                                      class="whitespace-nowrap px-4 py-3 sm:px-5"
-                                    >
-                                      Red
-                                    </td>
-                                  </tr>
-                                  <tr
-                                    class="border-y border-transparent border-b-slate-200 dark:border-b-navy-500"
-                                  >
-                                    <td
-                                      class="whitespace-nowrap px-4 py-3 sm:px-5"
-                                    >
-                                      4
-                                    </td>
-                                    <td
-                                      class="whitespace-nowrap px-4 py-3 sm:px-5"
-                                    >
-                                      Marjy Ferencz
-                                    </td>
-                                    <td
-                                      class="whitespace-nowrap px-4 py-3 sm:px-5"
-                                    >
-                                      Office Assistant I
-                                    </td>
-                                    <td
-                                      class="whitespace-nowrap px-4 py-3 sm:px-5"
-                                    >
-                                      Crimson
-                                    </td>
-                                  </tr>
-                                </tbody>
-                              </table>
-                            </div>
-                            <div class="text-right">
-                              <button
-                                @click="expanded = false"
-                                class="btn mt-2 h-8 rounded px-3 text-xs+ font-medium text-primary hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:text-accent-light dark:hover:bg-accent-light/20 dark:focus:bg-accent-light/20 dark:active:bg-accent-light/25"
-                              >
-                                Hide
-                              </button>
-                            </div>
-                          </div>
-                        </div>
-                      </td>
-                    </tr>
-                  </tbody>
-                  <tbody x-data="{expanded:false}">
-                    <tr class="border-y border-transparent">
-                      <td class="whitespace-nowrap px-4 py-3 sm:px-5">2</td>
-                      <td class="whitespace-nowrap px-4 py-3 sm:px-5">
-                        <div class="avatar flex">
-                          <img
-                            class="rounded-full"
-                            src="images/avatar/avatar-4.jpg"
-                            alt="avatar"
-                          />
-                        </div>
-                      </td>
-                      <td
-                        class="whitespace-nowrap px-4 py-3 font-medium text-slate-700 dark:text-navy-100 sm:px-5"
-                      >
-                        Tom Robert
-                      </td>
-                      <td class="whitespace-nowrap px-4 py-3 sm:px-5">
-                        179-911-3218
-                      </td>
-                      <td class="whitespace-nowrap px-4 py-3 sm:px-5">
-                        Level 3
-                      </td>
-                      <td class="whitespace-nowrap px-4 py-3 sm:px-5">
-                        <div class="flex space-x-2">
-                          <div
-                            class="badge rounded-full border border-error text-error"
-                          >
-                            Bootstrap
-                          </div>
-                          <div
-                            class="badge rounded-full border border-secondary text-secondary dark:border-secondary-light dark:text-secondary-light"
-                          >
-                            Tailwind
-                          </div>
-                        </div>
-                      </td>
-                      <td class="whitespace-nowrap px-4 py-3 sm:px-5">
-                        <button
-                          @click="expanded = !expanded"
-                          class="btn h-8 w-8 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
-                        >
-                          <i
-                            :class="expanded && '-rotate-180'"
-                            class="fas fa-chevron-down text-sm transition-transform"
-                          ></i>
-                        </button>
-                      </td>
-                    </tr>
-                    <tr
-                      class="border-y border-transparent border-b-slate-200 dark:border-b-navy-500"
-                    >
-                      <td colspan="100" class="p-0">
-                        <div x-show="expanded" x-collapse>
-                          <div class="px-4 pb-4 sm:px-5">
-                            <p>
-                              Lorem ipsum dolor, sit amet consectetur
-                              adipisicing elit. Aut amet sunt repudiandae!
-                            </p>
-                            <div
-                              class="is-scrollbar-hidden min-w-full overflow-x-auto"
-                            >
-                              <table class="is-hoverable w-full text-left">
-                                <thead>
-                                  <tr
-                                    class="border-y border-transparent border-b-slate-200 dark:border-b-navy-500"
-                                  >
-                                    <th
-                                      class="whitespace-nowrap px-3 py-3 font-semibold text-slate-800 dark:text-navy-100 lg:px-5"
-                                    >
-                                      #
-                                    </th>
-                                    <th
-                                      class="whitespace-nowrap px-3 py-3 font-semibold text-slate-800 dark:text-navy-100 lg:px-5"
-                                    >
-                                      Name
-                                    </th>
-                                    <th
-                                      class="whitespace-nowrap px-3 py-3 font-semibold text-slate-800 dark:text-navy-100 lg:px-5"
-                                    >
-                                      Job
-                                    </th>
-                                    <th
-                                      class="whitespace-nowrap px-3 py-3 font-semibold text-slate-800 dark:text-navy-100 lg:px-5"
-                                    >
-                                      Favorite Color
-                                    </th>
-                                  </tr>
-                                </thead>
-                                <tbody>
-                                  <tr
-                                    class="border-y border-transparent border-b-slate-200 dark:border-b-navy-500"
-                                  >
-                                    <td
-                                      class="whitespace-nowrap px-4 py-3 sm:px-5"
-                                    >
-                                      1
-                                    </td>
-                                    <td
-                                      class="whitespace-nowrap px-4 py-3 sm:px-5"
-                                    >
-                                      Cy Ganderton
-                                    </td>
-                                    <td
-                                      class="whitespace-nowrap px-4 py-3 sm:px-5"
-                                    >
-                                      Quality Control Specialist
-                                    </td>
-                                    <td
-                                      class="whitespace-nowrap px-4 py-3 sm:px-5"
-                                    >
-                                      Blue
-                                    </td>
-                                  </tr>
-                                  <tr
-                                    class="border-y border-transparent border-b-slate-200 dark:border-b-navy-500"
-                                  >
-                                    <td
-                                      class="whitespace-nowrap px-4 py-3 sm:px-5"
-                                    >
-                                      2
-                                    </td>
-                                    <td
-                                      class="whitespace-nowrap px-4 py-3 sm:px-5"
-                                    >
-                                      Hart Hagerty
-                                    </td>
-                                    <td
-                                      class="whitespace-nowrap px-4 py-3 sm:px-5"
-                                    >
-                                      Desktop Support Technician
-                                    </td>
-                                    <td
-                                      class="whitespace-nowrap px-4 py-3 sm:px-5"
-                                    >
-                                      Purple
-                                    </td>
-                                  </tr>
-                                  <tr
-                                    class="border-y border-transparent border-b-slate-200 dark:border-b-navy-500"
-                                  >
-                                    <td
-                                      class="whitespace-nowrap px-4 py-3 sm:px-5"
-                                    >
-                                      3
-                                    </td>
-                                    <td
-                                      class="whitespace-nowrap px-4 py-3 sm:px-5"
-                                    >
-                                      Brice Swyre
-                                    </td>
-                                    <td
-                                      class="whitespace-nowrap px-4 py-3 sm:px-5"
-                                    >
-                                      Tax Accountant
-                                    </td>
-                                    <td
-                                      class="whitespace-nowrap px-4 py-3 sm:px-5"
-                                    >
-                                      Red
-                                    </td>
-                                  </tr>
-                                  <tr
-                                    class="border-y border-transparent border-b-slate-200 dark:border-b-navy-500"
-                                  >
-                                    <td
-                                      class="whitespace-nowrap px-4 py-3 sm:px-5"
-                                    >
-                                      4
-                                    </td>
-                                    <td
-                                      class="whitespace-nowrap px-4 py-3 sm:px-5"
-                                    >
-                                      Marjy Ferencz
-                                    </td>
-                                    <td
-                                      class="whitespace-nowrap px-4 py-3 sm:px-5"
-                                    >
-                                      Office Assistant I
-                                    </td>
-                                    <td
-                                      class="whitespace-nowrap px-4 py-3 sm:px-5"
-                                    >
-                                      Crimson
-                                    </td>
-                                  </tr>
-                                </tbody>
-                              </table>
-                            </div>
-                            <div class="text-right">
-                              <button
-                                @click="expanded = false"
-                                class="btn mt-2 h-8 rounded px-3 text-xs+ font-medium text-primary hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:text-accent-light dark:hover:bg-accent-light/20 dark:focus:bg-accent-light/20 dark:active:bg-accent-light/25"
-                              >
-                                Hide
-                              </button>
-                            </div>
-                          </div>
-                        </div>
-                      </td>
-                    </tr>
-                  </tbody>
-                  <tbody x-data="{expanded:false}">
-                    <tr class="border-y border-transparent">
-                      <td class="whitespace-nowrap px-4 py-3 sm:px-5">2</td>
-                      <td class="whitespace-nowrap px-4 py-3 sm:px-5">
-                        <div class="avatar flex">
-                          <img
-                            class="rounded-full"
-                            src="images/avatar/avatar-14.jpg"
-                            alt="avatar"
-                          />
-                        </div>
-                      </td>
-                      <td
-                        class="whitespace-nowrap px-4 py-3 font-medium text-slate-700 dark:text-navy-100 sm:px-5"
-                      >
-                        Nolan Doe
-                      </td>
-                      <td class="whitespace-nowrap px-4 py-3 sm:px-5">
-                        766-9746-1462
-                      </td>
-                      <td class="whitespace-nowrap px-4 py-3 sm:px-5">
-                        Level 4
-                      </td>
-                      <td class="whitespace-nowrap px-4 py-3 sm:px-5">
-                        <div class="flex space-x-2">
-                          <div
-                            class="badge rounded-full border border-info text-info"
-                          >
-                            Tailwind
-                          </div>
-                          <div
-                            class="badge rounded-full border border-success text-success"
-                          >
-                            Alpine
-                          </div>
-                        </div>
-                      </td>
-                      <td class="whitespace-nowrap px-4 py-3 sm:px-5">
-                        <button
-                          @click="expanded = !expanded"
-                          class="btn h-8 w-8 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
-                        >
-                          <i
-                            :class="expanded && '-rotate-180'"
-                            class="fas fa-chevron-down text-sm transition-transform"
-                          ></i>
-                        </button>
-                      </td>
-                    </tr>
-                    <tr
-                      class="border-y border-transparent border-b-slate-200 dark:border-b-navy-500"
-                    >
-                      <td colspan="100" class="p-0">
-                        <div x-show="expanded" x-collapse>
-                          <div class="px-4 pb-4 sm:px-5">
-                            <p>
-                              Lorem ipsum dolor, sit amet consectetur
-                              adipisicing elit. Aut amet sunt repudiandae!
-                            </p>
-                            <div
-                              class="is-scrollbar-hidden min-w-full overflow-x-auto"
-                            >
-                              <table class="is-hoverable w-full text-left">
-                                <thead>
-                                  <tr
-                                    class="border-y border-transparent border-b-slate-200 dark:border-b-navy-500"
-                                  >
-                                    <th
-                                      class="whitespace-nowrap px-3 py-3 font-semibold text-slate-800 dark:text-navy-100 lg:px-5"
-                                    >
-                                      #
-                                    </th>
-                                    <th
-                                      class="whitespace-nowrap px-3 py-3 font-semibold text-slate-800 dark:text-navy-100 lg:px-5"
-                                    >
-                                      Name
-                                    </th>
-                                    <th
-                                      class="whitespace-nowrap px-3 py-3 font-semibold text-slate-800 dark:text-navy-100 lg:px-5"
-                                    >
-                                      Job
-                                    </th>
-                                    <th
-                                      class="whitespace-nowrap px-3 py-3 font-semibold text-slate-800 dark:text-navy-100 lg:px-5"
-                                    >
-                                      Favorite Color
-                                    </th>
-                                  </tr>
-                                </thead>
-                                <tbody>
-                                  <tr
-                                    class="border-y border-transparent border-b-slate-200 dark:border-b-navy-500"
-                                  >
-                                    <td
-                                      class="whitespace-nowrap px-4 py-3 sm:px-5"
-                                    >
-                                      1
-                                    </td>
-                                    <td
-                                      class="whitespace-nowrap px-4 py-3 sm:px-5"
-                                    >
-                                      Cy Ganderton
-                                    </td>
-                                    <td
-                                      class="whitespace-nowrap px-4 py-3 sm:px-5"
-                                    >
-                                      Quality Control Specialist
-                                    </td>
-                                    <td
-                                      class="whitespace-nowrap px-4 py-3 sm:px-5"
-                                    >
-                                      Blue
-                                    </td>
-                                  </tr>
-                                  <tr
-                                    class="border-y border-transparent border-b-slate-200 dark:border-b-navy-500"
-                                  >
-                                    <td
-                                      class="whitespace-nowrap px-4 py-3 sm:px-5"
-                                    >
-                                      2
-                                    </td>
-                                    <td
-                                      class="whitespace-nowrap px-4 py-3 sm:px-5"
-                                    >
-                                      Hart Hagerty
-                                    </td>
-                                    <td
-                                      class="whitespace-nowrap px-4 py-3 sm:px-5"
-                                    >
-                                      Desktop Support Technician
-                                    </td>
-                                    <td
-                                      class="whitespace-nowrap px-4 py-3 sm:px-5"
-                                    >
-                                      Purple
-                                    </td>
-                                  </tr>
-                                  <tr
-                                    class="border-y border-transparent border-b-slate-200 dark:border-b-navy-500"
-                                  >
-                                    <td
-                                      class="whitespace-nowrap px-4 py-3 sm:px-5"
-                                    >
-                                      3
-                                    </td>
-                                    <td
-                                      class="whitespace-nowrap px-4 py-3 sm:px-5"
-                                    >
-                                      Brice Swyre
-                                    </td>
-                                    <td
-                                      class="whitespace-nowrap px-4 py-3 sm:px-5"
-                                    >
-                                      Tax Accountant
-                                    </td>
-                                    <td
-                                      class="whitespace-nowrap px-4 py-3 sm:px-5"
-                                    >
-                                      Red
-                                    </td>
-                                  </tr>
-                                  <tr
-                                    class="border-y border-transparent border-b-slate-200 dark:border-b-navy-500"
-                                  >
-                                    <td
-                                      class="whitespace-nowrap px-4 py-3 sm:px-5"
-                                    >
-                                      4
-                                    </td>
-                                    <td
-                                      class="whitespace-nowrap px-4 py-3 sm:px-5"
-                                    >
-                                      Marjy Ferencz
-                                    </td>
-                                    <td
-                                      class="whitespace-nowrap px-4 py-3 sm:px-5"
-                                    >
-                                      Office Assistant I
-                                    </td>
-                                    <td
-                                      class="whitespace-nowrap px-4 py-3 sm:px-5"
-                                    >
-                                      Crimson
-                                    </td>
-                                  </tr>
-                                </tbody>
-                              </table>
-                            </div>
-                            <div class="text-right">
-                              <button
-                                @click="expanded = false"
-                                class="btn mt-2 h-8 rounded px-3 text-xs+ font-medium text-primary hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:text-accent-light dark:hover:bg-accent-light/20 dark:focus:bg-accent-light/20 dark:active:bg-accent-light/25"
-                              >
-                                Hide
-                              </button>
-                            </div>
-                          </div>
-                        </div>
-                      </td>
-                    </tr>
-                  </tbody>
+                  @endforeach
                 </table>
               </div>
-
               <div
                 class="flex flex-col justify-between space-y-4 px-4 py-4 sm:flex-row sm:items-center sm:space-y-0 sm:px-5"
               >
                 <div class="text-xs+">1 - 10 of 10 entries</div>
-
-                <ol class="pagination">
+    
+                {{-- <ol class="pagination">
                   <li class="rounded-l-full bg-slate-150 dark:bg-navy-500">
                     <a
                       href="components-table-advanced.html#"
@@ -1113,7 +511,8 @@
                       </svg>
                     </a>
                   </li>
-                </ol>
+                </ol> --}}
+    
               </div>
             </div>
           </div>

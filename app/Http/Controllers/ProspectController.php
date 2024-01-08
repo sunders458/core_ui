@@ -18,7 +18,13 @@ class ProspectController extends Controller
     public function index(Request $request)
     {
         //
-        $data = User::orderBy('name','ASC')->where('status','0')->paginate(20);
+        
+        $data = User::orderBy('name','ASC')
+            ->where('type','0')->where('user_id',Auth::user()->id)
+            ->with('bien')->whereHas('bien',function($query){
+                $query->whereNull('client_id');
+            })->paginate(20);
+            
         return view('customers.prospect.prospectIndex',compact('data'))
             ->with('i', ($request->input('page', 1) - 1) * 20);
     }
@@ -50,6 +56,7 @@ class ProspectController extends Controller
         $this->validate($request, [
             'name' => 'required',
             'email' => 'email|unique:users,email',
+            'bien_id'=>'required',
         ]);
 
         $input = $request->all();
@@ -61,9 +68,10 @@ class ProspectController extends Controller
         $prospect = User::create($input);
         $prospect->assignRole($role->id);
 
-        $input['bien_id'] = $request->input('bien_id');
-        $prospect->bien()->attach($input['bien_id']);
-    
+        if($request->input('bien_id')){
+            $input['bien_id'] = $request->input('bien_id');
+            $prospect->bien()->attach($input['bien_id']);
+        }
         return redirect()->route('prospects.index')
                         ->with('success','User created successfully');
     
