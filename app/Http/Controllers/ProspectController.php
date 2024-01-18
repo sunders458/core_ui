@@ -97,6 +97,15 @@ class ProspectController extends Controller
     public function edit($id)
     {
         //
+        $prospect = User::find($id);
+      
+        $countries = Pays::pluck('libelle','id')->all();
+        $bycountries = $prospect->countries->pluck('libelle','id')->all();
+        $myinterrest = $prospect->bien->pluck('id')->all();
+        $interrest  = Bien::get();
+        $selectedPays=$prospect->pays_id;
+       
+        return view('customers.prospect.prospectEdit',compact('prospect','countries','bycountries','myinterrest','interrest','selectedPays'));
     }
 
     /**
@@ -109,6 +118,19 @@ class ProspectController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $input = $request->all();
+        $user = User::find($id);
+        $user->update($input);
+
+        $input['pays_id'] = $request->input('pays_id');
+        $user->countries()->associate($input['pays_id']);
+
+        $input['bien_id'] = $request->input('bien_id');
+        $user->bien()->sync($input['bien_id']);
+
+        return redirect()->route('prospects.index')
+        ->with('success','User created successfully');
+;
     }
 
     /**

@@ -80,7 +80,7 @@
                       x-effect="isInputActive === true && $nextTick(() => { $el.focus()});"
                       :class="isInputActive ? 'w-32 lg:w-48' : 'w-0'"
                       class="form-input bg-transparent px-1 text-right transition-all duration-100 placeholder:text-slate-500 dark:placeholder:text-navy-200"
-                      placeholder="Search here..."
+                      placeholder="Rechercher"
                       type="text"
                     />
                   </label>
@@ -104,77 +104,7 @@
                     </svg>
                   </button>
                 </div>
-                <div
-                  x-data="usePopper({placement:'bottom-end',offset:4})"
-                  @click.outside="if(isShowPopper) isShowPopper = false"
-                  class="inline-flex"
-                >
-                  <button
-                    x-ref="popperRef"
-                    @click="isShowPopper = !isShowPopper"
-                    class="btn h-8 w-8 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
-                  >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      class="h-4.5 w-4.5"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z"
-                      />
-                    </svg>
-                  </button>
-                  <div
-                    x-ref="popperRoot"
-                    class="popper-root"
-                    :class="isShowPopper && 'show'"
-                  >
-                    <div
-                      class="popper-box rounded-md border border-slate-150 bg-white py-1.5 font-inter dark:border-navy-500 dark:bg-navy-700"
-                    >
-                      <ul>
-                        <li>
-                          <a
-                            href="components-table-advanced.html#"
-                            class="flex h-8 items-center px-3 pr-8 font-medium tracking-wide outline-none transition-all hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100"
-                            >Action</a
-                          >
-                        </li>
-                        <li>
-                          <a
-                            href="components-table-advanced.html#"
-                            class="flex h-8 items-center px-3 pr-8 font-medium tracking-wide outline-none transition-all hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100"
-                            >Another Action</a
-                          >
-                        </li>
-                        <li>
-                          <a
-                            href="components-table-advanced.html#"
-                            class="flex h-8 items-center px-3 pr-8 font-medium tracking-wide outline-none transition-all hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100"
-                            >Something else</a
-                          >
-                        </li>
-                      </ul>
-                      <div
-                        class="my-1 h-px bg-slate-150 dark:bg-navy-500"
-                      ></div>
-                      <ul>
-                        <li>
-                          <a
-                            href="components-table-advanced.html#"
-                            class="flex h-8 items-center px-3 pr-8 font-medium tracking-wide outline-none transition-all hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100"
-                            >Separated Link</a
-                          >
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
+                
               </div>
             </div>
             <div class="card mt-3">
@@ -270,6 +200,17 @@
                             class="fas fa-chevron-down text-sm transition-transform"
                           ></i>
                         </button>
+
+                        <a
+                          
+                          class="btn h-8 w-8 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
+                          href="{{ route('prospects.edit',$item->id) }}"
+                        >
+                          <i
+                            :class="expanded && '-rotate-180'"
+                            class="fas fa-pencil text-sm transition-transform"
+                          ></i>
+                        </a>
                       </td>
                     </tr>
                     <tr
@@ -279,145 +220,138 @@
                         <div x-show="expanded" x-collapse>
                           <div class="px-4 pb-4 sm:px-5">
                             <p>
-                              Lorem ipsum dolor, sit amet consectetur
-                              adipisicing elit. Aut amet sunt repudiandae!
+                             
                             </p>
-                            <div
-                              class="is-scrollbar-hidden min-w-full overflow-x-auto"
-                            >
-                              <table class="is-hoverable w-full text-left">
-                                <thead>
-                                  <tr
-                                    class="border-y border-transparent border-b-slate-200 dark:border-b-navy-500"
-                                  >
-                                    <th
-                                      class="whitespace-nowrap px-3 py-3 font-semibold text-slate-800 dark:text-navy-100 lg:px-5"
+
+                            
+                           
+                            <div class="grid grid-cols-12 gap-4 sm:gap-5 lg:gap-6">
+                              
+                              <div class="col-span-3 lg:col-span-3">
+                                <div class="card w-64 shrink-0 pb-3">
+                                  <div class="h-20 rounded-t-lg bg-primary dark:bg-accent">
+                                    <img
+                                      class="h-full w-full rounded-t-lg object-cover object-center"
+                                      src="{{asset('core_ui/images/object/object-13.jpg')}}"
+                                      alt="image"
+                                    />
+                                  </div>
+                                  <div class="px-4 py-2 sm:px-5">
+                                    <div class="flex justify-between space-x-4">
+                                      <div class="avatar -mt-12 h-20 w-20">
+                                        <img
+                                          class="rounded-full border-2 border-white dark:border-navy-700"
+                                          src="{{asset('core_ui/images/avatar/avatar-19.jpg')}}"
+                                          alt="avatar"
+                                        />
+                                      </div>
+                                      {{-- <div class="flex space-x-2">
+                                        <button
+                                          class="btn h-7 w-7 rounded-full bg-primary/10 p-0 text-primary hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:bg-accent-light/10 dark:text-accent-light dark:hover:bg-accent-light/20 dark:focus:bg-accent-light/20 dark:active:bg-accent-light/25"
+                                        >
+                                          <i class="fab fa-twitter"></i>
+                                        </button>
+                                        <button
+                                          class="btn h-7 w-7 rounded-full bg-primary/10 p-0 text-primary hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:bg-accent-light/10 dark:text-accent-light dark:hover:bg-accent-light/20 dark:focus:bg-accent-light/20 dark:active:bg-accent-light/25"
+                                        >
+                                          <i class="fab fa-instagram text-base"></i>
+                                        </button>
+                                        <button
+                                          class="btn h-7 w-7 rounded-full bg-primary/10 p-0 text-primary hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:bg-accent-light/10 dark:text-accent-light dark:hover:bg-accent-light/20 dark:focus:bg-accent-light/20 dark:active:bg-accent-light/25"
+                                        >
+                                          <i class="fab fa-facebook-f"></i>
+                                        </button>
+                                      </div> --}}
+                                    </div>
+                                    <h3
+                                      class="pt-2 text-base font-medium text-slate-700 dark:text-navy-100"
                                     >
-                                      #
-                                    </th>
-                                    <th
-                                      class="whitespace-nowrap px-3 py-3 font-semibold text-slate-800 dark:text-navy-100 lg:px-5"
-                                    >
-                                      Name
-                                    </th>
-                                    <th
-                                      class="whitespace-nowrap px-3 py-3 font-semibold text-slate-800 dark:text-navy-100 lg:px-5"
-                                    >
-                                      Job
-                                    </th>
-                                    <th
-                                      class="whitespace-nowrap px-3 py-3 font-semibold text-slate-800 dark:text-navy-100 lg:px-5"
-                                    >
-                                      Favorite Color
-                                    </th>
-                                  </tr>
-                                </thead>
-                                <tbody>
-                                  <tr
-                                    class="border-y border-transparent border-b-slate-200 dark:border-b-navy-500"
-                                  >
-                                    <td
-                                      class="whitespace-nowrap px-4 py-3 sm:px-5"
-                                    >
-                                      1
-                                    </td>
-                                    <td
-                                      class="whitespace-nowrap px-4 py-3 sm:px-5"
-                                    >
-                                      Cy Ganderton
-                                    </td>
-                                    <td
-                                      class="whitespace-nowrap px-4 py-3 sm:px-5"
-                                    >
-                                      Quality Control Specialist
-                                    </td>
-                                    <td
-                                      class="whitespace-nowrap px-4 py-3 sm:px-5"
-                                    >
-                                      Blue
-                                    </td>
-                                  </tr>
-                                  <tr
-                                    class="border-y border-transparent border-b-slate-200 dark:border-b-navy-500"
-                                  >
-                                    <td
-                                      class="whitespace-nowrap px-4 py-3 sm:px-5"
-                                    >
-                                      2
-                                    </td>
-                                    <td
-                                      class="whitespace-nowrap px-4 py-3 sm:px-5"
-                                    >
-                                      Hart Hagerty
-                                    </td>
-                                    <td
-                                      class="whitespace-nowrap px-4 py-3 sm:px-5"
-                                    >
-                                      Desktop Support Technician
-                                    </td>
-                                    <td
-                                      class="whitespace-nowrap px-4 py-3 sm:px-5"
-                                    >
-                                      Purple
-                                    </td>
-                                  </tr>
-                                  <tr
-                                    class="border-y border-transparent border-b-slate-200 dark:border-b-navy-500"
-                                  >
-                                    <td
-                                      class="whitespace-nowrap px-4 py-3 sm:px-5"
-                                    >
-                                      3
-                                    </td>
-                                    <td
-                                      class="whitespace-nowrap px-4 py-3 sm:px-5"
-                                    >
-                                      Brice Swyre
-                                    </td>
-                                    <td
-                                      class="whitespace-nowrap px-4 py-3 sm:px-5"
-                                    >
-                                      Tax Accountant
-                                    </td>
-                                    <td
-                                      class="whitespace-nowrap px-4 py-3 sm:px-5"
-                                    >
-                                      Red
-                                    </td>
-                                  </tr>
-                                  <tr
-                                    class="border-y border-transparent border-b-slate-200 dark:border-b-navy-500"
-                                  >
-                                    <td
-                                      class="whitespace-nowrap px-4 py-3 sm:px-5"
-                                    >
-                                      4
-                                    </td>
-                                    <td
-                                      class="whitespace-nowrap px-4 py-3 sm:px-5"
-                                    >
-                                      Marjy Ferencz
-                                    </td>
-                                    <td
-                                      class="whitespace-nowrap px-4 py-3 sm:px-5"
-                                    >
-                                      Office Assistant I
-                                    </td>
-                                    <td
-                                      class="whitespace-nowrap px-4 py-3 sm:px-5"
-                                    >
-                                      Crimson
-                                    </td>
-                                  </tr>
-                                </tbody>
-                              </table>
+                                    {{$item->name}} {{$item->firstname}}
+                                    </h3>
+                                    <p class="text-xs text-slate-400 dark:text-navy-300">
+                                      {{$item->city}}, {{$item->residence}}
+                                    </p>
+                                    
+                                    
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="col-span-9 lg:col-span-9">
+
+                                <div
+                                class="is-scrollbar-hidden min-w-full overflow-x-auto"
+                                >
+                                  <table class="is-hoverable w-full text-left">
+                                    <thead>
+                                      <tr
+                                        class="border-y border-transparent border-b-slate-200 dark:border-b-navy-500"
+                                      >
+                                        {{-- <th
+                                          class="whitespace-nowrap px-3 py-3 font-semibold text-slate-800 dark:text-navy-100 lg:px-5"
+                                        >
+                                          #
+                                        </th> --}}
+                                        <th
+                                          class="whitespace-nowrap px-3 py-3 font-semibold text-slate-800 dark:text-navy-100 lg:px-5"
+                                        >
+                                        Type de logement
+                                        </th>
+                                        <th
+                                          class="whitespace-nowrap px-3 py-3 font-semibold text-slate-800 dark:text-navy-100 lg:px-5"
+                                        >
+                                        finition
+                                        </th>
+                                        <th
+                                          class="whitespace-nowrap px-3 py-3 font-semibold text-slate-800 dark:text-navy-100 lg:px-5"
+                                        >
+                                        prix
+                                        </th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+
+                                      @foreach ($item->bien as $mbien)
+                                        <tr
+                                          class="border-y border-transparent border-b-slate-200 dark:border-b-navy-500"
+                                        >
+                                          {{-- <td
+                                            class="whitespace-nowrap px-4 py-3 sm:px-5"
+                                          >
+                                            {{1}}
+                                          </td> --}}
+                                          <td
+                                            class="whitespace-nowrap px-4 py-3 sm:px-5"
+                                          >
+                                          {{$mbien->type_logement}}
+                                          </td>
+                                          <td
+                                            class="whitespace-nowrap px-4 py-3 sm:px-5"
+                                          >
+                                          {{$mbien->finition}}
+                                          </td>
+                                          <td
+                                            class="whitespace-nowrap px-4 py-3 sm:px-5"
+                                          >
+                                          {{number_format($mbien->prix, 0, ',', ' ')}} F CFA
+                                          </td>
+                                        </tr>
+                                      @endforeach
+
+                                      
+                                      
+                                      
+                                    </tbody>
+                                  </table>
+                                </div> 
+
+                              </div>
                             </div>
                             <div class="text-right">
                               <button
                                 @click="expanded = false"
                                 class="btn mt-2 h-8 rounded px-3 text-xs+ font-medium text-primary hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:text-accent-light dark:hover:bg-accent-light/20 dark:focus:bg-accent-light/20 dark:active:bg-accent-light/25"
                               >
-                                Hide
+                                masquer
                               </button>
                             </div>
                           </div>
