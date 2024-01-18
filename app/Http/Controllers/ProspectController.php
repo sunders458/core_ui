@@ -29,6 +29,20 @@ class ProspectController extends Controller
             ->with('i', ($request->input('page', 1) - 1) * 20);
     }
 
+    public function prospects(Request $request)
+    {
+        //
+        
+        $data = User::orderBy('name','ASC')
+            ->where('type','0')->with('bien')
+            ->whereHas('bien',function($query){
+                $query->whereNull('client_id');
+            })->paginate(20);
+            
+        return view('customers.prospect.allprospects',compact('data'))
+            ->with('i', ($request->input('page', 1) - 1) * 20);
+    }
+
     /**
      * Show the form for creating a new resource.
      *

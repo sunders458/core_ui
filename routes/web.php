@@ -62,6 +62,7 @@ Route::group(['middleware' => ['auth']], function() {
     Route::resource('logements', LogementsController::class);
     Route::resource('clients', CustomerController::class);
     Route::resource('prospects', ProspectController::class);
+    Route::get('all-prospects',[ProspectController::class, 'prospects'])->name('prospects.all');
     Route::get('settings', [SettingController::class,'index']);
     Route::resource('roles', RoleController::class);
     Route::resource('users', UserController::class);
