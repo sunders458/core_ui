@@ -63,6 +63,8 @@ Route::group(['middleware' => ['auth']], function() {
     Route::resource('clients', CustomerController::class);
     Route::resource('prospects', ProspectController::class);
     Route::get('all-prospects',[ProspectController::class, 'prospects'])->name('prospects.all');
+    Route::get('prospect-transform/{id}',[ProspectController::class, 'transform'])->name('prospects.transform');
+    Route::post('prospect-souscript',[ProspectController::class, 'souscript'])->name('prospects.souscript');
     Route::get('settings', [SettingController::class,'index']);
     Route::resource('roles', RoleController::class);
     Route::resource('users', UserController::class);

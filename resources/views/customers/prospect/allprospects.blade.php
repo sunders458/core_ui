@@ -202,16 +202,16 @@
                           ></i>
                         </button>
 
-                        {{-- <a
+                         <a
                           
                           class="btn h-8 w-8 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
-                          href="{{ route('prospects.edit',$item->id) }}"
+                          href="{{ route('prospects.transform',$item->id) }}"
                         >
                           <i
                             :class="expanded && '-rotate-180'"
                             class="fas fa-pencil text-sm transition-transform"
                           ></i>
-                        </a> --}}
+                        </a> 
                       </td>
                     </tr>
                     <tr
@@ -272,8 +272,6 @@
                                     <p class="text-xs text-slate-400 dark:text-navy-300">
                                       {{$item->city}}, {{$item->residence}}
                                     </p>
-                                    
-                                    
                                   </div>
                                 </div>
                               </div>
@@ -351,15 +349,12 @@
                                             <i
                                               :class="expanded && '-rotate-180'"
                                               class="fas fa-pencil text-sm transition-transform"
-                                            ></i>
+                                            >
+                                            </i>
                                           </a>
                                           </td>
                                         </tr>
                                       @endforeach
-
-                                      
-                                      
-                                      
                                     </tbody>
                                   </table>
                                 </div> 
@@ -373,6 +368,7 @@
                               >
                                 masquer
                               </button>
+                              
                             </div>
                           </div>
                         </div>
