@@ -61,9 +61,6 @@
 
             <div class="tab-content p-4 sm:p-5">
               <div class="space-y-5">
-
-
-                
                 <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
                   <label class="block">
                     <span>Nom</span>

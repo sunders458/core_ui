@@ -173,23 +173,19 @@
                     <td class="whitespace-nowrap px-4 py-3 sm:px-5">
                       {{$item->email}}
                     </td>
-                      <td class="whitespace-nowrap px-4 py-3 sm:px-5">
-
-                        <div class="flex space-x-2">
-
-                          @foreach ($item->bien as $mybien)
-                            
-                          
-                          <div
-                            class="badge rounded-full border border-info text-info"
-                          >
+                    <td class="whitespace-nowrap px-4 py-3 sm:px-5">
+                      <div class="flex space-x-2">
+                        @foreach ($item->bien as $mybien)
+                        @if(is_object($mybien) && isset($mybien->type_logement))
+                          <div class="badge rounded-full border border-info text-info">
                             {{$mybien->type_logement}}
                           </div>
-                          @endforeach
-
-
-                        </div>
-                      </td>
+                        @else
+                          Aucun bien
+                        @endif
+                        @endforeach
+                      </div> 
+                    </td>
 
                       <td class="whitespace-nowrap px-4 py-3 sm:px-5">
                         <button
@@ -310,37 +306,19 @@
                                       </tr>
                                     </thead>
                                     <tbody>
-
                                       @foreach ($item->bien as $mbien)
-                                        <tr
-                                          class="border-y border-transparent border-b-slate-200 dark:border-b-navy-500"
-                                        >
-                                          {{-- <td
-                                            class="whitespace-nowrap px-4 py-3 sm:px-5"
-                                          >
-                                            {{1}}
-                                          </td> --}}
-                                          <td
-                                            class="whitespace-nowrap px-4 py-3 sm:px-5"
-                                          >
-                                          {{$mbien->type_logement}}
-                                          </td>
-                                          <td
-                                            class="whitespace-nowrap px-4 py-3 sm:px-5"
-                                          >
-                                          {{$mbien->finition}}
-                                          </td>
-                                          <td
-                                            class="whitespace-nowrap px-4 py-3 sm:px-5"
-                                          >
-                                          {{number_format($mbien->prix, 0, ',', ' ')}} F CFA
-                                          </td>
+                                        <tr class="border-y border-transparent border-b-slate-200 dark:border-b-navy-500">
+                                          @if(isset($mbien->type_logement))
+                                            <td class="whitespace-nowrap px-4 py-3 sm:px-5">{{$mbien->type_logement}}</td>
+                                          @endif
+                                          @if(isset($mbien->finition))
+                                            <td class="whitespace-nowrap px-4 py-3 sm:px-5">{{$mbien->finition}}</td>
+                                          @endif
+                                          @if(isset($mbien->prix))
+                                            <td class="whitespace-nowrap px-4 py-3 sm:px-5">{{number_format($mbien->prix, 0, ',', ' ')}} F CFA</td>
+                                          @endif
                                         </tr>
-                                      @endforeach
-
-                                      
-                                      
-                                      
+                                      @endforeach 
                                     </tbody>
                                   </table>
                                 </div> 

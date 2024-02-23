@@ -19,12 +19,20 @@ class ProspectController extends Controller
     public function index(Request $request)
     {
         //
-        $data = User::orderBy('name','ASC')
-            ->where('type','0')->where('user_id',Auth::user()->id)
-            ->with('bien')->whereHas('bien',function($query){
+        $data = User::orderBy('name', 'ASC')
+            ->where('type', 0)
+            ->where('user_id', Auth::user()->id)
+            ->with(['bien' => function ($query) {
                 $query->whereNull('client_id');
-            })->paginate(20);
-            
+            }])
+            ->paginate(20)
+            ->transform(function ($user) {
+                if ($user->bien->isEmpty()) {
+                    $user->bien = collect(['aucun bien']);
+                }
+                return $user;
+            });
+            //dd($data);
         return view('customers.prospect.prospectIndex',compact('data'))
             ->with('i', ($request->input('page', 1) - 1) * 20);
     }
@@ -61,7 +69,7 @@ class ProspectController extends Controller
         $prospect = User::find($request->user_id);
         if($prospect){
             foreach ($request->souscription as $index => $souscription) {
-                Cotisation::create([
+                $souscript =Cotisation::create([
                     'montant' => $souscription,
                     // 'cotisation' => $request->cotisation[$index],
                     // 'description' => $request->description[$index],
@@ -75,7 +83,7 @@ class ProspectController extends Controller
                 $bien->save();
             }
             foreach ($request->cotisation as $index => $cotisation) {
-                Cotisation::create([
+                $cotis=Cotisation::create([
                     'montant' => $cotisation,
                     // 'cotisation' => $request->cotisation[$index],
                     // 'description' => $request->description[$index],
@@ -89,7 +97,8 @@ class ProspectController extends Controller
             $prospect->type =  1;
             $prospect->save();
 
-            dd('ok');
+            return redirect()->route('prospects.all')
+            ->with('success','User created successfully');;
         }
 
         
@@ -123,7 +132,7 @@ class ProspectController extends Controller
         $this->validate($request, [
             'name' => 'required',
             'email' => 'email|unique:users,email',
-            'bien_id'=>'required',
+            //'bien_id'=>'required',
         ]);
 
         $input = $request->all();
