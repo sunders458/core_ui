@@ -173,23 +173,20 @@
                     <td class="whitespace-nowrap px-4 py-3 sm:px-5">
                       {{$item->email}}
                     </td>
-                      <td class="whitespace-nowrap px-4 py-3 sm:px-5">
+                    <td class="whitespace-nowrap px-4 py-3 sm:px-5">
 
-                        <div class="flex space-x-2">
-
-                          @foreach ($item->bien as $mybien)
-                            
-                          
-                          <div
-                            class="badge rounded-full border border-info text-info"
-                          >
+                      <div class="flex space-x-2">
+                        @foreach ($item->bien as $mybien)
+                        @if(is_object($mybien) && isset($mybien->type_logement))
+                          <div class="badge rounded-full border border-info text-info">
                             {{$mybien->type_logement}}
                           </div>
-                          @endforeach
-
-
-                        </div>
-                      </td>
+                        @else
+                          Aucun bien
+                        @endif
+                        @endforeach
+                      </div> 
+                    </td>
 
                       <td class="whitespace-nowrap px-4 py-3 sm:px-5">
                         <button
@@ -221,11 +218,7 @@
                         <div x-show="expanded" x-collapse>
                           <div class="px-4 pb-4 sm:px-5">
                             <p>
-                             
                             </p>
-
-                            
-                           
                             <div class="grid grid-cols-12 gap-4 sm:gap-5 lg:gap-6">
                               
                               <div class="col-span-3 lg:col-span-3">
@@ -319,12 +312,13 @@
                                         <tr
                                           class="border-y border-transparent border-b-slate-200 dark:border-b-navy-500"
                                         >
-                                         
-                                          <td
-                                            class="whitespace-nowrap px-4 py-3 sm:px-5"
-                                          >
-                                          {{$mbien->type_logement}}
-                                          </td>
+                                          @if(isset($mbien->type_logement))
+                                            <td
+                                              class="whitespace-nowrap px-4 py-3 sm:px-5"
+                                            >
+                                            {{$mbien->type_logement}}
+                                            </td>
+                                          @endif
                                           <td
                                             class="whitespace-nowrap px-4 py-3 sm:px-5"
                                           >

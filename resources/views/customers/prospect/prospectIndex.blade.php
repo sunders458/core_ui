@@ -330,7 +330,7 @@
                                 @click="expanded = false"
                                 class="btn mt-2 h-8 rounded px-3 text-xs+ font-medium text-primary hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:text-accent-light dark:hover:bg-accent-light/20 dark:focus:bg-accent-light/20 dark:active:bg-accent-light/25"
                               >
-                                masquer
+                                Masquer
                               </button>
                             </div>
                           </div>
