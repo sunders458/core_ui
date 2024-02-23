@@ -136,6 +136,8 @@ class ProspectController extends Controller
         ]);
 
         $input = $request->all();
+        // Nettoyage du champ phone pour ne garder que les chiffres
+        $input['phone'] = preg_replace('/\D/', '', $input['phone']);
         $input['user_id'] =Auth::user()->id;
         $input['password'] = bcrypt('password');
         $input['type'] = 0;

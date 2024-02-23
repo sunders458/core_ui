@@ -274,11 +274,7 @@
                     <div x-show="expanded" x-collapse>
                       <div class="px-4 pb-4 sm:px-5">
                         <p>
-                          Lorem ipsum dolor, sit amet consectetur
-                          adipisicing elit. Aut amet sunt repudiandae!
                         </p>
-
-
                         <div class="grid grid-cols-12 gap-4 sm:gap-5 lg:gap-6">
                               
                           <div class="col-span-3 lg:col-span-3">
