@@ -22,7 +22,8 @@ class ProjetController extends Controller
     public function dashboard()
     {
         //
-        return view('projetDashboard');
+        
+        return view('projets.projetIndex');
     }
     /**
      * Display a listing of the resource.
@@ -88,7 +89,7 @@ class ProjetController extends Controller
     public function create()
     {
         //
-        return view('projetAdd');
+        return view('projets.projetAdd');
     }
 
     /**

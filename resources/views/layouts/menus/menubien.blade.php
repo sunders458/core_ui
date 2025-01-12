@@ -9,7 +9,7 @@
         <p
           class="text-base tracking-wider text-slate-800 dark:text-navy-100"
         >
-          Biens Immobiliers
+          Projets
         </p>
         <button
           @click="$store.global.isSidebarExpanded = false"

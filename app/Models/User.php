@@ -52,7 +52,8 @@ class User extends Authenticatable implements JWTSubject
         'out_at', 
         'password', 
         'address',
-        'parent_id'
+        'parent_id',
+        'societe_id',
     ];
 
     /**
@@ -106,5 +107,11 @@ class User extends Authenticatable implements JWTSubject
     public function countries()
     {
         return $this->belongsTo(Pays::class,'pays_id');
+    }
+
+    // La relation entre User et Societe
+    public function societe()
+    {
+        return $this->belongsTo(Societe::class);
     }
 }

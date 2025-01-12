@@ -16,7 +16,7 @@ class UserSeeder extends Seeder
     {
         $partener=User::create([
             'name' => 'Partenaire 1',
-            'eglise_id' => '0',
+            'societe_id' => '0',
             'phone' => '0702030405',
             'status' => '1',
             'email' => 'partenaire@gmail.com',

@@ -1,44 +1,13 @@
--- phpMyAdmin SQL Dump
--- version 4.0.9
--- http://www.phpmyadmin.net
---
--- Client: localhost
--- Généré le: Lun 06 Février 2023 à 08:34
--- Version du serveur: 5.5.8-log
--- Version de PHP: 5.3.5
-
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET time_zone = "+00:00";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
-
---
--- Base de données: `school_admin_iutea_clone`
---
-
--- --------------------------------------------------------
-
---
--- Structure de la table `pays`
---
 
 CREATE TABLE IF NOT EXISTS `pays` (
-  `idPays` int(3) NOT NULL AUTO_INCREMENT,
-  `num` int(3) NOT NULL,
-  `libelle` varchar(150) NOT NULL,
-  `gentile` varchar(255) NOT NULL,
-  `iso` varchar(3) NOT NULL,
-  `prefixe` int(4) NOT NULL,
-  `sup` int(1) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`idPays`),
-  KEY `sup` (`sup`),
-  KEY `libelle` (`libelle`),
-  KEY `gentile` (`gentile`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=239 ;
+  `id` INTEGER PRIMARY KEY AUTOINCREMENT,
+  `num` INTEGER NOT NULL,
+  `libelle` TEXT NOT NULL,
+  `gentile` TEXT NOT NULL,
+  `iso` TEXT NOT NULL,
+  `prefixe` INTEGER NOT NULL,
+  `sup` INTEGER NOT NULL DEFAULT 0
+);
 
 --
 -- Contenu de la table `pays`
@@ -283,7 +252,3 @@ INSERT INTO `pays` (`id`, `num`, `libelle`, `gentile`, `iso`, `prefixe`, `sup`) 
 (236, 314, 'Jersey', '', 'JE', 44, 0),
 (237, 315, 'Kosovo', '', 'KS', 377, 0),
 (238, 316, 'Kosovo', 'Kosovare', 'KS', 386, 0);
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
